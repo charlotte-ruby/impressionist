@@ -18,7 +18,7 @@ Rails 3.0.3 and Ruby 1.9.2 - Sorry, but you need to upgrade if you are using Rai
 
 Add it to your Gemfile
 
-    gem 'impressionist', :git => 'git@github.com:cowboycoded/impressionist.git'"
+    gem 'impressionist', :git => 'git@github.com:cowboycoded/impressionist.git'
 
 Install with Bundler
 
