@@ -1,6 +1,7 @@
 require 'spec_helper.rb'
 
 describe ArticlesController do
+  fixtures :articles,:impressions
   render_views
   
   it "should make the impressionable_hash available" do
