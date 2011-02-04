@@ -64,16 +64,24 @@ namespace :version do
 
   desc "create a new version, create tag and push to github"
   task :minor_release do
-    Rake::Task['version:bump:minor'].invoke
-    Rake::Task['gemspec:release'].invoke
-    Rake::Task['git:release'].invoke
+    if Jeweler::Commands::ReleaseToGit.new.clean_staging_area?
+      Rake::Task['version:bump:minor'].invoke
+      Rake::Task['gemspec:release'].invoke
+      Rake::Task['git:release'].invoke
+    else
+      puts "Commit your changed files first"
+    end      
   end
   
   desc "create a new version, create tag and push to github"
   task :major_release do
-    Rake::Task['version:bump:major'].invoke
-    Rake::Task['gemspec:release'].invoke    
-    Rake::Task['git:release'].invoke
+    if Jeweler::Commands::ReleaseToGit.new.clean_staging_area?
+      Rake::Task['version:bump:major'].invoke
+      Rake::Task['gemspec:release'].invoke    
+      Rake::Task['git:release'].invoke
+    else
+      puts "Commit your changed files first"
+    end
   end
 end
 
