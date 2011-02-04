@@ -43,7 +43,7 @@ class ApplicationController < ActionController::Base
   private
   def bypass
     Impressionist::Bots::WILD_CARDS.each do |wild_card|
-      return true if request.user_agent.include? wild_card
+      return true if request.user_agent.downcase.include? wild_card
     end
     Impressionist::Bots::LIST.include? request.user_agent
   end
