@@ -1,0 +1,24 @@
+source 'http://rubygems.org'
+
+gem 'rails', '3.0.3'
+gem 'sqlite3-ruby', :require => 'sqlite3'
+gem 'impressionist', :path=>"/rails_plugins/mine/impressionist"
+
+if ENV['MY_BUNDLE_ENV'] == "dev"
+  group :development do
+    gem 'ZenTest'
+    gem 'autotest'
+    gem 'systemu'
+    gem "rspec"
+    gem "rspec-rails"
+    gem "mongrel", "1.2.0.pre2"
+    gem 'capybara'
+    gem 'database_cleaner'
+    gem 'cucumber-rails'
+    gem 'cucumber'
+    gem 'spork'
+    gem 'launchy'
+    gem 'autotest-notification'
+  end
+end
+

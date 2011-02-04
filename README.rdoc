@@ -1,0 +1,95 @@
+= impressionist
+
+A lightweight plugin that logs impressions per action or manually per model
+
+== I would not call this a stable plugin yet, although I have been running it in prod with no problems.  Use at your own risk ;-)
+
+== What does this thing do?
+
+Logs an impression... and I use that term loosely.  It can log page impressions (technically action impressions), but it is not limited to that.  You can log impressions multiple times per request.
+And you can also attach it to a model.  The goal of this project is to provide customizable web stats that are immediately accessible in your application as opposed to using G Analytics and pulling data using their API.  
+You can attach custom messages to impressions and log multiple impressions per request.  No reporting yet.. this thingy just creates the data.
+
+== Which versions of Rails and Ruby is this compatible with?
+
+Rails 3.0.3 and Ruby 1.9.2 - Sorry, but you need to upgrade if you are using Rails 2.  You know you want to anyways.. all the cool kids are doing it ;-)
+
+== Installation
+
+Add it to your Gemfile
+
+    gem 'impressionist', :git => 'git@github.com:cowboycoded/impressionist.git'"
+
+Install with Bundler
+
+    bundle install
+
+Generate the impressions table migration
+
+    rails g impressionist
+
+Run the migration
+
+    rake db:migrate
+
+The following fields are provided in the migration:
+
+    t.string   "impressionable_type"  # model type: Widget
+    t.integer  "impressionable_id"    # model instance ID: @widget.id
+    t.integer  "user_id"              # automatically logs @current_user.id
+    t.string   "controller_name"      # logs the controller name
+    t.string   "action_name"          # logs the action_name
+    t.string   "view_name"            # TODO: log individual views (as well as partials and nested partials)
+    t.string   "request_hash"         # unique ID per request, in case you want to log multiple impressions and associate them together
+    t.string   "ip_address"           # request.remote_ip
+    t.string   "message"              # custom message you can add
+    t.datetime "created_at"           # I am not sure what this is.... Any clue?
+    t.datetime "updated_at"           # never seen this one before either....  Your guess is as good as mine??
+
+== Usage
+
+Log all actions in a controller
+
+    WidgetsController < ApplicationController
+      impressionist
+    end
+
+Specify actions you want logged in a controller
+
+    WidgetsController < ApplicationController
+      impressionist :actions=>[:show,:index]
+    end
+
+Make your models impressionable.  This allows you to attach impressions to an AR model instance.
+
+    class Widget < ActiveRecord::Base
+      is_impressionable
+    end
+
+Log an impression per model instance in your controller:
+
+    @widget = Widget.find
+    impressionist(@widget,message:"wtf is a widget?")
+
+== Development Roadmap
+
+* Automatic impression logging in views.  For example, log initial view, and any partials called from initial view
+* Customizable black list for user-agents or IP addresses.  Impressions will be ignored.  Web admin as part of the Engine.
+* Reporting engine
+* AB testing integration
+
+== Contributing to impressionist
+ 
+* Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
+* Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
+* Fork the project
+* Start a feature/bugfix branch
+* Commit and push until you are happy with your contribution
+* Make sure to add rpsec tests for it. Patches or features without tests will be ignored.  Also, try to write better tests than I do ;-)
+* If adding engine controller or view functionality, use HAML and Inherited Resources.  
+* All testing is done inside a small Rails app (test_app).  You will find specs within this app.
+== Copyright
+
+Copyright (c) 2011 cowboycoded. See LICENSE.txt for
+further details.
+
