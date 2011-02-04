@@ -1,4 +1,4 @@
-class WidgetsController < ActionController::Base
+class WidgetsController < ApplicationController
   impressionist :actions=>[:show,:index]
   def show
   end
