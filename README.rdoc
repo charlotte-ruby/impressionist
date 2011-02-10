@@ -60,7 +60,9 @@ Specify actions you want logged in a controller
       impressionist :actions=>[:show,:index]
     end
 
-Make your models impressionable.  This allows you to attach impressions to an AR model instance.
+Make your models impressionable.  This allows you to attach impressions to an AR model instance.  
+Impressionist will automatically log the Model name (based on action_name) and the id (based on params[:id]), but in order to get the count of impressions (example: @widget.impression_count), 
+you will need to make your model impressionalble
 
     class Widget < ActiveRecord::Base
       is_impressionable
