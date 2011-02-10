@@ -81,8 +81,12 @@ Get total impression count.  This may return more than 1 impression per http req
     @widget.impression_count("2011-01-01","2011-01-02")  # start date, end date
     @widget.impression_count("2011-01-01")  #specify start date only, end date = now
 
+Logging impressions for authenticated users happens automatically.  If you have a current_user helper or use @current_user in your before_filter to set your authenticated user, current_user.id will be written to the user_id field in the impressions table.
+
+
 == Development Roadmap
-TODO: create indexes for impressions table
+TODO (soon): create indexes for impressions table
+TODO (soon): more helpers for impression count to filter controllers, actions, messages, and user_ids
 * Automatic impression logging in views.  For example, log initial view, and any partials called from initial view
 * Customizable black list for user-agents or IP addresses.  Impressions will be ignored.  Web admin as part of the Engine.
 * Reporting engine
