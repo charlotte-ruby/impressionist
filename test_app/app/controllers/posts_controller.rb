@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  helper_method :current_user
   impressionist
   def index
     
@@ -10,5 +11,13 @@ class PostsController < ApplicationController
   
   def edit
     
+  end
+  
+  def current_user
+    if session[:user_id]
+      user = User.new
+      user.id = session[:user_id]
+      @current_user ||= user
+    end
   end
 end

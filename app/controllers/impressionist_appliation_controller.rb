@@ -48,7 +48,10 @@ class ApplicationController < ActionController::Base
     Impressionist::Bots::LIST.include? request.user_agent
   end
     
+  #use both @current_user and current_user helper
   def user_id
-    @current_user ? @current_user.id : nil
+    user_id = @current_user ? @current_user.id : nil rescue nil
+    user_id = current_user ? current_user.id : nil rescue nil if user_id.blank?
+    user_id
   end
 end
