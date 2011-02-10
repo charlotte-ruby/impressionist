@@ -71,8 +71,18 @@ Log an impression per model instance in your controller:
     @widget = Widget.find
     impressionist(@widget,message:"wtf is a widget?")
 
-== Development Roadmap
+Get unique impression count from a model
+    @widget.unique_impression_count
+    @widget.unique_impression_count("2011-01-01","2011-01-02")  # start date, end date
+    @widget.unique_impression_count("2011-01-01")  #specify start date only, end date = now
+    
+Get total impression count.  This may return more than 1 impression per http request, depending on how you are logging impressions
+    @widget.impression_count
+    @widget.impression_count("2011-01-01","2011-01-02")  # start date, end date
+    @widget.impression_count("2011-01-01")  #specify start date only, end date = now
 
+== Development Roadmap
+TODO: create indexes for impressions table
 * Automatic impression logging in views.  For example, log initial view, and any partials called from initial view
 * Customizable black list for user-agents or IP addresses.  Impressions will be ignored.  Web admin as part of the Engine.
 * Reporting engine
