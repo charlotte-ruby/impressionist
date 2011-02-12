@@ -6,9 +6,16 @@ A lightweight plugin that logs impressions per action or manually per model
 
 == What does this thing do?
 
-Logs an impression... and I use that term loosely.  It can log page impressions (technically action impressions), but it is not limited to that.  You can log impressions multiple times per request.
-And you can also attach it to a model.  The goal of this project is to provide customizable web stats that are immediately accessible in your application as opposed to using G Analytics and pulling data using their API.  
-You can attach custom messages to impressions and log multiple impressions per request.  No reporting yet.. this thingy just creates the data.
+Logs an impression... and I use that term loosely.  It can log page impressions (technically action impressions), but it is not limited to that.  
+You can log impressions multiple times per request.  And you can also attach it to a model.  The goal of this project is to provide customizable 
+stats that are immediately accessible in your application as opposed to using G Analytics and pulling data using their API.  You can attach custom 
+messages to impressions and log multiple impressions per request.  No reporting yet.. this thingy just creates the data.
+
+== What about bots?
+
+They are ignored.  1200 known bots have been added to the ignore list as of Feb 1, 2011.  Impressionist uses this list:
+http://www.user-agents.org/allagents.xml
+
 
 == Which versions of Rails and Ruby is this compatible with?
 
@@ -87,8 +94,8 @@ Logging impressions for authenticated users happens automatically.  If you have 
 
 
 == Development Roadmap
-TODO (soon): create indexes for impressions table
-TODO (soon): more helpers for impression count to filter controllers, actions, messages, and user_ids
+TODO (soon): create indexes for impressions table  
+TODO (soon): more helpers for impression count to filter controllers, actions, messages, and user_ids  
 * Automatic impression logging in views.  For example, log initial view, and any partials called from initial view
 * Customizable black list for user-agents or IP addresses.  Impressions will be ignored.  Web admin as part of the Engine.
 * Reporting engine
