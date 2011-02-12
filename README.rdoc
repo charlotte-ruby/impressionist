@@ -68,17 +68,13 @@ The following fields are provided in the migration:
       impressionist :actions=>[:show,:index]
     end
 
-3. Make your models impressionable.  This allows you to attach impressions to an AR model instance.  
-Impressionist will automatically log the Model name (based on action_name) and the id (based on params[:id]), but in order to get the count of 
-impressions (example: @widget.impression_count), 
-you will need to make your model impressionalble
+3. Make your models impressionable.  This allows you to attach impressions to an AR model instance.  Impressionist will automatically log the Model name (based on action_name) and the id (based on params[:id]), but in order to get the count of impressions (example: @widget.impression_count), you will need to make your model impressionalble
 
     class Widget < ActiveRecord::Base
       is_impressionable
     end
 
-4. Log an impression per model instance in your controller.  Note that it is not necessary to specify "impressionist" (usage #1) in the top of you controller if you are using this method.
-If you add "impressionist" to the top of your controller and also use this method in your action, it will result in 2 impressions being logged (but associated with one request_hash)
+4. Log an impression per model instance in your controller.  Note that it is not necessary to specify "impressionist" (usage #1) in the top of you controller if you are using this method.  If you add "impressionist" to the top of your controller and also use this method in your action, it will result in 2 impressions being logged (but associated with one request_hash)
 
     def show
       @widget = Widget.find
