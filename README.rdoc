@@ -9,7 +9,7 @@ A lightweight plugin that logs impressions per action or manually per model
 Logs an impression... and I use that term loosely.  It can log page impressions (technically action impressions), but it is not limited to that.  
 You can log impressions multiple times per request.  And you can also attach it to a model.  The goal of this project is to provide customizable 
 stats that are immediately accessible in your application as opposed to using G Analytics and pulling data using their API.  You can attach custom 
-messages to impressions and log multiple impressions per request.  No reporting yet.. this thingy just creates the data.
+messages to impressions.  No reporting yet.. this thingy just creates the data.
 
 == What about bots?
 
@@ -55,37 +55,42 @@ The following fields are provided in the migration:
 
 == Usage
 
-Log all actions in a controller
+
+1. Log all actions in a controller
 
     WidgetsController < ApplicationController
       impressionist
     end
 
-Specify actions you want logged in a controller
+2. Specify actions you want logged in a controller
 
     WidgetsController < ApplicationController
       impressionist :actions=>[:show,:index]
     end
 
-Make your models impressionable.  This allows you to attach impressions to an AR model instance.  
-Impressionist will automatically log the Model name (based on action_name) and the id (based on params[:id]), but in order to get the count of impressions (example: @widget.impression_count), 
+3. Make your models impressionable.  This allows you to attach impressions to an AR model instance.  
+Impressionist will automatically log the Model name (based on action_name) and the id (based on params[:id]), but in order to get the count of 
+impressions (example: @widget.impression_count), 
 you will need to make your model impressionalble
 
     class Widget < ActiveRecord::Base
       is_impressionable
     end
 
-Log an impression per model instance in your controller:
+4. Log an impression per model instance in your controller.  Note that it is not necessary to specify "impressionist" (usage #1) in the top of you controller if you are using this method.
+If you add "impressionist" to the top of your controller and also use this method in your action, it will result in 2 impressions being logged (but associated with one request_hash)
 
-    @widget = Widget.find
-    impressionist(@widget,message:"wtf is a widget?")
+    def show
+      @widget = Widget.find
+      impressionist(@widget,message:"wtf is a widget?")
+    end
 
-Get unique impression count from a model
+5. Get unique impression count from a model.  This groups impressions by request_hash, so if you logged multiple impressions per request, it will only count them one time.
     @widget.unique_impression_count
     @widget.unique_impression_count("2011-01-01","2011-01-02")  # start date, end date
     @widget.unique_impression_count("2011-01-01")  #specify start date only, end date = now
     
-Get total impression count.  This may return more than 1 impression per http request, depending on how you are logging impressions
+6. Get total impression count.  This may return more than 1 impression per http request, depending on how you are logging impressions
     @widget.impression_count
     @widget.impression_count("2011-01-01","2011-01-02")  # start date, end date
     @widget.impression_count("2011-01-01")  #specify start date only, end date = now
@@ -94,7 +99,6 @@ Logging impressions for authenticated users happens automatically.  If you have 
 
 
 == Development Roadmap
-TODO (soon): create indexes for impressions table  
 TODO (soon): more helpers for impression count to filter controllers, actions, messages, and user_ids  
 * Automatic impression logging in views.  For example, log initial view, and any partials called from initial view
 * Customizable black list for user-agents or IP addresses.  Impressions will be ignored.  Web admin as part of the Engine.
