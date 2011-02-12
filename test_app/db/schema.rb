@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110210205028) do
+ActiveRecord::Schema.define(:version => 20110212032114) do
 
   create_table "articles", :force => true do |t|
     t.string   "name"
@@ -31,6 +31,10 @@ ActiveRecord::Schema.define(:version => 20110210205028) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "impressions", ["controller_name", "action_name", "request_hash", "ip_address"], :name => "controlleraction_index"
+  add_index "impressions", ["impressionable_type", "impressionable_id", "request_hash", "ip_address"], :name => "poly_index"
+  add_index "impressions", ["user_id"], :name => "index_impressions_on_user_id"
 
   create_table "posts", :force => true do |t|
     t.string   "name"
