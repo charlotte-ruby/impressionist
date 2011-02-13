@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{impressionist}
-  s.version = "0.2.1"
+  s.version = "0.2.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["cowboycoded"]
-  s.date = %q{2011-02-11}
+  s.date = %q{2011-02-13}
   s.description = %q{Log impressions from controller actions or from a model}
   s.email = %q{john.mcaliley@gmail.com}
   s.extra_rdoc_files = [
@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
     "README.rdoc",
     "Rakefile",
     "VERSION",
-    "app/controllers/impressionist_appliation_controller.rb",
+    "app/controllers/impressionist_controller.rb",
     "app/models/impression.rb",
     "app/models/impressionist/bots.rb",
     "app/models/impressionist/impressionable.rb",
