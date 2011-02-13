@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Impression do
-  fixtures :articles,:impressions
+  fixtures :articles,:impressions,:posts
   
   before(:each) do
     @article = Article.find(1)
@@ -13,7 +13,7 @@ describe Impression do
   end
   
   it "should save an impression with a message" do
-    @article.impressions.create(message:"test message")
+    @article.impressions.create(:message=>"test message")
     @article.impressions.last.message.should eq "test message"
   end
   

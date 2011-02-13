@@ -2,11 +2,13 @@ require 'spec_helper'
 
 describe Impressionist do
   it "should be extended from ActiveRecord::Base" do
-    ActiveRecord::Base.methods.include?(:is_impressionable).should be true
+    method = RUBY_VERSION.match("1.8") ? "is_impressionable" : :is_impressionable
+    ActiveRecord::Base.methods.include?(method).should be true
   end
   
   it "should include methods in ApplicationController" do
-    ApplicationController.instance_methods.include?(:impressionist).should be true
+    method = RUBY_VERSION.match("1.8") ? "impressionist" : :impressionist
+    ApplicationController.instance_methods.include?(method).should be true
   end
   
   it "should include the before_filter method in ApplicationController" do
