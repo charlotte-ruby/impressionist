@@ -1,0 +1,6 @@
+== 0.2.5 (2011-02-17)
+* New model method - @widget.unique_impression_count_ip  - This gives you unique impression account filtered by IP (and in turn request_hash since they have same IPs)
+* @widget.unique_impression_count now uses request_hash.  This was incorrectly stated in the README, since it was using ip_address.  The README is correct as a result of the method change.
+
+== 0.2.4 (2011-02-17)
+* Fix issue #1 - action_name and controller_name were not being logged for impressionist method inside action
