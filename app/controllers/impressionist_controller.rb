@@ -18,7 +18,9 @@ module ImpressionistController
           obj.impressions.create(:message=> message,
                                  :request_hash=> @impressionist_hash,
                                  :ip_address=> request.remote_ip,
-                                 :user_id=> user_id)
+                                 :user_id=> user_id,
+                                 :controller_name=>controller_name,
+                                 :action_name=> action_name)
         else
           raise "#{obj.class.to_s} is not impressionable!"
         end
@@ -47,7 +49,7 @@ module ImpressionistController
     private
     def bypass
       Impressionist::Bots::WILD_CARDS.each do |wild_card|
-        return true if request.user_agent.downcase.include? wild_card
+        return true if request.user_agent and request.user_agent.downcase.include? wild_card
       end
       Impressionist::Bots::LIST.include? request.user_agent
     end

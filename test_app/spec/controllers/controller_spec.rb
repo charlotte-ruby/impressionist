@@ -13,12 +13,16 @@ describe ArticlesController do
     get "index"
     Impression.all.size.should eq 11
     Article.first.impressions.last.message.should eq "this is a test article impression"
+    Article.first.impressions.last.controller_name.should eq "articles"
+    Article.first.impressions.last.action_name.should eq "index"
   end
   
   it "should log an impression without a message" do
     get "show", :id=> 1
     Impression.all.size.should eq 11
     Article.first.impressions.last.message.should eq nil
+    Article.first.impressions.last.controller_name.should eq "articles"
+    Article.first.impressions.last.action_name.should eq "show"
   end
   
   it "should log the user_id if user is authenticated (@current_user before_filter method)" do
@@ -38,6 +42,7 @@ describe PostsController do
     get "show", :id=> 1
     Impression.all.size.should eq 11
     Impression.last.controller_name.should eq "posts"
+    Impression.last.action_name.should eq "show"
     Impression.last.impressionable_type.should eq "Post"
     Impression.last.impressionable_id.should eq 1
   end

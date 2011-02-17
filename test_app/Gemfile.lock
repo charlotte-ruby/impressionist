@@ -1,7 +1,7 @@
 PATH
   remote: /rails_plugins/mine/impressionist
   specs:
-    impressionist (0.2.2)
+    impressionist (0.2.3)
 
 GEM
   remote: http://rubygems.org/
