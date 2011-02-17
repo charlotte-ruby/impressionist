@@ -19,7 +19,7 @@ http://www.user-agents.org/allagents.xml
 
 == Which versions of Rails and Ruby is this compatible with?
 
-Rails 3.0.3 and Ruby 1.9.2 - Sorry, but you need to upgrade if you are using Rails 2.  You know you want to anyways.. all the cool kids are doing it ;-)
+Rails 3.0.4 and Ruby 1.9.2 (also tested on REE 1.8.7) - Sorry, but you need to upgrade if you are using Rails 2.  You know you want to anyways.. all the cool kids are doing it ;-)
 
 == Installation
 
@@ -78,15 +78,20 @@ The following fields are provided in the migration:
 
     def show
       @widget = Widget.find
-      impressionist(@widget,message:"wtf is a widget?")
+      impressionist(@widget,message:"wtf is a widget?") #message is optional
     end
 
 5. Get unique impression count from a model.  This groups impressions by request_hash, so if you logged multiple impressions per request, it will only count them one time.
     @widget.unique_impression_count
     @widget.unique_impression_count("2011-01-01","2011-01-02")  # start date, end date
     @widget.unique_impression_count("2011-01-01")  #specify start date only, end date = now
+
+6. Get the unique impression count from a model filtered by IP address.  This in turn will give you impressions with unique request_hash, since rows with the same request_hash will have the same IP address.
+    @widget.unique_impression_count_ip
+    @widget.unique_impression_count_ip("2011-01-01","2011-01-02")  # start date, end date
+    @widget.unique_impression_count_ip("2011-01-01")  #specify start date only, end date = now
     
-6. Get total impression count.  This may return more than 1 impression per http request, depending on how you are logging impressions
+7. Get total impression count.  This may return more than 1 impression per http request, depending on how you are logging impressions
     @widget.impression_count
     @widget.impression_count("2011-01-01","2011-01-02")  # start date, end date
     @widget.impression_count("2011-01-01")  #specify start date only, end date = now
