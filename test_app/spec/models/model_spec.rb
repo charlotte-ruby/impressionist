@@ -9,7 +9,7 @@ describe Impression do
   
   it "should save a blank impression for an Article that has 10 impressions" do
     @article.impressions.create
-    @article.impressions.size.should eq 11
+    @article.impressions.size.should eq 12
   end
   
   it "should save an impression with a message" do
@@ -17,27 +17,31 @@ describe Impression do
     @article.impressions.last.message.should eq "test message"
   end
   
-  it "should return the view count with no date range specified" do
-    @article.impression_count.should eq 10
+  it "should return the impression count with no date range specified" do
+    @article.impression_count.should eq 11
   end
   
-  it "should return unique view count with no date range specified" do
-    @article.unique_impression_count.should eq 7
+  it "should return unique impression count with no date range specified" do
+    @article.unique_impression_count.should eq 9
   end
   
-  it "should return view count with only start date specified" do
+  it "should return impression count with only start date specified" do
     @article.impression_count("2011-01-01").should eq 8
   end
   
-  it "should return view count with whole date range specified" do
+  it "should return impression count with whole date range specified" do
     @article.impression_count("2011-01-01","2011-01-02").should eq 7
   end
 
-  it "should return unique view count with only start date specified" do
+  it "should return unique impression count with only start date specified" do
     @article.unique_impression_count("2011-01-01").should eq 7
   end
   
-  it "should return unique view count with date range specified" do
+  it "should return unique impression count with date range specified" do
     @article.unique_impression_count("2011-01-01","2011-01-02").should eq 7
+  end
+  
+  it "should return unique impression count using ip address (which in turn eliminates duplicate request_hashes)" do
+    @article.unique_impression_count_ip.should eq 8
   end
 end

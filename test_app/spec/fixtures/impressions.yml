@@ -2,6 +2,7 @@
 impression<%= i %>:
   impressionable_type: Article
   impressionable_id: 1
+  request_hash: a<%=i%>
   ip_address: 127.0.0.<%=i%>
   created_at: 2011-01-01
 <% end %>
@@ -10,17 +11,28 @@ impression<%= i %>:
 impression8:
   impressionable_type: Article
   impressionable_id: 1
+  request_hash: a1
   ip_address: 127.0.0.1
   created_at: 2010-01-01
   
 impression9:
   impressionable_type: Article
   impressionable_id: 1
+  request_hash: a1
   ip_address: 127.0.0.1
   created_at: 2011-01-03
     
 impression10:
   impressionable_type: Article
   impressionable_id: 1
+  request_hash: a9
+  ip_address: 127.0.0.8
+  created_at: 2010-01-01  
+  
+impression11:
+  impressionable_type: Article
+  impressionable_id: 1
+  request_hash: a10
   ip_address: 127.0.0.1
   created_at: 2010-01-01  
+  
