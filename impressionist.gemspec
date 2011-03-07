@@ -37,7 +37,7 @@ Gem::Specification.new do |s|
     "lib/impressionist/railties/tasks.rake",
     "upgrade_migrations/version_0_3_0.rb"
   ]
-  s.homepage = %q{http://github.com/johnmcaliley/impressionist}
+  s.homepage = %q{http://github.com/cowboycoded/impressionist}
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
