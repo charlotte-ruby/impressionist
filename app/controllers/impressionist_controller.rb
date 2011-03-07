@@ -17,6 +17,7 @@ module ImpressionistController
         if obj.respond_to?("impressionable?")
           obj.impressions.create(:message=> message,
                                  :request_hash=> @impressionist_hash,
+                                 :session_hash=> request.session_options[:id],
                                  :ip_address=> request.remote_ip,
                                  :user_id=> user_id,
                                  :controller_name=>controller_name,
@@ -39,6 +40,7 @@ module ImpressionistController
                             :action_name=> action_name,
                             :user_id=> user_id,
                             :request_hash=> @impressionist_hash,
+                            :session_hash=> request.session_options[:id],
                             :ip_address=> request.remote_ip,
                             :impressionable_type=> controller_name.singularize.camelize,
                             :impressionable_id=> params[:id])

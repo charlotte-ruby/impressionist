@@ -11,7 +11,7 @@ describe ArticlesController do
   
   it "should log an impression with a message" do
     get "index"
-    Impression.all.size.should eq 11
+    Impression.all.size.should eq 12
     Article.first.impressions.last.message.should eq "this is a test article impression"
     Article.first.impressions.last.controller_name.should eq "articles"
     Article.first.impressions.last.action_name.should eq "index"
@@ -19,7 +19,7 @@ describe ArticlesController do
   
   it "should log an impression without a message" do
     get "show", :id=> 1
-    Impression.all.size.should eq 11
+    Impression.all.size.should eq 12
     Article.first.impressions.last.message.should eq nil
     Article.first.impressions.last.controller_name.should eq "articles"
     Article.first.impressions.last.action_name.should eq "show"
@@ -35,12 +35,19 @@ describe ArticlesController do
     get "show", :id=> 1
     Article.first.impressions.last.user_id.should eq nil
   end
+  
+  it "should log the request_hash, ip_address, and session_hash" do
+    get "show", :id=> 1
+    Impression.last.request_hash.size.should eq 64
+    Impression.last.ip_address.should eq "0.0.0.0"
+    Impression.last.session_hash.size.should eq 32
+  end
 end  
 
 describe PostsController do
   it "should log impression at the action level" do
     get "show", :id=> 1
-    Impression.all.size.should eq 11
+    Impression.all.size.should eq 12
     Impression.last.controller_name.should eq "posts"
     Impression.last.action_name.should eq "show"
     Impression.last.impressionable_type.should eq "Post"
@@ -57,23 +64,23 @@ end
 describe WidgetsController do
   it "should log impression at the per action level" do
     get "show", :id=> 1
-    Impression.all.size.should eq 11
+    Impression.all.size.should eq 12
     get "index"
-    Impression.all.size.should eq 12
+    Impression.all.size.should eq 13
     get "new"
-    Impression.all.size.should eq 12
+    Impression.all.size.should eq 13
   end
   
   it "should not log impression when user-agent is in wildcard list" do
     request.stub!(:user_agent).and_return('somebot')
     get "show", :id=> 1
-    Impression.all.size.should eq 10
+    Impression.all.size.should eq 11
   end
   
   it "should not log impression when user-agent is in the bot list" do
     request.stub!(:user_agent).and_return('Acoon Robot v1.50.001')
     get "show", :id=> 1
-    Impression.all.size.should eq 10    
+    Impression.all.size.should eq 11    
   end
 end
   

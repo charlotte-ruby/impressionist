@@ -13,7 +13,7 @@ describe Impressionist do
   end
   
   it "should run the migration created in the previous spec" do
-    migrate_output = systemu("rake db:migrate")
+    migrate_output = systemu("rake db:migrate RAILS_ENV=test")
     migrate_output[1].include?("CreateImpressionsTable: migrated").should be true
   end
 end

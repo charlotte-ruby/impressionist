@@ -44,4 +44,8 @@ describe Impression do
   it "should return unique impression count using ip address (which in turn eliminates duplicate request_hashes)" do
     @article.unique_impression_count_ip.should eq 8
   end
+
+  it "should return unique impression count using session_hash (which in turn eliminates duplicate request_hashes)" do
+    @article.unique_impression_count_session.should eq 7
+  end
 end

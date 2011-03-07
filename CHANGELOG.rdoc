@@ -1,3 +1,9 @@
+== 0.3.0 (2011-03-06)
+* added session_hash to impression model
+* migration template updated to add session_hash
+* new count instance method for impressionable model - unique_impression_count_session
+* NOTE: if you are upgrading from 0.2.5, then run the migration in the 'upgrade_migrations' dir
+
 == 0.2.5 (2011-02-17)
 * New model method - @widget.unique_impression_count_ip  - This gives you unique impression account filtered by IP (and in turn request_hash since they have same IPs)
 * @widget.unique_impression_count now uses request_hash.  This was incorrectly stated in the README, since it was using ip_address.  The README is correct as a result of the method change.
