@@ -5,22 +5,22 @@
 
 Gem::Specification.new do |s|
   s.name = %q{impressionist}
-  s.version = "0.3.1"
+  s.version = "0.3.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["cowboycoded"]
-  s.date = %q{2011-03-06}
+  s.date = %q{2011-03-21}
   s.description = %q{Log impressions from controller actions or from a model}
   s.email = %q{john.mcaliley@gmail.com}
   s.extra_rdoc_files = [
     "LICENSE.txt",
-    "README.rdoc"
+    "README.md"
   ]
   s.files = [
     "CHANGELOG.rdoc",
     "Gemfile",
     "LICENSE.txt",
-    "README.rdoc",
+    "README.md",
     "Rakefile",
     "VERSION",
     "app/controllers/impressionist_controller.rb",
@@ -35,6 +35,7 @@ Gem::Specification.new do |s|
     "lib/impressionist/bots.rb",
     "lib/impressionist/engine.rb",
     "lib/impressionist/railties/tasks.rake",
+    "logo.png",
     "upgrade_migrations/version_0_3_0.rb"
   ]
   s.homepage = %q{http://github.com/cowboycoded/impressionist}
