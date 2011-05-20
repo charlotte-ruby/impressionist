@@ -1,4 +1,4 @@
-![Impressionist Logo](https://github.com/cowboycoded/impressionist/raw/master/logo.png)
+![Impressionist Logo](https://github.com/charlotte-ruby/impressionist/raw/master/logo.png)
 
 impressionist
 =============
