@@ -86,21 +86,25 @@ Usage
         end
 
 5. Get unique impression count from a model.  This groups impressions by request_hash, so if you logged multiple impressions per request, it will only count them one time.  This unique impression count will not filter out unique users, only unique requests
+
         @widget.unique_impression_count
         @widget.unique_impression_count("2011-01-01","2011-01-02")  # start date, end date
         @widget.unique_impression_count("2011-01-01")  #specify start date only, end date = now
 
 6. Get the unique impression count from a model filtered by IP address.  This in turn will give you impressions with unique request_hash, since rows with the same request_hash will have the same IP address.
+
         @widget.unique_impression_count_ip
         @widget.unique_impression_count_ip("2011-01-01","2011-01-02")  # start date, end date
         @widget.unique_impression_count_ip("2011-01-01")  #specify start date only, end date = now
 
 7. Get the unique impression count from a model filtered by session hash.  Same as #6 regarding request hash.  This may be more desirable than filtering by IP address depending on your situation, since filtering by IP may ignore visitors that use the same IP.  The downside to this filtering is that a user could clear session data in their browser and skew the results.
+
         @widget.unique_impression_count_session
         @widget.unique_impression_count_session("2011-01-01","2011-01-02")  # start date, end date
         @widget.unique_impression_count_session("2011-01-01")  #specify start date only, end date = now
     
 8. Get total impression count.  This may return more than 1 impression per http request, depending on how you are logging impressions
+
         @widget.impression_count
         @widget.impression_count("2011-01-01","2011-01-02")  # start date, end date
         @widget.impression_count("2011-01-01")  #specify start date only, end date = now
