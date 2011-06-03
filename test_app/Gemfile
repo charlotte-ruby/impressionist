@@ -1,25 +1,23 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.4'
+gem 'rails', '3.1.0.rc1'
 gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'impressionist', :path=>"#{File.dirname(__FILE__)}/../"
+gem "pg"
 
-if ENV['MY_BUNDLE_ENV'] == "dev"
-  group :development do
-    gem 'ZenTest'
-    gem 'autotest'
-    gem 'systemu'
-    gem "rspec"
-    gem "rspec-rails"
-    gem "mongrel", "1.2.0.pre2"
-    gem 'capybara'
-    gem 'database_cleaner'
-    gem 'cucumber-rails'
-    gem 'cucumber'
-    gem 'spork'
-    gem 'launchy'
-    gem 'autotest-notification'
-    #gem 'ruby-debug19'
-  end
+group :development do
+  gem 'ZenTest'
+  gem 'autotest'
+  gem 'systemu'
+  gem "rspec"
+  gem "rspec-rails"
+  gem "mongrel", "1.2.0.pre2"
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'cucumber-rails'
+  gem 'cucumber'
+  gem 'spork'
+  gem 'launchy'
+  gem 'autotest-notification'
+  #gem 'ruby-debug19'
 end
-

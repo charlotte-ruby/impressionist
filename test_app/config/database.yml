@@ -9,11 +9,25 @@ development:
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
-test: &test
+#test: &test
+#  adapter: sqlite3
+#  database: db/test.sqlite3
+#  pool: 5
+#  timeout: 5000
+
+test:
   adapter: sqlite3
   database: db/test.sqlite3
   pool: 5
   timeout: 5000
+
+pg_test:
+  adapter: postgresql
+  database: impressionist_test
+  username: johnmcaliley
+  password: 
+  host: localhost
+  encoding: UTF8
 
 production:
   adapter: sqlite3
