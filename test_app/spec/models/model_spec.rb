@@ -17,6 +17,39 @@ describe Impression do
     @article.impressions.last.message.should eq "test message"
   end
   
+  it "should return the impression count for all with no date range specified" do
+    @article.impressionist_count(:filter=>:all).should eq 11
+  end
+  
+  it "should return unique impression count with no date range specified" do
+    @article.impressionist_count.should eq 9
+  end
+  
+  it "should return impression count with only start date specified" do
+    @article.impressionist_count(:start_date=>"2011-01-01",:filter=>:all).should eq 8
+  end
+  
+  it "should return impression count with whole date range specified" do
+    @article.impressionist_count(:start_date=>"2011-01-01",:end_date=>"2011-01-02",:filter=>:all).should eq 7
+  end
+
+  it "should return unique impression count with only start date specified" do
+    @article.impressionist_count(:start_date=>"2011-01-01").should eq 7
+  end
+  
+  it "should return unique impression count with date range specified" do
+    @article.impressionist_count(:start_date=>"2011-01-01",:end_date=>"2011-01-02").should eq 7
+  end
+  
+  it "should return unique impression count using ip address (which in turn eliminates duplicate request_hashes)" do
+    @article.impressionist_count(:filter=>:ip_address).should eq 8
+  end
+
+  it "should return unique impression count using session_hash (which in turn eliminates duplicate request_hashes)" do
+    @article.impressionist_count(:filter=>:session_hash).should eq 7
+  end
+  
+  #OLD COUNT METHODS.  DEPRECATE SOON
   it "should return the impression count with no date range specified" do
     @article.impression_count.should eq 11
   end
