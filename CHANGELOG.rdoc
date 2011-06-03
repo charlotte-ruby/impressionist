@@ -1,3 +1,10 @@
+== 0.4.0 (2011-06-03)
+* Fix postgres bug
+* New impression count method that accepts options for filter, start_date and end_date
+* Add referrer to Impression model.  YOU MUST RUN THE UPGRADE MIGRATION IF YOU ARE UPGRADING FROM 0.3.0
+* UPGRADE MIGRATION = impressionist/upgrade_migrations/version_0_4_0.rb
+* NOTE IF YOU ARE UPGRADING FROM 0.2.5 OR BELOW, YOU MUST RUN BOTH UPGRADE MIGRATIONS
+
 == 0.3.0 (2011-03-06)
 * added session_hash to impression model
 * migration template updated to add session_hash

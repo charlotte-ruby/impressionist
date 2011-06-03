@@ -7,21 +7,20 @@ group :development do
   gem "rcov", ">= 0"
 end
 
-if ENV['MY_BUNDLE_ENV'] == "dev"
-  group :development do
-    gem 'ZenTest'
-    gem 'autotest'
-    gem 'systemu'
-    gem "rspec"
-    gem "rspec-rails"
-    gem "mongrel", "1.2.0.pre2"
-    gem 'capybara'
-    gem 'database_cleaner'
-    gem 'cucumber-rails'
-    gem 'cucumber'
-    gem 'spork'
-    gem 'launchy'
-    gem 'autotest-notification'
-    gem 'httpclient'
-  end
+group :test do
+  gem 'ZenTest'
+  gem 'autotest'
+  gem 'systemu'
+  gem "rspec"
+  gem "rspec-rails"
+  gem "mongrel", "1.2.0.pre2"
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'cucumber-rails'
+  gem 'cucumber'
+  gem 'spork'
+  gem 'launchy'
+  gem 'autotest-notification'
+  gem 'httpclient'
 end
+
