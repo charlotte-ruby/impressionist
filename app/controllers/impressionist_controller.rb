@@ -21,7 +21,8 @@ module ImpressionistController
                                  :ip_address=> request.remote_ip,
                                  :user_id=> user_id,
                                  :controller_name=>controller_name,
-                                 :action_name=> action_name)
+                                 :action_name=> action_name,
+                                 :referrer=>request.referer)
         else
           raise "#{obj.class.to_s} is not impressionable!"
         end
@@ -43,7 +44,8 @@ module ImpressionistController
                             :session_hash=> request.session_options[:id],
                             :ip_address=> request.remote_ip,
                             :impressionable_type=> controller_name.singularize.camelize,
-                            :impressionable_id=> params[:id])
+                            :impressionable_id=> params[:id],
+                            :referrer=>request.referer)
         end
       end
     end

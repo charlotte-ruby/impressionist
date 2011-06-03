@@ -36,11 +36,18 @@ describe ArticlesController do
     Article.first.impressions.last.user_id.should eq nil
   end
   
-  it "should log the request_hash, ip_address, and session_hash" do
+  it "should log the request_hash, ip_address, referrer and session_hash" do
     get "show", :id=> 1
     Impression.last.request_hash.size.should eq 64
     Impression.last.ip_address.should eq "0.0.0.0"
     Impression.last.session_hash.size.should eq 32
+    Impression.last.referrer.should eq nil
+  end
+  
+  it "should log the referrer when you click a link" do
+    visit article_url(Article.first)
+    click_link "Same Page"
+    Impression.last.referrer.should eq "http://test.host/articles/1"
   end
 end  
 
