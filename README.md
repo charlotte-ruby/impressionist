@@ -5,8 +5,12 @@ impressionist
 
 A lightweight plugin that logs impressions per action or manually per model
 
-I would not call this a stable plugin yet, although I have been running it in prod with no problems.  Use at your own risk ;-)
 ------------------------------------------------------------------------------------------------------------------------------
+
+NOTE: If you are upgrading from a version prior to 0.4.0, you will need to run this migration after the upgrade:
+https://github.com/charlotte-ruby/impressionist/blob/master/upgrade_migrations/version_0_4_0.rb
+If you don't run this migration you will receive this error: Unknown attribute : referrer
+
 
 What does this thing do?
 ------------------------
