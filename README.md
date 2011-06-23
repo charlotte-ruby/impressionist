@@ -28,7 +28,7 @@ http://www.user-agents.org/allagents.xml
 
 Which versions of Rails and Ruby is this compatible with?
 ---------------------------------------------------------
-Rails 3.0.4 and Ruby 1.9.2 (also tested on REE 1.8.7) - Sorry, but you need to upgrade if you are using Rails 2.  You know you want to anyways.. all the cool kids are doing it ;-)
+Rails 3.0.x and Ruby 1.9.2 (also tested on REE 1.8.7) - Sorry, but you need to upgrade if you are using Rails 2.  You know you want to anyways.. all the cool kids are doing it ;-)
 
 Installation
 ------------
