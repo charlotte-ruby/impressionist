@@ -3,7 +3,7 @@ require 'digest/sha2'
 module ImpressionistController
   module ClassMethods
     def impressionist(opts={})
-      before_filter { |c| c.impressionist_subapp_filter(opts[:actions], opts[:unique])}
+      before_filter { |c| c.impressionist_subapp_filter opts }
     end
   end
 
@@ -29,11 +29,19 @@ module ImpressionistController
       @impressionist_hash = Digest::SHA2.hexdigest(Time.now.to_f.to_s+rand(10000).to_s)
     end
 
-    def impressionist_subapp_filter(actions=nil,unique_opts=nil)
+    def impressionist_subapp_filter(opts = {})
+      opts.assert_valid_keys(:actions, :action_name, :unique)
+
+      unique_opts = opts[:unique]
+
       unless bypass
+        actions = opts[:actions]
         actions.collect!{|a|a.to_s} unless actions.blank?
         if (actions.blank? || actions.include?(action_name)) && unique?(unique_opts)
-          Impression.create(direct_create_statement)
+          an = if opts[:action_name].present?
+            opts[:action_name].respond_to?(:call) ? opts[:action_name].call(self) : opts[:action_name]
+          end.presence || action_name
+          Impression.create(direct_create_statement(:action_name => an))
         end
       end
     end
