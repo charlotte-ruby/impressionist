@@ -5,20 +5,14 @@ impressionist
 
 A lightweight plugin that logs impressions per action or manually per model
 
+I would not call this a stable plugin yet, although I have been running it in prod with no problems.  Use at your own risk ;-)
 ------------------------------------------------------------------------------------------------------------------------------
-
-NOTE: If you are upgrading from a version prior to 0.4.0, you will need to run this migration after the upgrade:
-
-https://github.com/charlotte-ruby/impressionist/blob/master/upgrade_migrations/version_0_4_0.rb
-
-If you don't run this migration you will receive this error: Unknown attribute : referrer
-
 
 What does this thing do?
 ------------------------
-Logs an impression... and I use that term loosely.  It can log page impressions (technically action impressions), but it is not limited to that.  
-You can log impressions multiple times per request.  And you can also attach it to a model.  The goal of this project is to provide customizable 
-stats that are immediately accessible in your application as opposed to using G Analytics and pulling data using their API.  You can attach custom 
+Logs an impression... and I use that term loosely.  It can log page impressions (technically action impressions), but it is not limited to that.
+You can log impressions multiple times per request.  And you can also attach it to a model.  The goal of this project is to provide customizable
+stats that are immediately accessible in your application as opposed to using G Analytics and pulling data using their API.  You can attach custom
 messages to impressions.  No reporting yet.. this thingy just creates the data.
 
 What about bots?
@@ -28,7 +22,7 @@ http://www.user-agents.org/allagents.xml
 
 Which versions of Rails and Ruby is this compatible with?
 ---------------------------------------------------------
-Rails 3.0.x and Ruby 1.9.2 (also tested on REE 1.8.7) - Sorry, but you need to upgrade if you are using Rails 2.  You know you want to anyways.. all the cool kids are doing it ;-)
+Rails 3.0.4 and Ruby 1.9.2 (also tested on REE 1.8.7) - Sorry, but you need to upgrade if you are using Rails 2.  You know you want to anyways.. all the cool kids are doing it ;-)
 
 Installation
 ------------
@@ -101,17 +95,30 @@ Usage
 6. Get the unique impression count from a model filtered by IP address.  This in turn will give you impressions with unique request_hash, since rows with the same request_hash will have the same IP address.
 
         @widget.impressionist_count(:filter=>:ip_address)
-        
+
 7. Get the unique impression count from a model filtered by session hash.  Same as #6 regarding request hash.  This may be more desirable than filtering by IP address depending on your situation, since filtering by IP may ignore visitors that use the same IP.  The downside to this filtering is that a user could clear session data in their browser and skew the results.
 
         @widget.impressionist_count(:filter=>:session_hash)
-    
+
 8. Get total impression count.  This may return more than 1 impression per http request, depending on how you are logging impressions
 
         @widget.impressionist_count(:filter=>:all)
 
 Logging impressions for authenticated users happens automatically.  If you have a current_user helper or use @current_user in your before_filter to set your authenticated user, current_user.id will be written to the user_id field in the impressions table.
 
+Adding a counter cache
+----------------------
+Impressionist makes it easy to add a `counter_cache` column to your model. The most basic configuration looks like:
+
+  is_impressionable :counter_cache => true
+
+This will automatically increment the `impressions_count` column in the included model. Note: You'll need to add that column to your model. If you'd like specific a different column name, you can:
+
+  is_impressionable :counter_cache => { :column_name => :my_column }
+
+If you'd like to include only unique impressions in your count:
+
+  is_impressionable :counter_cache => { :column_name => :my_column, :unique => true }
 
 Development Roadmap
 -------------------
@@ -121,14 +128,14 @@ Development Roadmap
 * AB testing integration
 
 Contributing to impressionist
------------------------------ 
+-----------------------------
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
 * Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
 * Fork the project
 * Start a feature/bugfix branch
 * Commit and push until you are happy with your contribution
 * Make sure to add rpsec tests for it. Patches or features without tests will be ignored.  Also, try to write better tests than I do ;-)
-* If adding engine controller or view functionality, use HAML and Inherited Resources.  
+* If adding engine controller or view functionality, use HAML and Inherited Resources.
 * All testing is done inside a small Rails app (test_app).  You will find specs within this app.
 
 Copyright (c) 2011 John McAliley. See LICENSE.txt for further details.
