@@ -1,27 +1,31 @@
 module Impressionist
   module Impressionable
 
-    def is_impressionable(options={})
-      has_many :impressions, :as=>:impressionable
+    def self.included(base)
+      base.extend ClassMethods
+      base.send(:include, InstanceMethods)
+    end
 
-      @cache_options = options[:counter_cache]
+    module ClassMethods
+      attr_accessor :cache_options
+      @cache_options = nil
 
-      if @cache_options.present?
-        @cache_options = { :column_name => :impressions_count, :unique => false }
-        @cache_options.merge!(options[:counter_cache]) if options[:counter_cache].is_a?(Hash)
+      def is_impressionable(options={})
+        has_many :impressions, :as=>:impressionable
+        @cache_options = options[:counter_cache]
       end
 
-      def update_counter_cache
-        column_name = cache_options[:column_name].to_sym
-        count = @cache_options[:unique] ? impressionist_count(:filter => :ip_address) : impressionist_count
-        update_attribute(column_name, count)
+      def counter_cache_options
+        if @cache_options
+          options = { :column_name => :impressions_count, :unique => false }
+          options.merge!(@cache_options) if @cache_options.is_a?(Hash)
+          options
+        end
       end
 
-      def self.counter_caching?
-        @cache_options.present?
+      def counter_caching?
+        counter_cache_options.present?
       end
-
-      include InstanceMethods
     end
 
     module InstanceMethods
@@ -36,6 +40,13 @@ module Impressionist
           imps = imps.select(options[:filter]).group(options[:filter])
         end
         imps.all.size
+      end
+
+      def update_counter_cache
+        cache_options = self.class.counter_cache_options
+        column_name = cache_options[:column_name].to_sym
+        count = cache_options[:unique] ? impressionist_count(:filter => :ip_address) : impressionist_count
+        update_attribute(column_name, count)
       end
 
       # OLD METHODS - DEPRECATE IN V0.5
@@ -58,3 +69,5 @@ module Impressionist
 
   end
 end
+
+ActiveRecord::Base.send(:include, Impressionist::Impressionable)
