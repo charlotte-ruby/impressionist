@@ -6,7 +6,11 @@ class Impression < ActiveRecord::Base
   private
 
   def update_impressions_counter_cache
-    resouce = self.impressionable_type.constantize.find(self.impressionable_id)
-    resouce.update_counter_cache if resouce.try(:cache_impression_count?)
+    impressionable_class = self.impressionable_type.constantize
+
+    if impressionable_class.counter_caching?
+      resouce = impressionable_class.find(self.impressionable_id)
+      resouce.try(:update_counter_cache)
+    end
   end
 end

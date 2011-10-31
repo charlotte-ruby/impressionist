@@ -1,8 +1,26 @@
 module Impressionist
   module Impressionable
+
     def is_impressionable(options={})
       has_many :impressions, :as=>:impressionable
-      @counter_cache_options = options[:counter_cache] ? options[:counter_cache] : nil
+
+      @cache_options = options[:counter_cache]
+
+      if @cache_options.present?
+        @cache_options = { :column_name => :impressions_count, :unique => false }
+        @cache_options.merge!(options[:counter_cache]) if options[:counter_cache].is_a?(Hash)
+      end
+
+      def update_counter_cache
+        column_name = cache_options[:column_name].to_sym
+        count = @cache_options[:unique] ? impressionist_count(:filter => :ip_address) : impressionist_count
+        update_attribute(column_name, count)
+      end
+
+      def self.counter_caching?
+        @cache_options.present?
+      end
+
       include InstanceMethods
     end
 
@@ -18,16 +36,6 @@ module Impressionist
           imps = imps.select(options[:filter]).group(options[:filter])
         end
         imps.all.size
-      end
-
-      def cache_impression_count?
-        ! @counter_cache_options.nil?
-      end
-
-      def update_counter_cache
-        column_name = @counter_cache_options[:column_name] || :impressions_count
-        impression_count = @counter_cache_options[:unique] ?  impressionist_count(filter: :ip_address) : impressionist_count
-        self.class.update_attribute(column_name.to_sym, impression_count)
       end
 
       # OLD METHODS - DEPRECATE IN V0.5
@@ -47,5 +55,6 @@ module Impressionist
         impressionist_count({:start_date=>start_date, :end_date=>end_date, :filter=> :session_hash})
       end
     end
+
   end
 end
