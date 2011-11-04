@@ -49,6 +49,8 @@ describe Impression do
     @article.impressionist_count(:filter=>:session_hash).should eq 7
   end
   
+  
+  
   #OLD COUNT METHODS.  DEPRECATE SOON
   it "should return the impression count with no date range specified" do
     @article.impression_count.should eq 11
