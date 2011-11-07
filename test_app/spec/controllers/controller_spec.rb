@@ -78,6 +78,28 @@ describe WidgetsController do
     Impression.all.size.should eq 13
   end
   
+  it "should log unique impressions at the per action" do
+    get "show", :id=> 1
+    Impression.all.size.should eq 12
+    get "show", :id=> 2
+    Impression.all.size.should eq 13
+    get "show", :id => 2
+    Impression.all.size.should eq 13
+    get "index"
+    Impression.all.size.should eq 14
+  end
+  
+  it "should log unique impressions only once per id" do
+    get "show", :id=> 1
+    Impression.all.size.should eq 12
+    get "show", :id=> 2
+    Impression.all.size.should eq 13
+    get "show", :id => 2
+    Impression.all.size.should eq 13
+    get "index"
+    Impression.all.size.should eq 14
+  end
+  
   it "should not log impression when user-agent is in wildcard list" do
     request.stub!(:user_agent).and_return('somebot')
     get "show", :id=> 1

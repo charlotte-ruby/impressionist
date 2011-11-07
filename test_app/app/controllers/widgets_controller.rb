@@ -1,5 +1,5 @@
 class WidgetsController < ApplicationController
-  impressionist :actions=>[:show,:index]
+  impressionist :actions=>[:show,:index], :unique => [:action_name, :impressionable_id]
   def show
   end
   
@@ -8,4 +8,5 @@ class WidgetsController < ApplicationController
   
   def new
   end
+  
 end
