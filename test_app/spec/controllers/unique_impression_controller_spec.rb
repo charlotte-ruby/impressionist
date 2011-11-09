@@ -57,7 +57,8 @@ describe PostsController do
   end
   
   it "should recognize referrer uniqueness" do
-    controller.stub!(:referrer).and_return("http://somehost.someurl.somdomain/some/path")
+    @request.env['HTTP_REFERER'] = 'http://somehost.someurl.somdomain/some/path'
+    #controller.stub!(:referer).and_return("http://somehost.someurl.somdomain/some/path")
     controller.impressionist_subapp_filter(nil, [:referrer])
     controller.impressionist_subapp_filter(nil, [:referrer])
     Impression.should have(@impression_count + 1).records
