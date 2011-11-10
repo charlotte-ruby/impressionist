@@ -48,7 +48,7 @@ module ImpressionistController
     end
     
     def unique_instance?(impressionable, unique_opts)
-      return unique_opts.blank? || impressionable.impressions.where(unique_query(unique_ops)).size == 0
+      return unique_opts.blank? || impressionable.impressions.where(unique_query(unique_opts)).size == 0
     end
     
     def unique?(unique_opts)
