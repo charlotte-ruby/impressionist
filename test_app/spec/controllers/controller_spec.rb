@@ -89,5 +89,32 @@ describe WidgetsController do
     get "show", :id=> 1
     Impression.all.size.should eq 11    
   end
+  
+  describe "impressionist unique options" do
+    
+    it "should log unique impressions at the per action level" do
+      get "show", :id=> 1
+      Impression.all.size.should eq 12
+      get "show", :id=> 2
+      Impression.all.size.should eq 13
+      get "show", :id => 2
+      Impression.all.size.should eq 13
+      get "index"
+      Impression.all.size.should eq 14
+    end
+    
+    it "should log unique impressions only once per id" do
+      get "show", :id=> 1
+      Impression.all.size.should eq 12
+      get "show", :id=> 2
+      Impression.all.size.should eq 13
+      get "show", :id => 2
+      Impression.all.size.should eq 13
+      get "index"
+      Impression.all.size.should eq 14
+    end
+  
+  end
+  
 end
   
