@@ -24,4 +24,10 @@ RSpec.configure do |config|
   # examples within a transaction, remove the following line or assign false
   # instead of true.
   config.use_transactional_fixtures = true
+  
+  # make the rails logger usable in the tests as logger.xxx "..."
+  def logger
+    Rails.logger
+  end
+  
 end
