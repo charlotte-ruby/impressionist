@@ -125,18 +125,18 @@ What if I only want to record unique impressions?
 -------------------------------------------------
 Maybe you only care about unique impressions and would like to eliminate unnecessary database calls. You can specify conditions for recording impressions in your controller:
 
-  # only record impression if the request has a unique combination of type, id, and session
-  impressionist :unique => [:impressionable_type, :impressionable_id, :session_hash]
+    # only record impression if the request has a unique combination of type, id, and session
+    impressionist :unique => [:impressionable_type, :impressionable_id, :session_hash]
 
-  # only record impression if the request has a unique combination of controller, action, and session
-  impressionist :unique => [:controller_name, :action_name, :session_hash]
+    # only record impression if the request has a unique combination of controller, action, and session
+    impressionist :unique => [:controller_name, :action_name, :session_hash]
 
-  # only record impression if session is unique
-  impressionist :unique => [:session_hash]
+    # only record impression if session is unique
+    impressionist :unique => [:session_hash]
 
 Or you can use the `impressionist` method directly:
 
-  impressionist(impressionable, "some message", :unique => [:session_hash])
+    impressionist(impressionable, "some message", :unique => [:session_hash])
 
 
 Development Roadmap
