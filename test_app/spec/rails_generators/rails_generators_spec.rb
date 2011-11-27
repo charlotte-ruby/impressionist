@@ -1,6 +1,8 @@
 require 'spec_helper'
 require 'systemu'
 
+# FIXME this test might break the others if run before them
+#
 describe Impressionist do
   fixtures :articles,:impressions,:posts
   it "should delete existing migration and generate the migration file" do
