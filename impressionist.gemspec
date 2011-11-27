@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{impressionist}
-  s.version = "0.4.0"
+  s.version = "0.5.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["cowboycoded"]
@@ -39,7 +39,7 @@ Gem::Specification.new do |s|
     "upgrade_migrations/version_0_3_0.rb",
     "upgrade_migrations/version_0_4_0.rb"
   ]
-  s.homepage = %q{http://github.com/cowboycoded/impressionist}
+  s.homepage = %q{https://github.com/charlotte-ruby/impressionist}
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
