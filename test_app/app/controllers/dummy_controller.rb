@@ -2,5 +2,5 @@
 class DummyController < ActionController::Base
 
   impressionist
-  
+
 end
