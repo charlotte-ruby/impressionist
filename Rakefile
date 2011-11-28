@@ -70,14 +70,14 @@ namespace :version do
       Rake::Task['git:release'].invoke
     else
       puts "Commit your changed files first"
-    end      
+    end
   end
-  
+
   desc "create a new version, create tag and push to github"
   task :major_release do
     if Jeweler::Commands::ReleaseToGit.new.clean_staging_area?
       Rake::Task['version:bump:major'].invoke
-      Rake::Task['gemspec:release'].invoke    
+      Rake::Task['gemspec:release'].invoke
       Rake::Task['git:release'].invoke
     else
       puts "Commit your changed files first"
@@ -87,9 +87,9 @@ end
 
 namespace :impressionist do
   require File.dirname(__FILE__) + "/lib/impressionist/bots"
-  
+
   desc "output the list of bots from http://www.user-agents.org/"
-  task :bots do  
+  task :bots do
     p Impressionist::Bots.consume
   end
 end
