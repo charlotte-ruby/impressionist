@@ -157,4 +157,11 @@ Contributing to impressionist
 * If adding engine controller or view functionality, use HAML and Inherited Resources.
 * All testing is done inside a small Rails app (test_app).  You will find specs within this app.
 
+Contributors
+------------
+johnmcaliley
+coryschires
+georgmittendorfer
+
+
 Copyright (c) 2011 John McAliley. See LICENSE.txt for further details.
