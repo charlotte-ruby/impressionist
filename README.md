@@ -110,15 +110,15 @@ Adding a counter cache
 ----------------------
 Impressionist makes it easy to add a `counter_cache` column to your model. The most basic configuration looks like:
 
-  is_impressionable :counter_cache => true
+    is_impressionable :counter_cache => true
 
 This will automatically increment the `impressions_count` column in the included model. Note: You'll need to add that column to your model. If you'd like specific a different column name, you can:
 
-  is_impressionable :counter_cache => { :column_name => :my_column }
+    is_impressionable :counter_cache => { :column_name => :my_column }
 
 If you'd like to include only unique impressions in your count:
 
-  is_impressionable :counter_cache => { :column_name => :my_column, :unique => true }
+    is_impressionable :counter_cache => { :column_name => :my_column, :unique => true }
 
 
 What if I only want to record unique impressions?
