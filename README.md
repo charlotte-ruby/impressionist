@@ -159,9 +159,9 @@ Contributing to impressionist
 
 Contributors
 ------------
-johnmcaliley
-coryschires
-georgmittendorfer
+* johnmcaliley
+* coryschires
+* georgmittendorfer
 
 
 Copyright (c) 2011 John McAliley. See LICENSE.txt for further details.
