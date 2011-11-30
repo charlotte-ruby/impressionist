@@ -20,7 +20,7 @@ Jeweler::Tasks.new do |gem|
   gem.description = %Q{Log impressions from controller actions or from a model}
   gem.email = "john.mcaliley@gmail.com"
   gem.authors = ["cowboycoded"]
-  gem.files.exclude "test_app"
+  gem.files.exclude "test_app/**/*", "test_app/**/.*"
 end
 Jeweler::RubygemsDotOrgTasks.new
 

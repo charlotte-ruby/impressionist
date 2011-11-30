@@ -6,8 +6,6 @@ gem 'impressionist', :path=>"#{File.dirname(__FILE__)}/../"
 #gem "pg"
 
 group :development do
-  gem 'ZenTest'
-  gem 'autotest'
   gem 'systemu'
   gem "rspec"
   gem "rspec-rails"

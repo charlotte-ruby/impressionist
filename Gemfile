@@ -8,8 +8,6 @@ group :development do
 end
 
 group :test do
-  gem 'ZenTest'
-  gem 'autotest'
   gem 'systemu'
   gem "rspec"
   gem "rspec-rails"

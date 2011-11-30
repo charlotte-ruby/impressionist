@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["cowboycoded"]
-  s.date = %q{2011-06-03}
+  s.date = %q{2011-11-30}
   s.description = %q{Log impressions from controller actions or from a model}
   s.email = %q{john.mcaliley@gmail.com}
   s.extra_rdoc_files = [
@@ -39,7 +39,7 @@ Gem::Specification.new do |s|
     "upgrade_migrations/version_0_3_0.rb",
     "upgrade_migrations/version_0_4_0.rb"
   ]
-  s.homepage = %q{https://github.com/charlotte-ruby/impressionist}
+  s.homepage = %q{http://github.com/cowboycoded/impressionist}
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
