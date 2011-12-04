@@ -5,7 +5,6 @@ impressionist
 
 A lightweight plugin that logs impressions per action or manually per model
 
-I would not call this a stable plugin yet, although I have been running it in prod with no problems.  Use at your own risk ;-)
 ------------------------------------------------------------------------------------------------------------------------------
 
 What does this thing do?
