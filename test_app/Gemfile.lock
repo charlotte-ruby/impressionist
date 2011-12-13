@@ -1,12 +1,11 @@
 PATH
-  remote: /Users/coryschires/Desktop/work/applications/impressionist
+  remote: /home/mio/prog/projects/impressionist
   specs:
-    impressionist (0.4.0)
+    impressionist (1.0.1)
 
 GEM
   remote: http://rubygems.org/
   specs:
-    ZenTest (4.6.2)
     actionmailer (3.1.0)
       actionpack (= 3.1.0)
       mail (~> 2.3.0)
@@ -38,8 +37,6 @@ GEM
       multi_json (~> 1.0)
     addressable (2.2.6)
     arel (2.2.1)
-    autotest (4.4.6)
-      ZenTest (>= 4.4.1)
     autotest-notification (2.3.3)
       autotest-standalone (~> 4.5)
     autotest-standalone (4.5.8)
@@ -158,8 +155,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  ZenTest
-  autotest
   autotest-notification
   capybara
   cucumber
