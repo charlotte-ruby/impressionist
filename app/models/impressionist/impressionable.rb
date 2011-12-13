@@ -11,7 +11,7 @@ module Impressionist
       @cache_options = nil
 
       def is_impressionable(options={})
-        has_many :impressions, :as=>:impressionable
+        has_many :impressions, :as => :impressionable, :dependent => :destroy
         @cache_options = options[:counter_cache]
       end
 
