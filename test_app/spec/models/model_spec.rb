@@ -49,7 +49,15 @@ describe Impression do
     @article.impressionist_count(:filter=>:session_hash).should eq 7
   end
   
-  
+  # tests :dependent => :destroy
+  it "should delete impressions on deletion of impressionable" do
+    impressions_count = Impression.all.size
+    a = Article.create
+    i = a.impressions.create
+    a.destroy
+    a.destroyed?.should be_true
+    i.destroyed?.should be_true
+  end
   
   #OLD COUNT METHODS.  DEPRECATE SOON
   it "should return the impression count with no date range specified" do

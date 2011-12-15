@@ -118,7 +118,7 @@ If you'd like to include only unique impressions in your count:
 
 What if I only want to record unique impressions?
 -------------------------------------------------
-Maybe you only care about unique impressions and would like to eliminate unnecessary database calls. You can specify conditions for recording impressions in your controller:
+Maybe you only care about unique impressions and would like to avoid unnecessary database records. You can specify conditions for recording impressions in your controller:
 
     # only record impression if the request has a unique combination of type, id, and session
     impressionist :unique => [:impressionable_type, :impressionable_id, :session_hash]
