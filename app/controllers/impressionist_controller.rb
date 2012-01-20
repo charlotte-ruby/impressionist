@@ -48,11 +48,11 @@ module ImpressionistController
     end
     
     def unique_instance?(impressionable, unique_opts)
-      return unique_opts.blank? || impressionable.impressions.where(unique_query(unique_opts)).size == 0
+      return unique_opts.blank? || !impressionable.impressions.where(unique_query(unique_opts)).exists?
     end
     
     def unique?(unique_opts)
-      return unique_opts.blank? || Impression.where(unique_query(unique_opts)).size == 0
+      return unique_opts.blank? || !Impression.where(unique_query(unique_opts)).exists?
     end
     
     # creates the query to check for uniqueness
