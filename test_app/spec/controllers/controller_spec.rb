@@ -119,7 +119,19 @@ describe WidgetsController do
       get "index"
       Impression.all.size.should eq 14
     end
-  
   end
-  
+end
+
+describe WelcomeController do
+  it "should track the action_name provided by page param" do
+    get "static", :page => "impress"
+
+    Impression.last.action_name.should == "impress"
+  end
+
+  it "should fallback to action_name if no page is given" do
+    get "static"
+
+    Impression.last.action_name.should == "static"
+  end
 end

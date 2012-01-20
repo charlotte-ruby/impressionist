@@ -12,5 +12,7 @@ class Impression < ActiveRecord::Base
       resouce = impressionable_class.find(self.impressionable_id)
       resouce.try(:update_counter_cache)
     end
+  rescue NameError
+    # If controller has no associated model, e.g. WelcomeController
   end
 end
