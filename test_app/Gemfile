@@ -2,20 +2,22 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.1'
 gem 'sqlite3-ruby', :require => 'sqlite3'
-gem 'impressionist', :path=>"#{File.dirname(__FILE__)}/../"
-#gem "pg"
+gem 'impressionist', :path => '../'
 
-group :development do
-  gem 'systemu'
-  gem "rspec"
-  gem "rspec-rails"
-  gem "mongrel", "1.2.0.pre2"
+group :development, :test do
+  gem 'autotest-notification'
   gem 'capybara'
   gem 'database_cleaner'
-  gem 'cucumber-rails'
-  gem 'cucumber'
-  gem 'spork'
+  gem 'httpclient'
   gem 'launchy'
-  gem 'autotest-notification'
-  #gem 'ruby-debug19'
+  gem 'mongrel', '1.2.0.pre2'
+  gem 'rspec'
+  gem 'rspec-rails'
+  gem 'shoulda'
+  gem 'spork'
+  gem 'systemu'
+end
+
+group :test do
+  gem 'cucumber-rails'
 end
