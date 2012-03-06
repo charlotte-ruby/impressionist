@@ -8,17 +8,16 @@ group :development do
 end
 
 group :test do
-  gem 'systemu'
+  gem 'autotest-notification'
+  gem 'capybara'
+  gem 'cucumber'
+  gem 'cucumber-rails'
+  gem 'database_cleaner'
+  gem 'httpclient'
+  gem 'launchy'
+  gem 'mongrel', '1.2.0.pre2'
   gem 'rspec'
   gem 'rspec-rails'
-  gem 'mongrel', '1.2.0.pre2'
-  gem 'capybara'
-  gem 'database_cleaner'
-  gem 'cucumber-rails'
-  gem 'cucumber'
   gem 'spork'
-  gem 'launchy'
-  gem 'autotest-notification'
-  gem 'httpclient'
+  gem 'systemu'
 end
-
