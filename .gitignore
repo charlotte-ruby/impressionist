@@ -1,4 +1,5 @@
-Gemfile.lock
-/test_app/db/schema.rb
-/pkg
 *~
+/pkg
+/rdoc
+/test_app/db/schema.rb
+Gemfile.lock
