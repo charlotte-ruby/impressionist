@@ -12,5 +12,6 @@
 /db/*.sqlite3
 
 # Ignore all logfiles and tempfiles.
+/coverage
 /log/*.log
 /tmp

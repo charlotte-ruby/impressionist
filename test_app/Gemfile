@@ -39,6 +39,7 @@ end
 
 group :test do
   gem 'cucumber-rails'
+  gem 'simplecov'
 end
 
 gem 'jquery-rails'
