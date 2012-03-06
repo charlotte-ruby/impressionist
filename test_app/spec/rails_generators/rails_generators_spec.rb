@@ -6,6 +6,7 @@ require 'systemu'
 describe Impressionist do
   fixtures :articles,:impressions,:posts
   it "should delete existing migration and generate the migration file" do
+    pending
     migrations_dir = "#{Rails.root}/db/migrate"
     impressions_migration = Dir.entries(migrations_dir).grep(/impressions/)[0]
     File.delete("#{migrations_dir}/#{impressions_migration}") unless impressions_migration.blank?
@@ -15,6 +16,7 @@ describe Impressionist do
   end
 
   it "should run the migration created in the previous spec" do
+    pending
     migrate_output = systemu("rake db:migrate RAILS_ENV=test")
     migrate_output[1].include?("CreateImpressionsTable: migrated").should be_true
   end
