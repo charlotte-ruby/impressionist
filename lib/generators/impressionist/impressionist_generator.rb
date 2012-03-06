@@ -1,5 +1,5 @@
 require 'rails/generators'
-require 'rails/generators/migration'     
+require 'rails/generators/migration'
 
 class ImpressionistGenerator < Rails::Generators::Base
   include Rails::Generators::Migration

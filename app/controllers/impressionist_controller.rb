@@ -39,22 +39,22 @@ module ImpressionistController
     end
 
     private
-    
+
     def bypass
       Impressionist::Bots::WILD_CARDS.each do |wild_card|
         return true if request.user_agent and request.user_agent.downcase.include? wild_card
       end
       Impressionist::Bots::LIST.include? request.user_agent
     end
-    
+
     def unique_instance?(impressionable, unique_opts)
       return unique_opts.blank? || !impressionable.impressions.where(unique_query(unique_opts)).exists?
     end
-    
+
     def unique?(unique_opts)
       return unique_opts.blank? || !Impression.where(unique_query(unique_opts)).exists?
     end
-    
+
     # creates the query to check for uniqueness
     def unique_query(unique_opts)
       full_statement = direct_create_statement
@@ -64,7 +64,7 @@ module ImpressionistController
         query
       end
     end
-    
+
     # creates a statment hash that contains default values for creating an impression via an AR relation.
     def associative_create_statement(query_params={})
       query_params.reverse_merge!(
@@ -77,7 +77,7 @@ module ImpressionistController
         :referrer => request.referer
         )
     end
-    
+
     # creates a statment hash that contains default values for creating an impression.
     def direct_create_statement(query_params={})
       query_params.reverse_merge!(
@@ -86,7 +86,7 @@ module ImpressionistController
         )
       associative_create_statement(query_params)
     end
-    
+
     def session_hash
       # # careful: request.session_options[:id] encoding in rspec test was ASCII-8BIT
       # # that broke the database query for uniqueness. not sure if this is a testing only issue.
@@ -95,7 +95,7 @@ module ImpressionistController
       # # request.session_options[:id].encode("ISO-8859-1")
       request.session_options[:id]
     end
-    
+
     #use both @current_user and current_user helper
     def user_id
       user_id = @current_user ? @current_user.id : nil rescue nil
