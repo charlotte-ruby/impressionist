@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
 group :development do
-  gem 'shoulda', '>= 0'
+  gem 'shoulda'
   gem 'jeweler', '~> 1.5.1'
-  gem 'rcov', '>= 0'
+  gem 'rcov'
 end
 
 group :test do
