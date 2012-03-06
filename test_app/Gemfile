@@ -25,21 +25,14 @@ end
 
 group :development, :test do
   gem 'autotest-notification'
-  gem 'capybara'
-  gem 'database_cleaner'
-  gem 'httpclient'
-  gem 'launchy'
-  gem 'mongrel', '1.2.0.pre2'
-  gem 'rspec'
   gem 'rspec-rails'
-  gem 'shoulda'
   gem 'spork'
-  gem 'systemu'
 end
 
 group :test do
-  gem 'cucumber-rails'
+  gem 'capybara'
   gem 'simplecov'
+  gem 'systemu'
 end
 
 gem 'jquery-rails'
