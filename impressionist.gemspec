@@ -39,7 +39,7 @@ Gem::Specification.new do |s|
     "upgrade_migrations/version_0_3_0.rb",
     "upgrade_migrations/version_0_4_0.rb"
   ]
-  s.homepage = "http://github.com/cowboycoded/impressionist"
+  s.homepage = "https://github.com/charlotte-ruby/impressionist"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.rubygems_version = "1.8.17"
