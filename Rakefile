@@ -1,5 +1,7 @@
-require 'rubygems'
+#!/usr/bin/env rake
+
 require 'bundler'
+Bundler::GemHelper.install_tasks
 
 begin
   Bundler.setup(:default, :development)
@@ -8,21 +10,6 @@ rescue Bundler::BundlerError => e
   $stderr.puts "Run `bundle install` to install missing gems"
   exit e.status_code
 end
-require 'rake'
-
-require 'jeweler'
-Jeweler::Tasks.new do |gem|
-  # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
-  gem.name = "impressionist"
-  gem.homepage = "https://github.com/charlotte-ruby/impressionist"
-  gem.license = "MIT"
-  gem.summary = %Q{Easy way to log impressions}
-  gem.description = %Q{Log impressions from controller actions or from a model}
-  gem.email = "john.mcaliley@gmail.com"
-  gem.authors = ["cowboycoded"]
-  gem.files.exclude "test_app/**/*", "test_app/**/.*"
-end
-Jeweler::RubygemsDotOrgTasks.new
 
 require 'rake/testtask'
 Rake::TestTask.new(:test) do |test|
@@ -41,41 +28,6 @@ Rake::RDocTask.new do |rdoc|
   rdoc.title = "impressionist #{version}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
-end
-
-namespace :version do
-  desc "create a new version, create tag and push to github"
-  task :patch_release do
-    if Jeweler::Commands::ReleaseToGit.new.clean_staging_area?
-      Rake::Task['version:bump:patch'].invoke
-      Rake::Task['gemspec:release'].invoke
-      Rake::Task['git:release'].invoke
-    else
-      puts "Commit your changed files first"
-    end
-  end
-
-  desc "create a new version, create tag and push to github"
-  task :minor_release do
-    if Jeweler::Commands::ReleaseToGit.new.clean_staging_area?
-      Rake::Task['version:bump:minor'].invoke
-      Rake::Task['gemspec:release'].invoke
-      Rake::Task['git:release'].invoke
-    else
-      puts "Commit your changed files first"
-    end
-  end
-
-  desc "create a new version, create tag and push to github"
-  task :major_release do
-    if Jeweler::Commands::ReleaseToGit.new.clean_staging_area?
-      Rake::Task['version:bump:major'].invoke
-      Rake::Task['gemspec:release'].invoke
-      Rake::Task['git:release'].invoke
-    else
-      puts "Commit your changed files first"
-    end
-  end
 end
 
 namespace :impressionist do

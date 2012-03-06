@@ -1,10 +1,5 @@
 source 'https://rubygems.org'
 
-group :development do
-  gem 'jeweler', '>= 1.5.1'
-  gem 'rdoc', '>= 2.4.2'
-end
-
 group :test do
   gem 'autotest-notification'
   gem 'capybara'
@@ -20,3 +15,5 @@ group :test do
   gem 'spork'
   gem 'systemu'
 end
+
+gemspec
