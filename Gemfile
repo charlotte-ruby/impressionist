@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 
 group :development do
   gem 'jeweler', '>= 1.5.1'
-  gem 'rcov'
   gem 'rdoc', '>= 2.4.2'
   gem 'shoulda'
 end
