@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 group :development do
   gem 'jeweler', '>= 1.5.1'
   gem 'rdoc', '>= 2.4.2'
-  gem 'shoulda'
 end
 
 group :test do
@@ -17,6 +16,7 @@ group :test do
   gem 'mongrel', '1.2.0.pre2'
   gem 'rspec'
   gem 'rspec-rails'
+  gem 'shoulda'
   gem 'spork'
   gem 'systemu'
 end
