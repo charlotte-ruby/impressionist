@@ -16,7 +16,7 @@ test: &test
 #  adapter: postgresql
 #  database: impressionist_test
 #  username: johnmcaliley
-# password: 
+# password:
 #  host: localhost
 #  encoding: UTF8
 
