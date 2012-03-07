@@ -1,21 +1,53 @@
-source 'http://rubygems.org'
+source 'https://rubygems.org'
 
-gem 'rails', '3.1'
-gem 'sqlite3-ruby', :require => 'sqlite3'
-gem 'impressionist', :path=>"#{File.dirname(__FILE__)}/../"
-#gem "pg"
+gem 'rails', '3.2.2'
 
-group :development do
-  gem 'systemu'
-  gem "rspec"
-  gem "rspec-rails"
-  gem "mongrel", "1.2.0.pre2"
-  gem 'capybara'
-  gem 'database_cleaner'
-  gem 'cucumber-rails'
-  gem 'cucumber'
-  gem 'spork'
-  gem 'launchy'
-  gem 'autotest-notification'
-  #gem 'ruby-debug19'
+# Bundle edge Rails instead:
+# gem 'rails', :git => 'git://github.com/rails/rails.git'
+
+gem 'impressionist', :path => '../'
+
+gem 'sqlite3'
+
+gem 'json'
+
+# Gems used only for assets and not required
+# in production environments by default.
+group :assets do
+  gem 'sass-rails',   '~> 3.2.3'
+  gem 'coffee-rails', '~> 3.2.1'
+
+  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
+  # gem 'therubyracer'
+
+  gem 'uglifier', '>= 1.0.3'
 end
+
+group :development, :test do
+  gem 'autotest-notification'
+  gem 'rspec-rails'
+  gem 'spork'
+end
+
+group :test do
+  gem 'capybara'
+  gem 'simplecov'
+  gem 'systemu'
+end
+
+gem 'jquery-rails'
+
+# To use ActiveModel has_secure_password
+# gem 'bcrypt-ruby', '~> 3.0.0'
+
+# To use Jbuilder templates for JSON
+# gem 'jbuilder'
+
+# Use unicorn as the app server
+# gem 'unicorn'
+
+# Deploy with Capistrano
+# gem 'capistrano'
+
+# To use debugger
+# gem 'ruby-debug'
