@@ -189,8 +189,8 @@ Contributing to impressionist
 
 Contributors
 ------------
-* johnmcaliley
-* coryschires
-* georgmittendorfer
+* [johnmcaliley](https://github.com/johnmcaliley)
+* [coryschires](https://github.com/coryschires)
+* [georgmittendorfer](https://github.com/georgmittendorfer)
 
 Copyright (c) 2011 John McAliley. See LICENSE.txt for further details.
