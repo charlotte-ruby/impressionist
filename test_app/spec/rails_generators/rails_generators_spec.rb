@@ -1,4 +1,4 @@
-require_relative '../spec_helper'
+require 'spec_helper'
 require 'systemu'
 
 # FIXME this test might break the others if run before them

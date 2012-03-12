@@ -1,4 +1,4 @@
-require_relative '../spec_helper.rb'
+require 'spec_helper'
 
 describe ArticlesController do
   fixtures :articles,:impressions,:posts,:widgets
