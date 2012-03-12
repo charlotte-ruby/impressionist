@@ -24,14 +24,6 @@ class CreateImpressionsTable < ActiveRecord::Migration
   end
 
   def self.down
-    remove_index :impressions, :name => :poly_request_index
-    remove_index :impressions, :name => :poly_ip_index
-    remove_index :impressions, :name => :poly_session_index
-    remove_index :impressions, :name => :controlleraction_request_index
-    remove_index :impressions, :name => :controlleraction_ip_index
-    remove_index :impressions, :name => :controlleraction_session_index
-    remove_index :impressions, :user_id
-
     drop_table :impressions
   end
 end
