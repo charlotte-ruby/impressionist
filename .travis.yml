@@ -1,5 +1,4 @@
 before_script: "cd test_app && bundle install && ./script/rails generate impressionist && bundle exec rake db:migrate && cd .."
-env: "RAILS_ENV=test"
 language: ruby
 rvm:
   - 1.9.3
