@@ -1,2 +1,4 @@
+before_script: cd test_app && ./script/rails generate impressionist && bundle exec rake db:migrate
+language: ruby
 rvm:
   - 1.9.3
