@@ -2,4 +2,5 @@
 /pkg
 /rdoc
 /test_app/db/schema.rb
+/test_app/db/migrate/*_create_impressions_table.rb
 Gemfile.lock
