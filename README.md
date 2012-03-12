@@ -1,5 +1,7 @@
 ![Impressionist Logo](https://github.com/charlotte-ruby/impressionist/raw/master/logo.png)
 
+[![Build Status](https://secure.travis-ci.org/charlotte-ruby/impressionist.png?branch=master)](http://travis-ci.org/charlotte-ruby/impressionist)
+
 impressionist
 =============
 
