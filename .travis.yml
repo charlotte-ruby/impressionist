@@ -3,3 +3,4 @@ env: "RAILS_ENV=test"
 language: ruby
 rvm:
   - 1.9.3
+script: "cd test_app && bundle exec rake"
