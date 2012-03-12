@@ -1,25 +1,16 @@
 #!/usr/bin/env rake
 
-require 'bundler'
+require 'bundler/setup'
+require 'rspec/core/rake_task'
+
 Bundler::GemHelper.install_tasks
 
-begin
-  Bundler.setup(:default, :development)
-rescue Bundler::BundlerError => e
-  $stderr.puts e.message
-  $stderr.puts "Run `bundle install` to install missing gems"
-  exit e.status_code
+RSpec::Core::RakeTask.new do |task|
+  task.pattern = "./test_app/spec/**/*_spec.rb"
 end
 
-require 'rdoc/task'
-Rake::RDocTask.new do |rdoc|
-  version = File.exist?('VERSION') ? File.read('VERSION') : ""
-
-  rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "impressionist #{version}"
-  rdoc.rdoc_files.include('README*')
-  rdoc.rdoc_files.include('lib/**/*.rb')
-end
+task :test => :spec
+task :default => :spec
 
 namespace :impressionist do
   require File.dirname(__FILE__) + "/lib/impressionist/bots"
