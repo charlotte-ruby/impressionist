@@ -4,4 +4,7 @@
 /rdoc
 /test_app/db/schema.rb
 /test_app/db/migrate/*_create_impressions_table.rb
+/test_app/doc
+/test_app/test
+/test_app/vendor
 Gemfile.lock
