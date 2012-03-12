@@ -1,4 +1,4 @@
-require "spec_helper.rb"
+require_relative "../spec_helper.rb"
 
 # we use the posts controller as it uses the impressionsist module. any such controller would do.
 describe DummyController do
