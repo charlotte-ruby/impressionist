@@ -16,8 +16,7 @@ describe DummyController do
     end
 
     it "should recognize unique session" do
-      # the following line was necessary as session hash returned a binary string (ASCII-8BIT encoded)
-      controller.stub!(:session_hash).and_return(request.session_options[:id].encode("ISO-8859-1"))
+      controller.stub!(:session_hash).and_return(request.session_options[:id])
       controller.impressionist_subapp_filter(nil, [:session_hash])
       controller.impressionist_subapp_filter(nil, [:session_hash])
       Impression.should have(@impression_count + 1).records
@@ -190,8 +189,7 @@ describe DummyController do
     end
 
     it "should recognize unique session" do
-      # the following line was necessary as session hash returned a binary string (ASCII-8BIT encoded)
-      controller.stub!(:session_hash).and_return(request.session_options[:id].encode("ISO-8859-1"))
+      controller.stub!(:session_hash).and_return(request.session_options[:id])
       impressionable = Post.create
       controller.impressionist(impressionable, nil, :unique => [:session_hash])
       controller.impressionist(impressionable, nil, :unique => [:session_hash])
