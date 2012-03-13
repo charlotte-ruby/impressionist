@@ -6,11 +6,6 @@ module Impressionist
       attr_accessor :cache_options
       @cache_options = nil
 
-      def is_impressionable(options={})
-        has_many :impressions, :as => :impressionable, :dependent => :destroy
-        @cache_options = options[:counter_cache]
-      end
-
       def counter_cache_options
         if @cache_options
           options = { :column_name => :impressions_count, :unique => false }
