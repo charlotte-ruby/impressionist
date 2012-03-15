@@ -12,6 +12,5 @@ class Impression
   key :session_hash, String
   key :message, String
   key :referrer, String
-
   timestamps!
 end
