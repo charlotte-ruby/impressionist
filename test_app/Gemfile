@@ -11,6 +11,7 @@ platforms :jruby do
 end
 
 platforms :ruby, :mswin, :mingw do
+  gem 'pg'
   gem 'sqlite3'
 end
 
