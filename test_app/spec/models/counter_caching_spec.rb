@@ -8,13 +8,13 @@ describe Impression do
     Impression.destroy_all
   end
 
-  describe "self#counter_caching?" do
+  describe "self#impressionist_counter_caching?" do
     it "should know when counter caching is enabled" do
-      Widget.should be_counter_caching
+      Widget.should be_impressionist_counter_caching
     end
 
     it "should know when counter caching is disabled" do
-      Article.should_not be_counter_caching
+      Article.should_not be_impressionist_counter_caching
     end
   end
 
