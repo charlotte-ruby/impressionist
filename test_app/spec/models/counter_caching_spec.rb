@@ -24,7 +24,7 @@ describe Impression do
       Widget.should be_counter_caching
     end
 
-    it "should know when counter caching is enabled" do
+    it "should know when counter caching is disabled" do
       ActiveSupport::Deprecation.should_receive(:warn)
       Article.should_not be_counter_caching
     end
