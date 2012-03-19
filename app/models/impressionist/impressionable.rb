@@ -17,6 +17,11 @@ module Impressionist
       def impressionist_counter_caching?
         impressionist_counter_cache_options.present?
       end
+
+      def counter_caching?
+        ::ActiveSupport::Deprecation.warn("#counter_caching? is deprecated; please use #impressionist_counter_caching? instead")
+        impressionist_counter_caching?
+      end
     end
 
     def impressionable?
