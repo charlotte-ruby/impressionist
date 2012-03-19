@@ -18,7 +18,7 @@ describe Impression do
     end
   end
 
-  describe "#update_counter_cache" do
+  describe "#update_impressionist_counter_cache" do
     it "should update the counter cache column to reflect the correct number of impressions" do
       lambda {
          Impression.create(:impressionable_type => @widget.class.name, :impressionable_id => @widget.id)

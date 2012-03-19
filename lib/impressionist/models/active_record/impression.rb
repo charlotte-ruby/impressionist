@@ -12,7 +12,7 @@ class Impression < ActiveRecord::Base
 
     if impressionable_class.impressionist_counter_cache_options
       resouce = impressionable_class.find(self.impressionable_id)
-      resouce.try(:update_counter_cache)
+      resouce.try(:update_impressionist_counter_cache)
     end
   end
 end

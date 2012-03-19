@@ -32,7 +32,7 @@ module Impressionist
       imps.all.size
     end
 
-    def update_counter_cache
+    def update_impressionist_counter_cache
       cache_options = self.class.impressionist_counter_cache_options
       column_name = cache_options[:column_name].to_sym
       count = cache_options[:unique] ? impressionist_count(:filter => :ip_address) : impressionist_count
