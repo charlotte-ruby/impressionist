@@ -1,5 +1,11 @@
 module Impressionist
   module Bots
+
+    def self.bot?(user_agent = nil)
+      return false if user_agent.nil?
+      WILD_CARDS.any? { |wc| user_agent.downcase.include?(wc) } || LIST.include?(user_agent)
+    end
+
     WILD_CARDS = ["bot","yahoo","slurp","google","msn","crawler"]
 
     LIST = ["<a href='http://www.unchaos.com/'> UnChaos </a> From Chaos To Order Hybrid Web Search Engine.(vadim_gonchar@unchaos.com)",

@@ -41,10 +41,7 @@ module ImpressionistController
     private
 
     def bypass
-      Impressionist::Bots::WILD_CARDS.each do |wild_card|
-        return true if request.user_agent and request.user_agent.downcase.include? wild_card
-      end
-      Impressionist::Bots::LIST.include? request.user_agent
+      Impressionist::Bots.bot?(request.user_agent)
     end
 
     def unique_instance?(impressionable, unique_opts)
