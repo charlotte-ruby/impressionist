@@ -21,7 +21,7 @@ describe Impression do
   describe "#update_counter_cache" do
     it "should update the counter cache column to reflect the correct number of impressions" do
       lambda {
-         Impression.create(:impressionable_type => @widget.class.name, :impressionable_id => @widget.id)
+         @widget.impressions.create(:request_hash => 'abcd1234')
          @widget.reload
        }.should change(@widget, :impressions_count).from(0).to(1)
     end
