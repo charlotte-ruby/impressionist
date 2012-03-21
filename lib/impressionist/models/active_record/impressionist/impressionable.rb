@@ -5,7 +5,7 @@ module Impressionist
     module ClassMethods
       def is_impressionable(options={})
         has_many :impressions, :as => :impressionable, :dependent => :destroy
-        @cache_options = options[:counter_cache]
+        @impressionist_cache_options = options[:counter_cache]
       end
     end
   end

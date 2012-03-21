@@ -3,19 +3,24 @@ module Impressionist
     extend ActiveSupport::Concern
 
     module ClassMethods
-      attr_accessor :cache_options
-      @cache_options = nil
+      attr_accessor :impressionist_cache_options
+      @impressionist_cache_options = nil
 
-      def counter_cache_options
-        if @cache_options
+      def impressionist_counter_cache_options
+        if @impressionist_cache_options
           options = { :column_name => :impressions_count, :unique => false }
-          options.merge!(@cache_options) if @cache_options.is_a?(Hash)
+          options.merge!(@impressionist_cache_options) if @impressionist_cache_options.is_a?(Hash)
           options
         end
       end
 
+      def impressionist_counter_caching?
+        impressionist_counter_cache_options.present?
+      end
+
       def counter_caching?
-        counter_cache_options.present?
+        ::ActiveSupport::Deprecation.warn("#counter_caching? is deprecated; please use #impressionist_counter_caching? instead")
+        impressionist_counter_caching?
       end
     end
 
@@ -29,8 +34,8 @@ module Impressionist
       options[:filter] == :all ? imps.count : imps.count(options[:filter], :distinct => true)
     end
 
-    def update_counter_cache
-      cache_options = self.class.counter_cache_options
+    def update_impressionist_counter_cache
+      cache_options = self.class.impressionist_counter_cache_options
       column_name = cache_options[:column_name].to_sym
       count = cache_options[:unique] ? impressionist_count(:filter => :ip_address) : impressionist_count
       update_attribute(column_name, count)
