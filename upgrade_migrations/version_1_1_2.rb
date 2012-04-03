@@ -4,6 +4,6 @@ class Version04UpdateImpressionsTable < ActiveRecord::Migration
   end
 
   def self.down
-    remove_column :impressions, :impressionable_type_message_index
+    remove_index :impressions, :impressionable_type_message_index
   end
 end
