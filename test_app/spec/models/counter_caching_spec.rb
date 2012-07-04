@@ -38,6 +38,13 @@ describe Impression do
          @widget.reload
        }.should change(@widget, :impressions_count).from(0).to(1)
     end
+
+    it "should not update the timestamp on the impressable" do
+      lambda {
+         @widget.impressions.create(:request_hash => 'abcd1234')
+         @widget.reload
+       }.should_not change(@widget, :updated_at)
+    end
   end
 
 end
