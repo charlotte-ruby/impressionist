@@ -38,7 +38,8 @@ module Impressionist
       cache_options = self.class.impressionist_counter_cache_options
       column_name = cache_options[:column_name].to_sym
       count = cache_options[:unique] ? impressionist_count(:filter => :ip_address) : impressionist_count
-      update_attribute(column_name, count)
+      old_count = send(column_name) || 0
+      self.class.update_counters(id, column_name => (count - old_count))
     end
 
     # OLD METHODS - DEPRECATE IN V0.5
