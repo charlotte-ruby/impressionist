@@ -5,7 +5,7 @@ module Impressionist
   class Engine < Rails::Engine
     initializer 'impressionist.model' do |app|
       require "#{root}/app/models/impressionist/impressionable.rb"
-      if Impressionist.orm == :active_record
+      if Impressionist.orm == :active_record && defined? ActiveRecord
         require "impressionist/models/active_record/impression.rb"
         require "impressionist/models/active_record/impressionist/impressionable.rb"
         ActiveRecord::Base.send(:include, Impressionist::Impressionable)
