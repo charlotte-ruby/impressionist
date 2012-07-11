@@ -13,10 +13,17 @@ module Impressionist
         require "impressionist/models/mongo_mapper/impression.rb"
         require "impressionist/models/mongo_mapper/impressionist/impressionable.rb"
         MongoMapper::Document.plugin Impressionist::Impressionable
+      elsif Impressionist.orm == :mongoid
+        require 'impressionist/models/mongoid/impression.rb'
+        require 'impressionist/models/mongoid/impressionist/impressionable.rb'
+        Mongoid::Document.send(:include, Impressionist::Impressionable)
       end
     end
 
     initializer 'impressionist.controller' do
+      if Impressionist.orm == :mongoid
+          require 'impressionist/controllers/mongoid/impressionist_controller.rb'
+      end
       ActiveSupport.on_load(:action_controller) do
         include ImpressionistController::InstanceMethods
         extend ImpressionistController::ClassMethods
