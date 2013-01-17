@@ -13,4 +13,6 @@ class Impression
   key :message, String
   key :referrer, String
   timestamps!
+
+  belongs_to :impressionable, :polymorphic=>true
 end
