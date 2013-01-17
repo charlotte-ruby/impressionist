@@ -57,7 +57,7 @@ The following fields are provided in the migration:
     t.string   "referrer"             # request.referer
     t.string   "message"              # custom message you can add
     t.datetime "created_at"           # I am not sure what this is.... Any clue?
-    t.datetime "updated_at"           # never seen this one before either....  Your guess is as good as mine??
+    t.datetime "updated_at"           # never seen this one before either....  Your guess is as good as mine?? ;-)
 
 Usage
 -----
