@@ -1,5 +1,5 @@
 before_install: gem install bundler
-before_script: "cd test_app && bundle install && ./script/rails generate impressionist && bundle exec rake db:migrate && cd .."
+before_script: "cd test_app && bundle install && ./script/rails generate impressionist -f && bundle exec rake db:migrate && cd .."
 language: ruby
 rvm:
   - rbx-18mode
