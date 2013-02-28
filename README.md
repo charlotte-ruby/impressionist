@@ -164,6 +164,21 @@ Or you can use the `impressionist` method directly:
 
     impressionist(impressionable, "some message", :unique => [:session_hash])
 
+Are you using Mongoid?
+
+Execute this command on your terminal/console:
+
+    rails g impressionist --orm mongoid
+    
+This command create a file `impression.rb` on `config/initializer` folder. Add `config.orm = :mongoid` to this file:
+
+    # Use this hook to configure impressionist parameters
+    Impressionist.setup do |config|
+      # Define ORM. Could be :active_record (default), :mongo_mapper or :mongoid
+      # config.orm = :active_record
+      config.orm = :mongoid
+    end
+
 Development Roadmap
 -------------------
 * Automatic impression logging in views.  For example, log initial view, and
