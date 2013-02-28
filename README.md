@@ -165,6 +165,7 @@ Or you can use the `impressionist` method directly:
     impressionist(impressionable, "some message", :unique => [:session_hash])
 
 Are you using Mongoid?
+---------------------
 
 Execute this command on your terminal/console:
 
