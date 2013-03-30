@@ -3,4 +3,6 @@ class DummyController < ActionController::Base
 
   impressionist
 
+  def index
+  end
 end
