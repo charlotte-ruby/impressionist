@@ -5,7 +5,7 @@
 impressionist
 =============
 
-A lightweight plugin that logs impressions per action or manually per model
+A lightweight plugin that logs impressions globally, per controller, per action or manually per model.
 
 --------------------------------------------------------------------------------
 
@@ -62,19 +62,27 @@ The following fields are provided in the migration:
 Usage
 -----
 
-1. Log all actions in a controller
+1. Log all activity across controllers
+
+        class ApplicationController < ActionController::Base
+          include ImpressionistController::InstanceMethods
+          extend ImpressionistController::ClassMethods
+          impressionist
+        end
+
+2. Log all actions in a controller
 
         WidgetsController < ApplicationController
           impressionist
         end
 
-2. Specify actions you want logged in a controller
+3. Specify actions you want logged in a controller
 
         WidgetsController < ApplicationController
           impressionist :actions=>[:show,:index]
         end
 
-3. Make your models impressionable.  This allows you to attach impressions to
+4. Make your models impressionable.  This allows you to attach impressions to
    an AR model instance.  Impressionist will automatically log the Model name
    (based on action_name) and the id (based on params[:id]), but in order to
    get the count of impressions (example: @widget.impression_count), you will
@@ -84,7 +92,7 @@ Usage
           is_impressionable
         end
 
-4. Log an impression per model instance in your controller.  Note that it is
+5. Log an impression per model instance in your controller.  Note that it is
    not necessary to specify "impressionist" (usage #1) in the top of you
    controller if you are using this method.  If you add "impressionist" to the
    top of your controller and also use this method in your action, it will
@@ -95,7 +103,7 @@ Usage
           impressionist(@widget,message:"wtf is a widget?") #message is optional
         end
 
-5. Get unique impression count from a model.  This groups impressions by
+6. Get unique impression count from a model.  This groups impressions by
    request_hash, so if you logged multiple impressions per request, it will
    only count them one time.  This unique impression count will not filter out
    unique users, only unique requests
@@ -104,13 +112,13 @@ Usage
         @widget.impressionist_count(:start_date=>"2011-01-01",:end_date=>"2011-01-05")
         @widget.impressionist_count(:start_date=>"2011-01-01")  #specify start date only, end date = now
 
-6. Get the unique impression count from a model filtered by IP address.  This
+7. Get the unique impression count from a model filtered by IP address.  This
    in turn will give you impressions with unique request_hash, since rows with
    the same request_hash will have the same IP address.
 
         @widget.impressionist_count(:filter=>:ip_address)
 
-7. Get the unique impression count from a model filtered by session hash.  Same
+8. Get the unique impression count from a model filtered by session hash.  Same
    as #6 regarding request hash.  This may be more desirable than filtering by
    IP address depending on your situation, since filtering by IP may ignore
    visitors that use the same IP.  The downside to this filtering is that a
@@ -118,7 +126,7 @@ Usage
 
         @widget.impressionist_count(:filter=>:session_hash)
 
-8. Get total impression count.  This may return more than 1 impression per http
+9. Get total impression count.  This may return more than 1 impression per http
    request, depending on how you are logging impressions
 
         @widget.impressionist_count(:filter=>:all)
@@ -179,6 +187,31 @@ This command create a file `impression.rb` on `config/initializer` folder. Add `
       # config.orm = :active_record
       config.orm = :mongoid
     end
+
+Are you using Postgres? Want to use hstore?
+---------------------
+
+Included the 'pg' gem in your gemfile. Run:
+
+    rails g impressionist
+
+You will be given the option of setting up hstore support.  Doing so will add 'activerecord-postgres-hstore' to your gemfile, execute 'hstore:setup', and create a new migration  that will add a 'params' hstore column and index to the impression table.
+
+All request params will then be automatically serialized to the params hstore column.
+
+A scope is available on the Impression model to search for impressions based on request param keys or key values.  A key is required, but a value is optional.
+
+    Impression.with(key, value)
+
+For example:
+
+    Impression.with('format')
+
+Will return all impressions where the request params includes a format parameter.
+
+    Impression.with('format', 'json')
+
+Will return all impressions that were json requests.
 
 Development Roadmap
 -------------------

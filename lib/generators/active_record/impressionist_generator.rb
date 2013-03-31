@@ -16,6 +16,26 @@ module ActiveRecord
       def create_migration_file
         migration_template 'create_impressions_table.rb', 'db/migrate/create_impressions_table.rb'
       end
+
+      def create_hstore_migration_file
+        if gem_available?('pg')
+          if yes?("Would you like to add activerecord-postgres-hstore support?")
+            gem("activerecord-postgres-hstore")
+            generate("hstore:setup")
+            migration_template 'add_params_to_impressions_table.rb', 'db/migrate/add_params_to_impressions_table.rb'
+          end
+        end
+      end
+
+      private
+
+      def gem_available?(name)
+         Gem::Specification.find_by_name(name)
+      rescue Gem::LoadError
+         false
+      rescue
+         Gem.available?(name)
+      end
     end
   end
 end
