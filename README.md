@@ -179,15 +179,7 @@ This command create a file `impression.rb` on `config/initializer` folder. Add `
       # config.orm = :active_record
       config.orm = :mongoid
     end
-
-Development Roadmap
--------------------
-* Automatic impression logging in views.  For example, log initial view, and
-  any partials called from initial view
-* Customizable black list for user-agents or IP addresses.  Impressions will be
-  ignored.  Web admin as part of the Engine.
-* Reporting engine
-* AB testing integration
+    
 
 Contributing to impressionist
 -----------------------------
