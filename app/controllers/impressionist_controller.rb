@@ -64,7 +64,7 @@ module ImpressionistController
 
     # creates a statment hash that contains default values for creating an impression via an AR relation.
     def associative_create_statement(query_params={})
-      query_params = query_params.reverse_merge!(
+      query_params = query_params.merge!(
         :controller_name => controller_name,
         :action_name => action_name,
         :user_id => user_id,
@@ -73,7 +73,7 @@ module ImpressionistController
         :ip_address => request.remote_ip,
         :referrer => request.referer
       )
-      query_params.reverse_merge!(:params => params) if Impression.hstore_enabled?
+      query_params.merge!(:params => params) if Impression.hstore_enabled?
       query_params
     end
 

@@ -119,10 +119,9 @@ describe WidgetsController do
       get "index"
       Impression.all.size.should eq 14
     end
-
   end
-
 end
+
 describe DummyController do
   fixtures :impressions
   render_views
@@ -130,5 +129,21 @@ describe DummyController do
   it "should log impression at the per action level on non-restful controller" do
     get "index"
     Impression.all.size.should eq 12
+  end
+
+  describe "hstore support" do
+
+    # Stub hstore methods for testing with sqlite
+    before(:each){
+      Impression.stub!(:hstore_enabled?).and_return(true)
+      Impression.any_instance.stub(:params=> {"controller"=>"dummy", "action"=>"index"})
+      Impression.stub_chain(:with).and_return(@impressions = [Impression.where(controller: 'widget')])
+    }
+
+    it "should log params when hstore_enabled?" do
+      get "index"
+      Impression.all.size.should eq 12
+      Impression.last.params.should eq({"controller"=>"dummy", "action"=>"index"})
+    end
   end
 end
