@@ -18,6 +18,14 @@ class Impression
   field :message
   field :referrer
 
+  def previous
+    Impression.where(:session_hash => session_hash, :created_at.lt => created_at)
+  end
+
+  def next
+    Impression.where(:session_hash => session_hash, :created_at.gt => created_at)
+  end
+
   set_callback(:create, :after) do |doc|
     unless impressionable_id.nil?
       impressionable_class = doc.impressionable_type.constantize
