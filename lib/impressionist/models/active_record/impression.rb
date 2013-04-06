@@ -7,6 +7,16 @@ class Impression < ActiveRecord::Base
 
   after_save :update_impressions_counter_cache
 
+  def next
+    Impression.where(:session_hash => session_hash)
+              .where("created_at > ?", created_at)
+  end
+
+  def previous
+    Impression.where(:session_hash => session_hash)
+              .where("created_at < ?", created_at)
+  end
+
   private
 
   def update_impressions_counter_cache

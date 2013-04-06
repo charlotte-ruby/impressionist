@@ -15,4 +15,12 @@ class Impression
   timestamps!
 
   belongs_to :impressionable, :polymorphic=>true
+
+  def previous
+    Impression.where(:session_hash => session_hash, :created_at.lt => created_at)
+  end
+
+  def next
+    Impression.where(:session_hash => session_hash, :created_at.gt => created_at)
+  end
 end
