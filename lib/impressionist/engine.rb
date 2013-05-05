@@ -3,7 +3,7 @@ require "rails"
 
 module Impressionist
   class Engine < Rails::Engine
-   attr_accessor :orm
+    attr_accessor :orm
 
   def initialize
     define_orm_type(Impressionist.orm)
