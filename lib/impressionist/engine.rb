@@ -3,31 +3,46 @@ require "rails"
 
 module Impressionist
   class Engine < Rails::Engine
-    initializer 'impressionist.model' do |app|
-      require "#{root}/app/models/impressionist/impressionable.rb"
-      if Impressionist.orm == :active_record && defined? ActiveRecord
-        require "impressionist/models/active_record/impression.rb"
-        require "impressionist/models/active_record/impressionist/impressionable.rb"
-        ActiveRecord::Base.send(:include, Impressionist::Impressionable)
-      elsif Impressionist.orm == :mongo_mapper
-        require "impressionist/models/mongo_mapper/impression.rb"
-        require "impressionist/models/mongo_mapper/impressionist/impressionable.rb"
-        MongoMapper::Document.plugin Impressionist::Impressionable
-      elsif Impressionist.orm == :mongoid
-        require 'impressionist/models/mongoid/impression.rb'
-        require 'impressionist/models/mongoid/impressionist/impressionable.rb'
-        Mongoid::Document.send(:include, Impressionist::Impressionable)
-      end
-    end
+    attr_accessor :orm
 
-    initializer 'impressionist.controller' do
-      if Impressionist.orm == :mongoid
-          require 'impressionist/controllers/mongoid/impressionist_controller.rb'
-      end
-      ActiveSupport.on_load(:action_controller) do
-        include ImpressionistController::InstanceMethods
-        extend ImpressionistController::ClassMethods
-      end
-    end
+  def initialize
+    define_orm_type(Impressionist.orm)
+  end
+
+  initializer 'impressionist.model' do |app|
+    require_orm
+    ActiveRecord::Base.send(:include, Impressionist::Impressionable)
+
+  end
+
+
+  initializer 'impressionist.controller' do
+    require "impressionist/controllers/mongoid/impressionist_controller.rb" if orm == :mongoid.to_s
+
+    ActiveSupport.on_load(:action_controller) do
+     include ImpressionistController::InstanceMethods
+     extend ImpressionistController::ClassMethods
+   end
+  end
+
+
+ private
+  def require_orm
+    require "#{root}/app/models/impressionist/impressionable.rb"
+    require "impressionist/models/#{orm}/impression.rb"
+    require "impressionist/models/#{orm}/impressionist/impressionable.rb"
+
+  end
+
+  def define_orm_type(str)
+    @orm = matcher(str.to_s)
+  end
+
+   def matcher(str)
+    matched = str.match(/active_record|mongo_mapper|mongoid|/)
+    matched[0]
+   end
+
+
   end
 end
