@@ -35,11 +35,14 @@ module Impressionist
   end
 
   def define_orm_type(str)
-    str = str.to_s
-    @orm = str.match(/active_record|mongo_mapper|mongoid|/)
-    :matched
-
+    @orm = matcher(str.to_s)
   end
+
+   def matcher(str)
+    matched = str.match(/active_record|mongo_mapper|mongoid|/)
+    matched[0]
+   end
+
 
   end
 end
