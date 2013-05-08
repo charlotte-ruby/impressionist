@@ -294,7 +294,7 @@ describe DummyController do
 
     it "should recognize uniqueness" do
       impressionable = Post.create
-      controller.stub!(:controller_path).and_return("posts") # for correct impressionable type in filter
+      controller.stub!(:controller_name).and_return("posts") # for correct impressionable type in filter
       controller.stub!(:params).and_return({:id => impressionable.id.to_s}) # for correct impressionable id in filter
       controller.stub!(:session_hash).and_return("foo")
       controller.request.stub!(:remote_ip).and_return("1.2.3.4")
