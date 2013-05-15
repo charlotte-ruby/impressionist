@@ -1,3 +1,5 @@
+ActiveRecord::Base.send(:include, Impressionist::Impressionable)
+
 module Impressionist
   module Impressionable
     extend ActiveSupport::Concern
