@@ -1,3 +1,5 @@
+MongoMapper::Document.plugin Impressionist::Impressionable
+
 module Impressionist
   module Impressionable
     extend ActiveSupport::Concern
