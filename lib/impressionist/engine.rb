@@ -10,8 +10,7 @@ module Impressionist
   end
 
   initializer 'impressionist.model' do |app|
-    require_orm
-    ActiveRecord::Base.send(:include, Impressionist::Impressionable)
+    require_and_include_orm
 
   end
 
@@ -27,7 +26,7 @@ module Impressionist
 
 
  private
-  def require_orm
+  def require_and_include_orm
     require "#{root}/app/models/impressionist/impressionable.rb"
     require "impressionist/models/#{orm}/impression.rb"
     require "impressionist/models/#{orm}/impressionist/impressionable.rb"
@@ -38,10 +37,10 @@ module Impressionist
     @orm = matcher(str.to_s)
   end
 
-   def matcher(str)
+  def matcher(str)
     matched = str.match(/active_record|mongo_mapper|mongoid|/)
     matched[0]
-   end
+  end
 
 
   end
