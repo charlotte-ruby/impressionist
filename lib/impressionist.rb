@@ -1,7 +1,7 @@
-require "impressionist/engine.rb"
+require 'impressionist/engine'
 
 module Impressionist
-  # Define ORM
+  # Define default ORM
   mattr_accessor :orm
   @@orm = :active_record
 
