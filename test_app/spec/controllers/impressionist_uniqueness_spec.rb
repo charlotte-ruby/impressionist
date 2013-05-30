@@ -12,62 +12,62 @@ describe DummyController do
     it "should ignore uniqueness if not requested" do
       controller.impressionist_subapp_filter(nil, nil)
       controller.impressionist_subapp_filter(nil, nil)
-      Impression.should have(@impression_count + 2).records
+      expect(Impression.count).to eq(@impression_count + 2)
     end
 
     it "should recognize unique session" do
       controller.stub!(:session_hash).and_return(request.session_options[:id])
       controller.impressionist_subapp_filter(nil, [:session_hash])
       controller.impressionist_subapp_filter(nil, [:session_hash])
-      Impression.should have(@impression_count + 1).records
+      expect(Impression.count).to eq(@impression_count + 1)
     end
 
     it "should recognize unique ip" do
       controller.request.stub!(:remote_ip).and_return("1.2.3.4")
       controller.impressionist_subapp_filter(nil, [:ip_address])
       controller.impressionist_subapp_filter(nil, [:ip_address])
-      Impression.should have(@impression_count + 1).records
+      expect(Impression.count).to eq(@impression_count + 1)
     end
 
     it "should recognize unique request" do
       controller.impressionist_subapp_filter(nil, [:request_hash])
       controller.impressionist_subapp_filter(nil, [:request_hash])
-      Impression.should have(@impression_count + 1).records
+      expect(Impression.count).to eq(@impression_count + 1)
     end
 
     it "should recognize unique action" do
       controller.stub!(:action_name).and_return("test_action")
       controller.impressionist_subapp_filter(nil, [:action_name])
       controller.impressionist_subapp_filter(nil, [:action_name])
-      Impression.should have(@impression_count + 1).records
+      expect(Impression.count).to eq(@impression_count + 1)
     end
 
     it "should recognize unique controller" do
       controller.stub!(:controller_name).and_return("post")
       controller.impressionist_subapp_filter(nil, [:controller_name])
       controller.impressionist_subapp_filter(nil, [:controller_name])
-      Impression.should have(@impression_count + 1).records
+      expect(Impression.count).to eq(@impression_count + 1)
     end
 
     it "should recognize unique user" do
       controller.stub!(:user_id).and_return(42)
       controller.impressionist_subapp_filter(nil, [:user_id])
       controller.impressionist_subapp_filter(nil, [:user_id])
-      Impression.should have(@impression_count + 1).records
+      expect(Impression.count).to eq(@impression_count + 1)
     end
 
     it "should recognize unique referer" do
       controller.request.stub!(:referer).and_return("http://foo/bar")
       controller.impressionist_subapp_filter(nil, [:referrer])
       controller.impressionist_subapp_filter(nil, [:referrer])
-      Impression.should have(@impression_count + 1).records
+      expect(Impression.count).to eq(@impression_count + 1)
     end
 
     it "should recognize unique id" do
       controller.stub!(:params).and_return({:id => "666"}) # for correct impressionable id in filter
       controller.impressionist_subapp_filter(nil, [:impressionable_id])
       controller.impressionist_subapp_filter(nil, [:impressionable_id])
-      Impression.should have(@impression_count + 1).records
+      expect(Impression.count).to eq(@impression_count + 1)
     end
 
     # extra redundant test for important controller and action combination.
@@ -76,70 +76,70 @@ describe DummyController do
       controller.stub!(:action_name).and_return("test_action")
       controller.impressionist_subapp_filter(nil, [:controller_name, :action_name])
       controller.impressionist_subapp_filter(nil, [:controller_name, :action_name])
-      Impression.should have(@impression_count + 1).records
+      expect(Impression.count).to eq(@impression_count + 1)
       controller.stub!(:action_name).and_return("another_action")
       controller.impressionist_subapp_filter(nil, [:controller_name, :action_name])
       controller.impressionist_subapp_filter(nil, [:controller_name, :action_name])
-      Impression.should have(@impression_count + 2).records
+      expect(Impression.count).to eq(@impression_count + 2)
       controller.stub!(:controller_name).and_return("article")
       controller.impressionist_subapp_filter(nil, [:controller_name, :action_name])
       controller.impressionist_subapp_filter(nil, [:controller_name, :action_name])
-      Impression.should have(@impression_count + 3).records
+      expect(Impression.count).to eq(@impression_count + 3)
     end
 
     it "should recognize different action" do
       controller.stub!(:action_name).and_return("test_action")
       controller.impressionist_subapp_filter(nil, [:action_name])
       controller.impressionist_subapp_filter(nil, [:action_name])
-      Impression.should have(@impression_count + 1).records
+      expect(Impression.count).to eq(@impression_count + 1)
       controller.stub!(:action_name).and_return("another_action")
       controller.impressionist_subapp_filter(nil, [:action_name])
       controller.impressionist_subapp_filter(nil, [:action_name])
-      Impression.should have(@impression_count + 2).records
+      expect(Impression.count).to eq(@impression_count + 2)
     end
 
     it "should recognize different controller" do
       controller.stub!(:controller_name).and_return("post")
       controller.impressionist_subapp_filter(nil, [:controller_name])
       controller.impressionist_subapp_filter(nil, [:controller_name])
-      Impression.should have(@impression_count + 1).records
+      expect(Impression.count).to eq(@impression_count + 1)
       controller.stub!(:controller_name).and_return("article")
       controller.impressionist_subapp_filter(nil, [:controller_name])
       controller.impressionist_subapp_filter(nil, [:controller_name])
-      Impression.should have(@impression_count + 2).records
+      expect(Impression.count).to eq(@impression_count + 2)
     end
 
     it "should recognize different session" do
       controller.stub!(:session_hash).and_return("foo")
       controller.impressionist_subapp_filter(nil, [:session_hash])
       controller.impressionist_subapp_filter(nil, [:session_hash])
-      Impression.should have(@impression_count + 1).records
+      expect(Impression.count).to eq(@impression_count + 1)
       controller.stub!(:session_hash).and_return("bar")
       controller.impressionist_subapp_filter(nil, [:session_hash])
       controller.impressionist_subapp_filter(nil, [:session_hash])
-      Impression.should have(@impression_count + 2).records
+      expect(Impression.count).to eq(@impression_count + 2)
     end
 
     it "should recognize different ip" do
       controller.request.stub!(:remote_ip).and_return("1.2.3.4")
       controller.impressionist_subapp_filter(nil, [:ip_address])
       controller.impressionist_subapp_filter(nil, [:ip_address])
-      Impression.should have(@impression_count + 1).records
+      expect(Impression.count).to eq(@impression_count + 1)
       controller.request.stub!(:remote_ip).and_return("5.6.7.8")
       controller.impressionist_subapp_filter(nil, [:ip_address])
       controller.impressionist_subapp_filter(nil, [:ip_address])
-      Impression.should have(@impression_count + 2).records
+      expect(Impression.count).to eq(@impression_count + 2)
     end
 
     it "should recognize different referer" do
       controller.request.stub!(:referer).and_return("http://foo/bar")
       controller.impressionist_subapp_filter(nil, [:referrer])
       controller.impressionist_subapp_filter(nil, [:referrer])
-      Impression.should have(@impression_count + 1).records
+      expect(Impression.count).to eq(@impression_count + 1)
       controller.request.stub!(:referer).and_return("http://bar/fo")
       controller.impressionist_subapp_filter(nil, [:referrer])
       controller.impressionist_subapp_filter(nil, [:referrer])
-      Impression.should have(@impression_count + 2).records
+      expect(Impression.count).to eq(@impression_count + 2)
     end
 
     it "should recognize different id" do
@@ -149,7 +149,7 @@ describe DummyController do
       controller.stub!(:params).and_return({:id => "42"}) # for correct impressionable id in filter
       controller.impressionist_subapp_filter(nil, [:impressionable_type, :impressionable_id])
       controller.impressionist_subapp_filter(nil, [:impressionable_type, :impressionable_id])
-      Impression.should have(@impression_count + 2).records
+      expect(Impression.count).to eq(@impression_count + 2)
     end
 
     it "should recognize combined uniqueness" do
@@ -162,7 +162,7 @@ describe DummyController do
       controller.impressionist_subapp_filter(nil, [:action_name])
       controller.impressionist_subapp_filter(nil, [:ip_address])
       controller.impressionist_subapp_filter(nil, [:request_hash])
-      Impression.should have(@impression_count + 1).records
+      expect(Impression.count).to eq(@impression_count + 1)
     end
 
     it "should recognize combined non-uniqueness" do
@@ -172,7 +172,7 @@ describe DummyController do
       controller.impressionist_subapp_filter(nil, [:ip_address, :action_name])
       controller.stub!(:action_name).and_return("another_action")
       controller.impressionist_subapp_filter(nil, [:ip_address, :action_name])
-      Impression.should have(@impression_count + 3).records
+      expect(Impression.count).to eq(@impression_count + 3)
     end
 
   end
@@ -185,7 +185,7 @@ describe DummyController do
       impressionable = Post.create
       controller.impressionist impressionable
       controller.impressionist impressionable
-      Impression.should have(@impression_count + 2).records
+      expect(Impression.count).to eq(@impression_count + 2)
     end
 
     it "should recognize unique session" do
@@ -193,7 +193,7 @@ describe DummyController do
       impressionable = Post.create
       controller.impressionist(impressionable, nil, :unique => [:session_hash])
       controller.impressionist(impressionable, nil, :unique => [:session_hash])
-      Impression.should have(@impression_count + 1).records
+      expect(Impression.count).to eq(@impression_count + 1)
     end
 
     it "should recognize unique ip" do
@@ -201,14 +201,14 @@ describe DummyController do
       impressionable = Post.create
       controller.impressionist(impressionable, nil, :unique => [:ip_address])
       controller.impressionist(impressionable, nil, :unique => [:ip_address])
-      Impression.should have(@impression_count + 1).records
+      expect(Impression.count).to eq(@impression_count + 1)
     end
 
     it "should recognize unique request" do
       impressionable = Post.create
       controller.impressionist(impressionable, nil, :unique => [:request_hash])
       controller.impressionist(impressionable, nil, :unique => [:request_hash])
-      Impression.should have(@impression_count + 1).records
+      expect(Impression.count).to eq(@impression_count + 1)
     end
 
     it "should recognize unique user" do
@@ -216,7 +216,7 @@ describe DummyController do
       impressionable = Post.create
       controller.impressionist(impressionable, nil, :unique => [:user_id])
       controller.impressionist(impressionable, nil, :unique => [:user_id])
-      Impression.should have(@impression_count + 1).records
+      expect(Impression.count).to eq(@impression_count + 1)
     end
 
     it "should recognize unique referer" do
@@ -224,7 +224,7 @@ describe DummyController do
       impressionable = Post.create
       controller.impressionist(impressionable, nil, :unique => [:referrer])
       controller.impressionist(impressionable, nil, :unique => [:referrer])
-      Impression.should have(@impression_count + 1).records
+      expect(Impression.count).to eq(@impression_count + 1)
     end
 
     it "should recognize different session" do
@@ -232,11 +232,11 @@ describe DummyController do
       controller.stub!(:session_hash).and_return("foo")
       controller.impressionist(impressionable, nil, :unique => [:session_hash])
       controller.impressionist(impressionable, nil, :unique => [:session_hash])
-      Impression.should have(@impression_count + 1).records
+      expect(Impression.count).to eq(@impression_count + 1)
       controller.stub!(:session_hash).and_return("bar")
       controller.impressionist(impressionable, nil, :unique => [:session_hash])
       controller.impressionist(impressionable, nil, :unique => [:session_hash])
-      Impression.should have(@impression_count + 2).records
+      expect(Impression.count).to eq(@impression_count + 2)
     end
 
     it "should recognize different ip" do
@@ -244,11 +244,11 @@ describe DummyController do
       impressionable = Post.create
       controller.impressionist(impressionable, nil, :unique => [:ip_address])
       controller.impressionist(impressionable, nil, :unique => [:ip_address])
-      Impression.should have(@impression_count + 1).records
+      expect(Impression.count).to eq(@impression_count + 1)
       controller.request.stub!(:remote_ip).and_return("5.6.7.8")
       controller.impressionist(impressionable, nil, :unique => [:ip_address])
       controller.impressionist(impressionable, nil, :unique => [:ip_address])
-      Impression.should have(@impression_count + 2).records
+      expect(Impression.count).to eq(@impression_count + 2)
     end
 
     it "should recognize different user" do
@@ -256,11 +256,11 @@ describe DummyController do
       controller.stub!(:user_id).and_return(666)
       controller.impressionist(impressionable, nil, :unique => [:user_id])
       controller.impressionist(impressionable, nil, :unique => [:user_id])
-      Impression.should have(@impression_count + 1).records
+      expect(Impression.count).to eq(@impression_count + 1)
       controller.stub!(:user_id).and_return(42)
       controller.impressionist(impressionable, nil, :unique => [:user_id])
       controller.impressionist(impressionable, nil, :unique => [:user_id])
-      Impression.should have(@impression_count + 2).records
+      expect(Impression.count).to eq(@impression_count + 2)
     end
 
     it "should recognize combined uniqueness" do
@@ -274,7 +274,7 @@ describe DummyController do
       controller.impressionist(impressionable, nil, :unique => [:session_hash])
       controller.impressionist(impressionable, nil, :unique => [:ip_address])
       controller.impressionist(impressionable, nil, :unique => [:request_hash])
-      Impression.should have(@impression_count + 1).records
+      expect(Impression.count).to eq(@impression_count + 1)
     end
 
     it "should recognize combined non-uniqueness" do
@@ -285,7 +285,7 @@ describe DummyController do
       controller.impressionist(impressionable, nil, :unique => [:ip_address, :session_hash])
       controller.stub!(:session_hash).and_return("bar")
       controller.impressionist(impressionable, nil, :unique => [:ip_address, :session_hash])
-      Impression.should have(@impression_count + 3).records
+      expect(Impression.count).to eq(@impression_count + 3)
     end
 
   end
@@ -301,7 +301,7 @@ describe DummyController do
       # order of the following methods is important for the test!
       controller.impressionist_subapp_filter(nil, [:ip_address, :request_hash, :session_hash])
       controller.impressionist(impressionable, nil, :unique => [:ip_address, :request_hash, :session_hash])
-      Impression.should have(@impression_count + 1).records
+      expect(Impression.count).to eq(@impression_count + 1)
     end
 
   end
