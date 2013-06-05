@@ -73,7 +73,7 @@ module ImpressionistController
         :ip_address => request.remote_ip,
         :referrer => request.referer
       )
-      query_params.merge!(:params => params) if Impression.hstore_enabled?
+      query_params.merge!(:params => params) if !!(Impressionist.hstore)
       query_params
     end
 

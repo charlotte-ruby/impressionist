@@ -18,6 +18,17 @@ module Impressionist
         require 'impressionist/models/mongoid/impressionist/impressionable.rb'
         Mongoid::Document.send(:include, Impressionist::Impressionable)
       end
+
+      Impression.class_eval do
+        if !!(Impressionist.hstore)
+          serialize :params, ActiveRecord::Coders::Hstore
+          scope :with, lambda {|key, value=nil|
+            where("params"+(value.nil? ? " ? '"+key+"'" : " @> '"+key+" => "+value+"'")) if self.hstore_enabled?
+          }
+        else
+          attr_accessor :params
+        end
+      end
     end
 
     initializer 'impressionist.controller' do
