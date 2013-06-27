@@ -1,3 +1,11 @@
+== 1.3.3 (2013-06-27)
+* Added Rails4 Branch in order to support rails 4
+* Rails 4 and Strong Parameters compability. (@bennick).
+
+== 1.3.1 (non specified)
+* Change controller_path back to controller_name (@johnmcaliley)
+
+
 == 0.4.0 (2011-06-03)
 * Fix postgres bug
 * New impression count method that accepts options for filter, start_date and end_date
