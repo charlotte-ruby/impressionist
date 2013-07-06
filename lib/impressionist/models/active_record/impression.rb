@@ -6,7 +6,7 @@
 
 class Impression < ActiveRecord::Base
   include Impressionist::CounterCache
-  include Impressionist::SetUpAssociation 
+  include Impressionist::SetUpAssociation
 
   after_save :impressionable_counter_cache_updatable?
 
