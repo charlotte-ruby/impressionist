@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.2'
+gem 'rails', '3.2.12'
 
 gem 'impressionist', :path => '../'
 
@@ -41,7 +41,7 @@ group :test do
   gem 'systemu'
 end
 
-#gem 'jquery-rails'
+gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

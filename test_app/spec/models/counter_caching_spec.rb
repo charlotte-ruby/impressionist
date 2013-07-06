@@ -3,8 +3,9 @@ require 'spec_helper'
 describe Impression do
   fixtures :widgets
 
+  let(:widget) { Widget.find(1) }
+
   before(:each) do
-    @widget = Widget.find(1)
     Impression.destroy_all
   end
 
@@ -33,17 +34,17 @@ describe Impression do
 
   describe "#update_impressionist_counter_cache" do
     it "should update the counter cache column to reflect the correct number of impressions" do
-      lambda {
-         @widget.impressions.create(:request_hash => 'abcd1234')
-         @widget.reload
-       }.should change(@widget, :impressions_count).from(0).to(1)
+      expect {
+         widget.impressions.create(:request_hash => 'abcd1234')
+         widget.reload
+       }.to change(widget, :impressions_count).from(0).to(1)
     end
 
     it "should not update the timestamp on the impressable" do
-      lambda {
-         @widget.impressions.create(:request_hash => 'abcd1234')
-         @widget.reload
-       }.should_not change(@widget, :updated_at)
+      expect {
+         widget.impressions.create(:request_hash => 'abcd1234')
+         widget.reload
+       }.to_not change(widget, :updated_at)
     end
   end
 

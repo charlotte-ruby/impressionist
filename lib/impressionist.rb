@@ -1,4 +1,4 @@
-require 'impressionist/engine'
+require 'impressionist/load'
 
 module Impressionist
   # Define default ORM
