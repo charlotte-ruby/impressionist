@@ -136,14 +136,21 @@ most basic configuration looks like:
     is_impressionable :counter_cache => true
 
 This will automatically increment the `impressions_count` column in the
-included model. Note: You'll need to add that column to your model. If you'd
-like specific a different column name, you can:
+included model. <b>Note: You'll need to add that column to your model. If you'd
+like specific a different column name, you can:</b>
 
-    is_impressionable :counter_cache => { :column_name => :my_column }
+    is_impressionable :counter_cache => { :column_name => :my_column_name }
 
 If you'd like to include only unique impressions in your count:
 
-    is_impressionable :counter_cache => { :column_name => :my_column, :unique => true }
+    is_impressionable :counter_cache => { :column_name => :my_column_name, :unique => true }
+    
+
+Adding column to model
+----------------------
+It is as simple as this:
+
+    t.integer :my_column_name, :default => 0
 
 What if I only want to record unique impressions?
 -------------------------------------------------
