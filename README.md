@@ -143,8 +143,16 @@ like specific a different column name, you can:</b>
 
 If you'd like to include only unique impressions in your count:
 
+    # default will be filtered by ip_address
     is_impressionable :counter_cache => { :column_name => :my_column_name, :unique => true }
-    
+
+If you'd like to specify what sort of unique impression you'd like to save? Fear not,
+Any option you pass to unique, impressionist_count will use it as its filter to update_counters based on that unique option.
+
+    # options are any column in the impressions' table.
+    is_impressionable :counter_cache => { :column_name => :my_column_name, :unique => :request_hash }
+    is_impressionable :counter_cache => { :column_name => :my_column_name, :unique => :all }
+
 
 Adding column to model
 ----------------------
@@ -177,7 +185,7 @@ Are you using Mongoid?
 Execute this command on your terminal/console:
 
     rails g impressionist --orm mongoid
-    
+
 This command create a file `impression.rb` on `config/initializer` folder. Add `config.orm = :mongoid` to this file:
 
     # Use this hook to configure impressionist parameters
@@ -186,7 +194,7 @@ This command create a file `impression.rb` on `config/initializer` folder. Add `
       # config.orm = :active_record
       config.orm = :mongoid
     end
-    
+
 
 Contributing to impressionist
 -----------------------------
@@ -204,10 +212,21 @@ Contributing to impressionist
 * All testing is done inside a small Rails app (test_app).  You will find specs
   within this app.
 
+
+Want to run the tests? Ok mummy
+-------------------------------
+* bundle install
+* rails g impressionist
+* rake db:migrate && rake db:test:prepare
+* Run rake or rspec spec inside test_app dir
+* nothing else.
+* :wq
+
 Contributors
 ------------
 * [johnmcaliley](https://github.com/johnmcaliley)
 * [coryschires](https://github.com/coryschires)
 * [georgmittendorfer](https://github.com/georgmittendorfer)
+* [Antonio C Nalesso](https://github.com/nbit001)
 
 Copyright (c) 2011 John McAliley. See LICENSE.txt for further details.
