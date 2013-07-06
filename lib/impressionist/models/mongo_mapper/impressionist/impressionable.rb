@@ -5,10 +5,17 @@ module Impressionist
     extend ActiveSupport::Concern
 
     module ClassMethods
-      def is_impressionable(options={})
-        many :impressions, :as => :impressionable, :dependent => :destroy
-        @cache_options = options[:counter_cache]
-      end
+
+        def is_impressionable(options={})
+          many(:impressions,
+          :as => :impressionable,
+          :dependent => :destroy)
+
+          @impressionist_cache_options = options
+        end
+
     end
+
   end
+
 end

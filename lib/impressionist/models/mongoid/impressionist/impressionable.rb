@@ -1,3 +1,5 @@
+# TODO: Refactor this Entity
+# There's a lot of duplication
 Mongoid::Document.send(:include, Impressionist::Impressionable)
 
 module Impressionist

@@ -42,8 +42,10 @@ module Impressionist
       end
 
       # Logs to log file, expects a message to be passed
+
       # default mode is ERROR
-      def impressionist_log(mode=:error, str)
+      # ruby 1.8.7 support
+      def impressionist_log(str, mode=:error)
         Rails.logger.send(mode.to_s, str)
       end
 

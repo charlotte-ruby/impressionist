@@ -36,9 +36,9 @@ group :development, :test do
 end
 
 group :test do
-  gem 'capybara'
   gem 'simplecov'
   gem 'systemu'
+  gem 'capybara', '~> 2.0.0'
 end
 
 gem 'jquery-rails'
