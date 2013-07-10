@@ -13,6 +13,7 @@ end
 platforms :ruby, :mswin, :mingw do
   gem 'pg'
   gem 'sqlite3'
+  gem 'mysql2'
 end
 
 gem 'json'
