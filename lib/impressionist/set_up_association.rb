@@ -4,12 +4,14 @@ module Impressionist
     def self.included(base)
       # include attr_accessible base on
       # rails version
+      @klass = base
       should_include?
-      base.
-      belongs_to(:impressionable,:polymorphic => true)
+      base.belongs_to(:impressionable,:polymorphic => true)
     end
 
 private
+
+    attr_reader :klass
 
     def self.should_include?
       toggle = Impressionist::RailsToggle.new(Rails::VERSION::MAJOR)
@@ -17,7 +19,7 @@ private
     end
 
     def self.include_attr_accessible
-      base.attr_accessible(:impressionable_type,:impressionable_id,
+      klass.attr_accessible(:impressionable_type,:impressionable_id,
       :user_id,:controller_name,:action_name,:view_name,:request_hash,
       :ip_address,:session_hash,:message,:referrer)
 
