@@ -3,7 +3,7 @@ language: ruby
 bundler_args: '--binstubs --without documentation'
 before_install: gem install bundler
 
-before_script: "cd test_app && bundle install && ./script/rails generate impressionist -f && rake db:migrate && cd .."
+before_script: "cd tests/test_app && bundle install && ./script/rails generate impressionist -f && rake db:migrate && cd .."
 
 rvm:
   - rbx-18mode
