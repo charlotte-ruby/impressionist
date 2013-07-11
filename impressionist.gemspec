@@ -26,7 +26,7 @@ Gem::Specification.new do |s|
   # Capybara has dropped support for Ruby 1.8.7 onwards version 2.0.3
   s.add_development_dependency 'capybara', '>= 2.0.3'
   s.add_development_dependency 'rake', '>= 0.9'
-  s.add_development_dependency 'rails', '>= 3.1'
+  s.add_development_dependency 'rails', '3.1.12'
   s.add_development_dependency 'rdoc', '>= 2.4.2'
   s.add_development_dependency 'rspec-rails'
   s.add_development_dependency 'simplecov'
