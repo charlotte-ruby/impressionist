@@ -5,3 +5,6 @@ require "impressionist/set_up_association"
 require "impressionist/counter_cache"
 
 require "impressionist/update_counters"
+
+require "impressionist/rails_toggle"
+
