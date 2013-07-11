@@ -17,13 +17,13 @@ describe WidgetsController do
   end
 
   it "should not log impression when user-agent is in wildcard list" do
-    request.stub!(:user_agent).and_return('somebot')
+    request.stub(:user_agent).and_return('somebot')
     get "show", :id=> 1
     Impression.all.size.should eq 11
   end
 
   it "should not log impression when user-agent is in the bot list" do
-    request.stub!(:user_agent).and_return('Acoon Robot v1.50.001')
+    request.stub(:user_agent).and_return('Acoon Robot v1.50.001')
     get "show", :id=> 1
     Impression.all.size.should eq 11
   end
