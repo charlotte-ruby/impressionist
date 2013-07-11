@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.authors       = ['johnmcaliley']
 
   s.files         = `git ls-files`.split("\n")
-  s.test_files    = `git ls-files -- {spec,test_app/spec}/*`.split("\n")
+  s.test_files    = `git ls-files -- tests/**/*`.split("\n")
   s.require_path  = 'lib'
   s.required_rubygems_version = Gem::Requirement.new('>= 1.3.6') if s.respond_to? :required_rubygems_version=
 
@@ -26,11 +26,12 @@ Gem::Specification.new do |s|
   # Capybara has dropped support for Ruby 1.8.7 onwards version 2.0.3
   s.add_development_dependency 'capybara', '>= 2.0.3'
   s.add_development_dependency 'rake', '>= 0.9'
-  s.add_development_dependency 'rails', '~> 3.1'
+  s.add_development_dependency 'rails', '>= 3.1'
   s.add_development_dependency 'rdoc', '>= 2.4.2'
   s.add_development_dependency 'rspec-rails'
   s.add_development_dependency 'simplecov'
   s.add_development_dependency 'sqlite3'
   s.add_development_dependency 'systemu'
-
+  s.add_development_dependency 'minitest'
+  s.add_development_dependency 'minitest-rails'
 end
