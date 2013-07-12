@@ -1,3 +1,19 @@
+== 1.4.2 (2013-07-12)
+* Added Mongoid Support
+* Support Rails > 3.1 < 4.0
+* Fixed #93
+* Fixed travis failing
+* Added two new entities
+* Added MiniTest, testing against impressionist ( RSpec still testing test_app, will be removed soon)
+* Clean up
+* Moved all tests into tests dir
+
+== 1.4.1 (2013-07-07)
+* Added test support
+* fix trailing space
+* Created individually rspec files
+* (@nbit001)
+
 == 1.4.0 (2013-07-06)
 * Fixed #92
 * Pass option to unique for updatind counter_cache
