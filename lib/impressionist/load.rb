@@ -1,10 +1,9 @@
-require "impressionist/engine"
+require 'impressionist/engine'
 
-require "impressionist/set_up_association"
+require 'impressionist/setup_association'
 
-require "impressionist/counter_cache"
+require 'impressionist/counter_cache'
 
-require "impressionist/update_counters"
+require 'impressionist/update_counters'
 
-require "impressionist/rails_toggle"
-
+require 'impressionist/rails_toggle'

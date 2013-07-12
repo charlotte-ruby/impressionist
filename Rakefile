@@ -27,7 +27,8 @@ end
 # Rake libs default is lib
 # libs << path to load test_helper, etc..
 Rake::TestTask.new do |t|
-  t.libs << 'tests/spec'
-  t.pattern  = FileList['tests/spec/*_spec.rb']
+  t.libs << "tests/spec"
+  t.pattern     = "tests/spec/**/*_spec.rb"
+  t.test_files =  FileList["tests/spec/**/*_spec.rb"]
   t.verbose     = true
 end
