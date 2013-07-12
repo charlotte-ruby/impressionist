@@ -1,11 +1,15 @@
+##
+# see active_record/impression.rb
+# same doc applies to here
 class Impression
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  include Impressionist::SetUpAssociation
+  include Impressionist::CounterCache
+  Impressionist::SetupAssociation.new(self).set
 
-  belongs_to :impressionable, polymorphic: true
-
+  field :impressionable_id
+  field :impressionable_type
   field :user_id
   field :controller_name
   field :action_name
@@ -16,15 +20,6 @@ class Impression
   field :message
   field :referrer
 
-  set_callback(:create, :after) do |doc|
-    unless impressionable_id.nil?
-      impressionable_class = doc.impressionable_type.constantize
+  after_save :impressionable_counter_cache_updatable?
 
-      if impressionable_class.impressionist_counter_cache_options
-        resource = impressionable_class.find(doc.impressionable_id)
-        resource.try(:update_impressionist_counter_cache)
-      end
-    end
-  end
-  
 end

@@ -32,10 +32,10 @@ module Impressionist
       options[:filter] == :all ? imps.count : imps.count(options[:filter], :distinct => true)
     end
 
-    def update_impressionist_counter_cache 
+    def update_impressionist_counter_cache
       slave = Impressionist::UpdateCounters.new(self)
       slave.update
-    end 
+    end
 
     def impressionable?
       true
