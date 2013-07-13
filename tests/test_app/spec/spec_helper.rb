@@ -17,11 +17,23 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each {|f|
 }
 
 RSpec.configure do |config|
+
+  # in order to pass tags(symbols) as true values
+  # you need to tell rspec to do so by
+  config.treat_symbols_as_metadata_keys_with_true_values = true
+
   config.mock_with :rspec
 
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
   config.use_transactional_fixtures = true
+
+  # excludes migration tag while running app base tests
+  config.filter_run_excluding :migration => true
+
+  # self explanatory
+  # runs everything
+  config.run_all_when_everything_filtered = true
 
   # make the rails logger usable in the tests as logger.xxx "..."
   def logger
