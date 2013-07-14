@@ -4,6 +4,7 @@ module ActiveRecord
       include Rails::Generators::Migration
       source_root File.join(File.dirname(__FILE__), 'templates')
 
+      # FIX, why is this implementing rails behaviour?
       def self.next_migration_number(dirname)
         sleep 1
         if ActiveRecord::Base.timestamped_migrations
