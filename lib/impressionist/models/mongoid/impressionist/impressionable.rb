@@ -1,31 +1,13 @@
-# TODO: Refactor this Entity
-# There's a lot of duplication
-Mongoid::Document.send(:include, Impressionist::Impressionable)
-
 module Impressionist
   module Impressionable
-    extend ActiveSupport::Concern
 
-    module ClassMethods
+  # extends AS::Concern
+  include Impressionist::IsImpressionable
 
-      def is_impressionable(options={})
-        define_association
-        @impressionist_cache_options = options
+    ## TODO: Make it readable
 
-        true
-      end
-
-        private
-          def define_association
-            has_many(:impressions,
-            :as => :impressionable,
-            :dependent => :destroy)
-          end
-
-    end
-
-    ##
-    # Overides active_record impressionist_count
+    # Overides impressionist_count in order to provied
+    # mongoid compability
     def impressionist_count(options={})
       options.reverse_merge!(:filter=>:request_hash, :start_date=>nil, :end_date=>Time.now)
       imps = options[:start_date].blank? ? impressions : impressions.between(created_at: options[:start_date]..options[:end_date])
@@ -34,5 +16,7 @@ module Impressionist
     end
 
   end
-
 end
+
+Mongoid::Document.
+send(:include, Impressionist::Impressionable)

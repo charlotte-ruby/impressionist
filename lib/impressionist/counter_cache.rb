@@ -1,55 +1,34 @@
+# Note
+# It is only updatable if
+# impressionist_id && impressionist_type(class) are present &&
+# impressionable_class(which is imp_type.constantize) is counter_caching
+# Defined like so
+# is_impressionable :counter_cache => true
+
 module Impressionist
   module CounterCache
 
     attr_reader :impressionable_class, :entity
 
     private
-      LOG_MESSAGE = "Can't find impressionable_type or impressionable_id. Will not update_counters!"
 
       # if updatable returns true, it must be qualified to update_counters
-      # Therefore there's no need to validate again
       # impressionable_class instance var is set when updatable? is called
       def impressionable_counter_cache_updatable?
-        updatable? ? update_impression_cache : impressionist_log(LOG_MESSAGE)
+         updatable? && impressionable_try
       end
 
-      def update_impression_cache
-        impressionable_find
-        impressionable_try
-      end
-
-      # asks imp_id whether it's present or not
-      # also expect imp_class to be true
-      # all should be true, so that it is updatable
+      # asks imp_id && imp_class whether it's present or not
+      # so that it is updatable
       def updatable?
         @impressionable_class = impressionable_class_set
         impressionable_valid?
       end
 
-      # imps_type == nil, constantize returns Object
-      # Therefore it attemps to return false so it won't be updatable
-      # calls to_s otherwise it would try to constantize nil
-      # and it would raise an exeception..
-      def impressionable_class_set
-        _type_ = self.impressionable_type.to_s.constantize
-        ((_type_.to_s !~ /Object/) && _type_.impressionist_counter_caching? ? _type_ : false)
-      end
-
-      # Either true or false
-      # needs true to be updatable
       def impressionable_valid?
-        (self.impressionable_id.present? && impressionable_class && impressionable_find)
+        (self.impressionable_id.present? && impressionable_class)
       end
 
-      # Logs to log file, expects a message to be passed
-
-      # default mode is ERROR
-      # ruby 1.8.7 support
-      def impressionist_log(str, mode=:error)
-        Rails.logger.send(mode.to_s, str)
-      end
-
-      # read it out and LOUD
       def impressionable_find
         exeception_rescuer {
           @entity = impressionable_class.find(self.impressionable_id)
@@ -58,10 +37,27 @@ module Impressionist
 
       end
 
+      # imps_type == nil, constantize returns Object
+      # It attemps to return false so it won't be updatable
+      # calls to_s otherwise it would try to constantize nil
+      # and it would raise an exeception
+      # Must be !~ Object and be counter_caching to be qualified as updatable
+      def impressionable_class_set
+        klass = self.impressionable_type.to_s.constantize
+        (klass.to_s !~ /Object/) && klass.impressionist_counter_caching? ? klass : false
+      end
+
+      # default mode is ERROR
+      # ruby 1.8.7 support
+      def impressionist_log(str, mode=:error)
+        Rails.logger.send(mode.to_s, str)
+      end
+
       # receives an entity(instance of a Model) and then tries to update
       # counter_cache column
-      # entity is a impressionable_model
+      # entity is a impressionable instance model
       def impressionable_try
+        impressionable_find
         entity.try(:update_impressionist_counter_cache)
       end
 

@@ -12,7 +12,7 @@ module Impressionist
         @impressionist_cache_options.reverse_merge!(DEFAULT_CACHE)
       end
 
-      # true or false
+      # asks impressionable entity whether or not it is counter_caching
       def impressionist_counter_caching?
         impressionist_counter_cache_options[:counter_cache]
       end
@@ -22,7 +22,7 @@ module Impressionist
           impressionist_counter_caching?
       end
 
-    end
+    end # end of ClassMethods
 
     # ------------------------------------------
     # TODO: CLEAN UP, make it HUMAN readable
