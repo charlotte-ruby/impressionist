@@ -29,7 +29,11 @@ module Impressionist
     def impressionist_count(options={})
       options.reverse_merge!(:filter=>:request_hash, :start_date=>nil, :end_date=>Time.now)
       imps = options[:start_date].blank? ? impressions : impressions.where("created_at>=? and created_at<=?",options[:start_date],options[:end_date])
-      options[:filter] == :all ? imps.count : imps.count(options[:filter], :distinct => true)
+      if Rails::VERSION::MAJOR == 3
+        options[:filter] == :all ? imps.count : imps.count(options[:filter], :distinct => true)
+      else
+        options[:filter] == :all ? imps.count : imps.select(options[:filter]).distinct.count
+      end
     end
 
     def update_impressionist_counter_cache
