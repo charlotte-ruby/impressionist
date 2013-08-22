@@ -139,19 +139,19 @@ This will automatically increment the `impressions_count` column in the
 included model. <b>Note: You'll need to add that column to your model. If you'd
 like specific a different column name, you can:</b>
 
-    is_impressionable :counter_cache => { :column_name => :my_column_name }
+    is_impressionable :counter_cache => true, :column_name => :my_column_name
 
 If you'd like to include only unique impressions in your count:
 
     # default will be filtered by ip_address
-    is_impressionable :counter_cache => { :column_name => :my_column_name, :unique => true }
+    is_impressionable :counter_cache => true, :column_name => :my_column_name, :unique => true
 
 If you'd like to specify what sort of unique impression you'd like to save? Fear not,
 Any option you pass to unique, impressionist_count will use it as its filter to update_counters based on that unique option.
 
     # options are any column in the impressions' table.
-    is_impressionable :counter_cache => { :column_name => :my_column_name, :unique => :request_hash }
-    is_impressionable :counter_cache => { :column_name => :my_column_name, :unique => :all }
+    is_impressionable :counter_cache => true, :column_name => :my_column_name, :unique => :request_hash
+    is_impressionable :counter_cache => true, :column_name => :my_column_name, :unique => :all
 
 
 Adding column to model
