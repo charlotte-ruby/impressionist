@@ -1,3 +1,12 @@
+== 1.4.7 (2013-08-30)
+* Fixed #103 - Allow impressions to be saved without a Model
+* Fixed #104 - Wrong Documentation
+* (@acnalesso)
+
+== 1.4.6 (2013-08-17)
+* Fixed 106
+* Count unique records in Rails 4
+
 == 1.4.5 (2013-07-17)
 * Fixed update_counters raising an exception #97
 
