@@ -28,7 +28,6 @@ module Impressionist
           to_s.safe_constantize           || false
       end
 
-      # default mode is ERROR
       def impressionist_log(str, mode=:error)
         Rails.logger.send(mode.to_s, str)
       end

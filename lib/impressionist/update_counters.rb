@@ -1,6 +1,6 @@
 # Note
 # If impressionist_counter_cache_options[:counter_cache] is false(default)
-# it won't event run this class
+# it won't even run this class
 module Impressionist
 
   class UpdateCounters
