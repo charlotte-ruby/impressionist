@@ -50,6 +50,7 @@ module Impressionist
       end
 
     end
+    # returns done if thruthy
 
   end
 end

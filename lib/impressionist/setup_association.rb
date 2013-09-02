@@ -15,9 +15,9 @@ module Impressionist
       receiver.belongs_to(:impressionable, :polymorphic => true)
     end
 
-    # returns done if thruthy
     def set
-      :done if (include_attr_acc? && define_belongs_to)
+      define_belongs_to
+      include_attr_acc?
     end
 
     private
