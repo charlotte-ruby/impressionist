@@ -44,7 +44,7 @@ module Impressionist
         def set_up.include_attr_acc?; true; end
 
         set_up.stub(:define_belongs_to, true) {
-          set_up.set.must_equal :done
+          set_up.set.must_equal true
         }
 
       end
