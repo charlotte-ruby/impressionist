@@ -38,6 +38,21 @@ module ImpressionistController
       end
     end
 
+    protected
+
+    # creates a statment hash that contains default values for creating an impression via an AR relation.
+    def associative_create_statement(query_params={})
+      query_params.reverse_merge!(
+        :controller_name => controller_name,
+        :action_name => action_name,
+        :user_id => user_id,
+        :request_hash => @impressionist_hash,
+        :session_hash => session_hash,
+        :ip_address => request.remote_ip,
+        :referrer => request.referer
+        )
+    end
+
     private
 
     def bypass
@@ -60,19 +75,6 @@ module ImpressionistController
         query[param] = full_statement[param]
         query
       end
-    end
-
-    # creates a statment hash that contains default values for creating an impression via an AR relation.
-    def associative_create_statement(query_params={})
-      query_params.reverse_merge!(
-        :controller_name => controller_name,
-        :action_name => action_name,
-        :user_id => user_id,
-        :request_hash => @impressionist_hash,
-        :session_hash => session_hash,
-        :ip_address => request.remote_ip,
-        :referrer => request.referer
-        )
     end
 
     # creates a statment hash that contains default values for creating an impression.
