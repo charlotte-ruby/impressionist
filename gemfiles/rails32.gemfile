@@ -1,0 +1,12 @@
+source 'https://rubygems.org'
+
+gem 'rails', '~> 3.2.12'
+gem 'jquery-rails'
+gem 'json'
+
+gem 'activerecord-jdbcsqlite3-adapter', :platforms => [:jruby]
+gem 'jdbc-sqlite3', :platforms => [:jruby]
+
+gem 'sqlite3', :platforms => [:ruby, :mswin, :mingw]
+
+gemspec :path => '../'
