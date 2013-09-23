@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    impressionist (0.0.1)
+    impressionist (2.0.0.rc1)
       httpclient (~> 2.2)
       nokogiri (~> 1.6.0)
 
