@@ -5,7 +5,7 @@ module Impressionist
 
     private
 
-    def instrument
+    def imp_instrumentation
       notifications.
         instrument("process_impression.impressionist", raw_payload)
     end
@@ -34,7 +34,7 @@ module Impressionist
     # getting this method, which is a hash of
     # important params, such as actions to save impressions
     # for, to be able to save an impression.
-    # check out impressionist/minion/methods#generate_body
+    # check out impressionist/minion/methods#generate_hash
     def get_impressionable
       self.class.impressionable
     end
@@ -48,12 +48,12 @@ module Impressionist
 
       private
       ##
-      # This method is responsible for adding
-      # a instrumentation to a given controller
-      # It gathers actions defined from impressionable
-      # method, which is defined when a minion is added.
+      # Responsible for adding a instrumentation
+      # to a given controller. It gathers actions
+      # from impressionable method, which is defined
+      # when a minion is added.
       def set_impressionist_instrumentation
-        self.after_filter(:instrument, only: self.impressionable[:actions])
+        self.after_filter(:imp_instrumentation, only: self.impressionable[:actions])
       end
 
     end

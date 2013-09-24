@@ -33,7 +33,7 @@ class Instrumenter
   def self.impressionable; { actions: [:index, :edit] }; end
   # Make private methods public
   # in order to better test them
-  public( :instrument, :raw_payload,
+  public( :imp_instrumentation, :raw_payload,
           :get_impressionable, :notifications )
 end
 
@@ -42,7 +42,7 @@ module Impressionist
     let(:redbull) { Instrumenter.new }
 
     it "must respond to instrument" do
-      redbull.must_respond_to :instrument
+      redbull.must_respond_to :imp_instrumentation
     end
 
     it "must respond to get_impressionable" do
@@ -87,11 +87,10 @@ module Impressionist
 
     end
 
-    describe ".instrument" do
+    describe "instrument" do
 
       ##
-      # Pretends to be a payload
-      # of a subscription.
+      # In order to test instrument works.
       # By default when you instrument something
       # it returns its name, start_time, finished_time,
       # and a payload, see ActionSupport::Notifications
@@ -104,11 +103,11 @@ module Impressionist
       before { redbull.notifications = MockInstrument.new }
 
       it "must have instrument's name" do
-        redbull.instrument[:name].must_equal "process_impression.impressionist"
+        redbull.imp_instrumentation[:name].must_equal "process_impression.impressionist"
       end
 
       it "must have a payload" do
-        redbull.instrument[:payload].must_equal redbull.raw_payload
+        redbull.imp_instrumentation[:payload].must_equal redbull.raw_payload
       end
 
     end
@@ -146,7 +145,7 @@ module Impressionist
         def coke.impressionable; { actions: [ :edit, :show ] }; end
 
         coke.set_impressionist_instrumentation.
-          must_equal [ :instrument, only: [ :edit, :show ] ]
+          must_equal [ :imp_instrumentation, only: [ :edit, :show ] ]
       end
 
     end

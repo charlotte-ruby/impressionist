@@ -12,24 +12,27 @@ module Impressionist
         @name     = name
         @actions  = options
         @options  = actions.extract_options!
-        add_impressionable_methods
+        add_impressionable_method
       end
 
       private
 
       ##
-      # add impressionable method with its hash
-      # of options to a particulary entity.
+      # Add impressionable method to a given
+      # class object with its hash of options.
+      # Includes Instrumentation.
       # Reset parameters after adding.
-      def add_impressionable_methods
-        controller.instance_eval <<-END
-          def impressionable
-            #{generate_body}
-          end
+      # controller = PostsController
+      # PostsController.instance_exec( params ) do |param|
+      #   self is set to the class object
+      # end
+      def add_impressionable_method
+        controller.instance_exec(generate_hash) do |body|
+          define_singleton_method(:impressionable) { body }
 
           include Impressionist::Minion::Instrumentation
           set_impressionist_instrumentation
-        END
+        end
 
         reset_parameters!
       end
@@ -39,14 +42,14 @@ module Impressionist
       # and duplicates this hash instance to be given
       # away, as it might be modified during saving an
       # impression.
-      def generate_body
+      def generate_hash
         { name: name,
           actions: actions,
           unique: unique,
           counter_cache: counter_cache,
           class_name: class_name,
           cache_class: cache_class,
-          column_name: column_name }.dup
+          column_name: column_name }
       end
 
       # Saves impressions based on unique type

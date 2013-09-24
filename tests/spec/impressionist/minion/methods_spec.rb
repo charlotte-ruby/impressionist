@@ -10,8 +10,8 @@ class Dummy
   # Make private methods public
   # to test them
   public( :controller, :get_constant,
-          :add_impressionable_methods,
-          :generate_body, :options,
+          :add_impressionable_method,
+          :generate_hash, :options,
           :reset_parameters! )
 end
 
@@ -46,7 +46,7 @@ module Impressionist
 
       it "must add impressionable method to a given entity" do
         m.name    = :posts
-        m.add_impressionable_methods
+        m.add_impressionable_method
 
         posts.must_respond_to :impressionable
       end
@@ -54,10 +54,10 @@ module Impressionist
       it "must add after_filter" do
         ::HummersController = Class.new
         m.name = :hummers
-        m.add_impressionable_methods
+        m.add_impressionable_method
       end
 
-      it "must generate_body" do
+      it "must generate_hash" do
         m.name    = :posts
         m.actions = [:index]
         m.options = ({  name: :posts,
@@ -68,50 +68,50 @@ module Impressionist
                         cache_class: Cache,
                         column_name: :mine })
 
-        m.generate_body.must_equal m.options
+        m.generate_hash.must_equal m.options
       end
 
       it "must have unique false as  default" do
-        m.generate_body[:unique].must_equal false
+        m.generate_hash[:unique].must_equal false
       end
 
       it "must set a different class" do
         m.options = { class_name: Different }
-        m.generate_body[:class_name].must_equal Different
+        m.generate_hash[:class_name].must_equal Different
       end
 
       it "must have a default cache_class" do
-        m.generate_body[:cache_class].
+        m.generate_hash[:cache_class].
           must_equal Impressionist::ImpressionsCache
       end
 
       it "must set a different cache_class" do
         m.options = { cache_class: DifferentCache }
-        m.generate_body[:cache_class].must_equal DifferentCache
+        m.generate_hash[:cache_class].must_equal DifferentCache
       end
 
       it "must set unique" do
         m.options = { unique: true }
-        m.generate_body[:unique].must_equal :ip_address
+        m.generate_hash[:unique].must_equal :ip_address
       end
 
       it "must have counter_cache turned off as default" do
-        m.generate_body[:counter_cache].must_equal false
+        m.generate_hash[:counter_cache].must_equal false
       end
 
       it "must set counter_cache" do
         m.options = { counter_cache: true }
-        m.generate_body[:counter_cache].must_equal true
+        m.generate_hash[:counter_cache].must_equal true
       end
 
       it "must set a different column name" do
         m.options = { column_name: 'different' }
-        m.generate_body[:column_name].must_equal 'different'
+        m.generate_hash[:column_name].must_equal 'different'
       end
 
       it "must set a different column_name passing a symbol" do
         m.options = { column_name: :different }
-        m.generate_body[:column_name].must_equal :different
+        m.generate_hash[:column_name].must_equal :different
       end
 
       describe "Adding a minion to a given entity" do
