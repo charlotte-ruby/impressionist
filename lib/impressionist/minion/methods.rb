@@ -38,10 +38,7 @@ module Impressionist
       end
 
       ##
-      # Generates a body for a impressionable method
-      # and duplicates this hash instance to be given
-      # away, as it might be modified during saving an
-      # impression.
+      # Generates a hash for impressionable method.
       def generate_hash
         { name: name,
           actions: actions,
@@ -52,6 +49,7 @@ module Impressionist
           column_name: column_name }
       end
 
+      ##
       # Saves impressions based on unique type
       # default is :ip_address if unique is set
       # to true

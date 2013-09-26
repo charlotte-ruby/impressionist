@@ -8,6 +8,7 @@ Steven              = Class.new
 
 describe "Adding impressions ( minions ) to Controllers" do
 
+  # Rationale for adding minions to controllers
   Impressionist::Minion::MinionCreator.banana_potato do
     add(:books, :destroy)
     add(:comments, :index)
@@ -16,10 +17,12 @@ describe "Adding impressions ( minions ) to Controllers" do
 
   it "must add a minion to books controller" do
     BooksController.must_respond_to :impressionable
+    BooksController.impressionable[:actions].must_equal [ :destroy ]
   end
 
   it "must add a minion to comments controller " do
     CommentsController.must_respond_to :impressionable
+    CommentsController.impressionable[:actions].must_equal [ :index ]
   end
 
   it "must add a minion to stuarts controller" do
