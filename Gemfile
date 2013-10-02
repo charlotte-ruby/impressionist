@@ -10,8 +10,3 @@ platforms :jruby do
   gem 'jruby-openssl'
 end
 
-platforms :ruby, :mswin, :mingw do
-  gem 'sqlite3'
-end
-
-
