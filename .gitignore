@@ -5,4 +5,5 @@ tests/dummy/db/*.sqlite3
 tests/dummy/log/*.log
 tests/dummy/tmp/
 tests/dummy/.sass-cache
+tests/spec/impressionist/**/*.swp
 *.swp
