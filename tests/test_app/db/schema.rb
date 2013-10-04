@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130719024021) do
+ActiveRecord::Schema.define(:version => 20131004135319) do
 
   create_table "articles", :force => true do |t|
     t.string   "name"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(:version => 20130719024021) do
     t.text     "referrer"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
+    t.string   "article_name"
   end
 
   add_index "impressions", ["controller_name", "action_name", "ip_address"], :name => "controlleraction_ip_index"

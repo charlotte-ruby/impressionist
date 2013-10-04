@@ -1,3 +1,9 @@
 TestApp::Application.routes.draw do
-  resources :articles, :posts, :widgets, :dummy
+  resources :articles do
+    member do
+      get :additional_fields
+    end
+  end
+  
+  resources :posts, :widgets, :dummy
 end
