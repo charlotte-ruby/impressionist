@@ -54,6 +54,15 @@ describe ArticlesController do
     Impression.last.referrer.should eq "http://test.host/articles/1"
   end
 
+  it "should save the additional fields" do
+    class Impression
+      attr_accessible :article_name
+    end
+    visit additional_fields_article_path(Article.first)
+    Impression.last.article_name.should eq Article.first.name
+  end
+
+
   it "should log request with params (checked = true)" do
     get "show", id: 1, checked: true
     Impression.last.params.should eq({"checked"=>true})

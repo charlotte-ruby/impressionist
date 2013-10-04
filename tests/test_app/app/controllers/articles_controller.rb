@@ -12,6 +12,10 @@ class ArticlesController < ApplicationController
     impressionist(Article.first,"this is a test article impression")
   end
 
+  def additional_fields
+    impressionist(Article.first,"this is a test article impression", { article_name: Article.first.name })
+  end
+
   def show
     impressionist(Article.first)
   end
