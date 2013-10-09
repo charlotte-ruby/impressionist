@@ -1,4 +1,5 @@
 require 'minitest_helper'
+require 'active_support/notifications'
 require 'impressionist/minion/instrumentation'
 
 class Instrumenter
@@ -30,12 +31,30 @@ class Instrumenter
 
   def status; 200; end
 
+  def user_agent; 'USER_AGENT'; end
+  def ip_address; '127.0.0.1'; end
+
   def self.impressionable; { actions: [:index, :edit] }; end
   # Make private methods public
   # in order to better test them
   public( :imp_instrumentation, :raw_payload,
-          :get_impressionable, :notifications )
+          :impressionable_hash, :notifications,
+          :append_to_imp_payload )
 end
+
+##
+# Fakes AS::Notifications.instrument
+# if a block is given it yields its payload,
+# which is a hash ( i.e raw_payload hash ).
+# if not just returns the hash above.
+#
+class MockInstrument
+  def instrument(name, payload={})
+    yield(payload) if block_given?
+    { name: name, payload: payload }
+  end
+end
+
 
 module Impressionist
   describe Minion::Instrumentation do
@@ -46,7 +65,7 @@ module Impressionist
     end
 
     it "must respond to get_impressionable" do
-      redbull.must_respond_to :get_impressionable
+      redbull.must_respond_to :impressionable_hash
     end
 
     it "must respond to raw_payload" do
@@ -59,7 +78,7 @@ module Impressionist
 
     class ActiveSupport; Notifications = Class.new; end
     it "s notifications must be As::Notifications" do
-      redbull.notifications.must_equal ActiveSupport::Notifications
+      redbull.notifications.must_equal ::ActiveSupport::Notifications
     end
 
     describe ".raw_payload" do
@@ -85,20 +104,34 @@ module Impressionist
         raw_payload[:status].must_equal 200
       end
 
+      it "must include USER_AGENT" do
+        raw_payload[:user_agent].must_equal 'USER_AGENT'
+      end
+
+      it "must include ip_address" do
+        raw_payload[:ip_address].must_equal '127.0.0.1'
+      end
+
     end
 
-    describe "instrument" do
-
-      ##
-      # In order to test instrument works.
-      # By default when you instrument something
-      # it returns its name, start_time, finished_time,
-      # and a payload, see ActionSupport::Notifications
-      class MockInstrument
-        def instrument(name, args={})
-          { name: name, payload: args}
-        end
+    describe "Append extra info to impressionist payload" do
+      it "must respond ot append_to_imp_payload" do
+        redbull.must_respond_to :append_to_imp_payload
       end
+
+      it "must append_to_imp_payload" do
+        redbull.notifications = MockInstrument.new
+        def redbull.append_to_imp_payload(p)
+          p[:extra] = :goes_here
+          p[:extra].must_equal :goes_here
+        end
+
+        redbull.imp_instrumentation
+      end
+
+    end
+
+    describe "Instrumenting" do
 
       before { redbull.notifications = MockInstrument.new }
 
@@ -112,14 +145,13 @@ module Impressionist
 
     end
 
-    describe ".get_impressionable" do
-      it "must get details impressionable's method" do
-        redbull.get_impressionable.must_equal({ actions: [:index, :edit] })
+    describe "impressionable_hash" do
+      it "must get impressionable hash of contents" do
+        redbull.impressionable_hash.must_equal({ actions: [:index, :edit] })
       end
     end
 
-    describe "Merges get_impressionable into raw_payload" do
-      # see line  33 of this file
+    describe "Merges impressionable_hash into raw_payload" do
       it "must merge the two hashes" do
         redbull.raw_payload[:actions].must_equal [:index, :edit]
       end
