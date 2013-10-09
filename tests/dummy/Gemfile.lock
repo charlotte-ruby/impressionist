@@ -1,3 +1,8 @@
+PATH
+  remote: ../../
+  specs:
+    impressionist (2.0.0.rc1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -109,6 +114,7 @@ PLATFORMS
 
 DEPENDENCIES
   coffee-rails (~> 4.0.0)
+  impressionist!
   jbuilder (~> 1.2)
   jquery-rails
   pg

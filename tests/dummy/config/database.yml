@@ -17,9 +17,9 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: dummy_development
+  database: impressionist_development
   pool: 5
-  username: dummy
+  username: nbit001
   password:
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -46,15 +46,15 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: dummy_test
+  database: impressionist_test
   pool: 5
-  username: dummy
+  username: nbit001
   password:
 
 production:
   adapter: postgresql
   encoding: unicode
-  database: dummy_production
+  database: impressionist_production
   pool: 5
-  username: dummy
+  username: nbit001
   password:

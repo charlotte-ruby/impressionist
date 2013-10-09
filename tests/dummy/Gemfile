@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'impressionist', path: '../../'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 
