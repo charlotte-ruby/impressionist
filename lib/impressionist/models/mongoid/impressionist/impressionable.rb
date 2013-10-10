@@ -4,28 +4,21 @@ module Impressionist
   # extends AS::Concern
   include Impressionist::IsImpressionable
 
-    ## TODO: Make it readable
-
-    # Overides impressionist_count in order to provied
-    # mongoid compability
+    # Overides impressionist_count in order to provide mongoid compability
     def impressionist_count(options={})
-      options.
-      reverse_merge!(
-        :filter=>:request_hash,
-        :start_date=>nil,
-        :end_date=>Time.now)
 
-      imps = options[:start_date].blank? ?
-        impressions :
-        impressions.
-          between(created_at: options[:start_date]..options[:end_date])
+      # Uses these options as defaults unless overridden in options hash
+      options.reverse_merge!(:filter => :request_hash, :start_date => nil, :end_date => Time.now)
 
-      filter = options[:filter]
+      # If a start_date is provided, finds impressions between then and the end_date.
+      # Otherwise returns all impressions
+      imps = options[:start_date].blank? ? impressions :
+        impressions.between(created_at: options[:start_date]..options[:end_date])
 
-      filter == :all ?
-        imps.count :
-        imps.where(filter.ne => nil).
-          distinct(filter).count
+
+      # Count all distinct impressions unless the :all filter is provided
+      distinct = options[:filter] != :all
+      distinct ? imps.where(filter.ne => nil).distinct(filter).count : imps.count
     end
 
   end
