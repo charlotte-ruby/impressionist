@@ -24,15 +24,19 @@ module Impressionist
 
     end # end of ClassMethods
 
-    # ------------------------------------------
-    # TODO: CLEAN UP, make it HUMAN readable
     def impressionist_count(options={})
-      options.reverse_merge!(:filter=>:request_hash, :start_date=>nil, :end_date=>Time.now)
-      imps = options[:start_date].blank? ? impressions : impressions.where("created_at>=? and created_at<=?",options[:start_date],options[:end_date])
+      # Uses these options as defaults unless overridden in options hash
+      options.reverse_merge!(:filter => :request_hash, :start_date => nil, :end_date => Time.now)
+
+      # If a start_date is provided, finds impressions between then and the end_date. Otherwise returns all impressions
+      imps = options[:start_date].blank? ? impressions : impressions.where("created_at >= ? and created_at <= ?", options[:start_date], options[:end_date])
+
+      # Count all distinct impressions unless the :all filter is provided.
+      distinct = options[:filter] != :all
       if Rails::VERSION::MAJOR == 4
-        options[:filter] == :all ? imps.count : imps.select(options[:filter]).distinct.count
+        distinct ? imps.select(options[:filter]).distinct.count : imps.count
       else
-        options[:filter] == :all ? imps.count : imps.count(options[:filter], :distinct => true)
+        distinct ? imps.count(options[:filter], :distinct => true) : imps.count
       end
     end
 
