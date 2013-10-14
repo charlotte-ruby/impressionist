@@ -26,6 +26,10 @@ module ActiveRecord
         migration_template "migration.rb", "db/migrate/create_impressions_table.rb"
       end
 
+      def copy_impressions_cache_migration
+        migration_template "impressions_cache_migration.rb", "db/migrate/create_impressions_cache_table.rb"
+      end
+
     end
   end
 end

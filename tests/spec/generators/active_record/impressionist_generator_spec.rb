@@ -10,9 +10,14 @@ class ActiveRecordGeneratorTest < Rails::Generators::TestCase
 
   setup :prepare_destination
 
-  test "must copy migration file" do
+  test "must copy impressioin's migration file" do
     run_generator
     assert_migration "db/migrate/create_impressions_table.rb"
+  end
+
+  test "must copy impressionscache's migration file" do
+    run_generator
+    assert_migration "db/migrate/create_impressions_cache_table"
   end
 
 end
