@@ -6,7 +6,12 @@ CommentsController  = Class.new
 StuartsController   = Class.new
 Steven              = Class.new
 
+# Default Cache
+ImpressionsCache    = Class.new
+
 describe "Adding impressions ( minions ) to Controllers" do
+
+  parallelize_me!
 
   # Rationale for adding minions to controllers
   Impressionist::Minion::MinionCreator.banana_potato do
