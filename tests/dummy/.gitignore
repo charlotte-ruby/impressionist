@@ -19,7 +19,7 @@
 /config/initializers/impressionist.rb
 
 # Ignore impressionist's migration file
-/db/migrate/*create_impressions_table.rb
+/db/migrate/*.rb
 
 # Ignore DB schema
 /db/schema.rb
