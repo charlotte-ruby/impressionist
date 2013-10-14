@@ -11,8 +11,8 @@ class ActiveRecordGeneratorTest < Rails::Generators::TestCase
   setup :prepare_destination
 
   test "must copy migration file" do
-    run_generator %w{ impressionist:install }
-    assert_migration "db/migrate/impressionist_create_impressions.rb"
+    run_generator
+    assert_migration "db/migrate/create_impressions_table.rb"
   end
 
 end

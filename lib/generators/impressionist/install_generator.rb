@@ -7,7 +7,8 @@ module Impressionist
     desc "Creates an initializer called impressionist.rb\n
           which is used to add Minions to controllers\n
           ( i.e Save an impression for a determined controller )"
-    class_option :orm
+
+    hook_for :orm, as: :impressionist
 
     def copy_initializer
       template "impressionist.rb", "config/initializers/impressionist.rb"
