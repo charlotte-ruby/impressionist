@@ -59,7 +59,7 @@ module Impressionist
       def exeception_rescuer
           begin
             yield
-          rescue ActiveRecord::RecordNotFound
+          rescue Exception => e
             exeception_to_log
             false
           end
