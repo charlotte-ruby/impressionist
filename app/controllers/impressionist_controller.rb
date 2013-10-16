@@ -16,6 +16,7 @@ module ImpressionistController
       unless bypass
         if obj.respond_to?("impressionable?")
           if unique_instance?(obj, opts[:unique])
+            @_impressionable_id_ = obj.id
             obj.impressions.create(associative_create_statement({:message => message}))
           end
         else
@@ -40,7 +41,10 @@ module ImpressionistController
 
     protected
 
-    # creates a statment hash that contains default values for creating an impression via an AR relation.
+    ##
+    # Creates a statment hash that contains default values
+    # for creating an impression via an AR relation.
+    #
     def associative_create_statement(query_params={})
       query_params.reverse_merge!(
         :controller_name => controller_name,
@@ -67,7 +71,9 @@ module ImpressionistController
       return unique_opts.blank? || !Impression.where(unique_query(unique_opts)).exists?
     end
 
-    # creates the query to check for uniqueness
+    ##
+    # Creates the query to check for uniqueness
+    #
     def unique_query(unique_opts)
       full_statement = direct_create_statement
       # reduce the full statement to the params we need for the specified unique options
@@ -77,11 +83,14 @@ module ImpressionistController
       end
     end
 
-    # creates a statment hash that contains default values for creating an impression.
+    #
+    # Creates a statment hash that contains default values
+    # for creating an impression.
+    #
     def direct_create_statement(query_params={})
       query_params.reverse_merge!(
         :impressionable_type => controller_name.singularize.camelize,
-        :impressionable_id=> params[:id]
+        :impressionable_id   => _impressionable_id_
         )
       associative_create_statement(query_params)
     end
@@ -95,11 +104,23 @@ module ImpressionistController
       request.session_options[:id]
     end
 
-    #use both @current_user and current_user helper
+    ##
+    # Use both @current_user and current_user helper
+    #
     def user_id
       user_id = @current_user ? @current_user.id : nil rescue nil
       user_id = current_user ? current_user.id : nil rescue nil if user_id.blank?
       user_id
     end
+
+    ##
+    # Returns the impressionable id ( i.e a Record )
+    # Tries getting an id from an object, if not
+    # tries getting id from params[:id].
+    #
+    def _impressionable_id_
+      @_impressionable_id_ || params[:id]
+    end
+
   end
 end

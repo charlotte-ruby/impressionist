@@ -46,8 +46,9 @@ ActiveRecord::Schema.define(:version => 20130719024021) do
 
   create_table "posts", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "impressions_count", :default => 0
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
   end
 
   create_table "widgets", :force => true do |t|
