@@ -18,7 +18,7 @@ module Impressionist
 
       # Count all distinct impressions unless the :all filter is provided
       distinct = options[:filter] != :all
-      distinct ? imps.where(filter.ne => nil).distinct(filter).count : imps.count
+      distinct ? imps.where(options[:filter].ne => nil).distinct(options[:filter]).count : imps.count
     end
 
   end
