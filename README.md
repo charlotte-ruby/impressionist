@@ -1,6 +1,7 @@
 ![Impressionist Logo](https://github.com/charlotte-ruby/impressionist/raw/master/logo.png)
 
 [![Build Status](https://secure.travis-ci.org/charlotte-ruby/impressionist.png?branch=master)](http://travis-ci.org/charlotte-ruby/impressionist)
+[![Code Climate](https://codeclimate.com/github/charlotte-ruby/impressionist.png)](https://codeclimate.com/github/charlotte-ruby/impressionist)
 
 impressionist
 =============
@@ -224,9 +225,10 @@ Want to run the tests? Ok mummy
 
 Contributors
 ------------
-* [johnmcaliley](https://github.com/johnmcaliley)
+* [johnmcaliley - creator](https://github.com/johnmcaliley)
+* [Antonio C Nalesso - maintainer](https://github.com/nbit001)
 * [coryschires](https://github.com/coryschires)
 * [georgmittendorfer](https://github.com/georgmittendorfer)
-* [Antonio C Nalesso](https://github.com/nbit001)
+
 
 Copyright (c) 2011 John McAliley. See LICENSE.txt for further details.
