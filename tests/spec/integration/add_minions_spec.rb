@@ -17,7 +17,7 @@ describe "Adding impressions ( minions ) to Controllers" do
   Impressionist::Minion::MinionCreator.banana_potato do
     add(:books, :destroy)
     add(:comments, :index)
-    add(:stuarts, :index, :show, :edit, :mine, class_name: Steven)
+    add(:stuarts, [:index, :show, :edit, :mine], class_name: Steven)
   end
 
   it "must add a minion to books controller" do

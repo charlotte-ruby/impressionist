@@ -2,7 +2,7 @@
 # ** Responsability **
 # It should be able to require an
 # model based on an ORM's name.
-# It should also sets orm_name
+# It should also set orm_name
 # to the current orm in use.
 #
 
@@ -25,7 +25,7 @@ module Impressionist
       end
 
       def orm_name
-        @orm_name ||= "active_record" 
+        @orm_name ||= "active_record"
       end
 
       def load_files_based_on_orm_name
