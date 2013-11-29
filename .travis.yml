@@ -19,3 +19,8 @@ matrix:
     - rvm: rbx
     - rvm: ruby-head
   fast_finish: true
+notifications:
+  email:
+    - acnalesso@yahoo.co.uk
+    - john@couponshack.com
+    - mmcmahand@gmail.com
