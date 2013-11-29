@@ -19,16 +19,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new('>= 1.3.6') if s.respond_to? :required_rubygems_version=
 
   s.add_dependency 'httpclient', '~> 2.2'
-
   s.add_dependency 'nokogiri', '>= 1.5.0'
 
-  s.add_development_dependency 'capybara', '>= 2.0.3'
-  s.add_development_dependency 'rake', '>= 0.9'
-  s.add_development_dependency 'rails', '>= 3.2.12', '< 4.1'
-  s.add_development_dependency 'rdoc', '>= 2.4.2'
-  s.add_development_dependency 'rspec-rails'
-  s.add_development_dependency 'simplecov'
-  s.add_development_dependency 'systemu'
-  s.add_development_dependency 'minitest'
-  s.add_development_dependency 'minitest-rails'
+  s.add_development_dependency 'bundler', '~> 1.0'
 end
