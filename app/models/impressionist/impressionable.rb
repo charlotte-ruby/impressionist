@@ -5,7 +5,13 @@ module Impressionist
     module ClassMethods
       attr_accessor :impressionist_cache_options
 
-      DEFAULT_CACHE = { :counter_cache => false, :column_name => :impressions_count, :unique => false }
+      unless defined?(DEFAULT_CACHE)
+        DEFAULT_CACHE = {
+          :counter_cache => false,
+          :column_name => :impressions_count,
+          :unique => false
+        }
+      end
 
       def impressionist_counter_cache_options
         @impressionist_cache_options ||= {}
