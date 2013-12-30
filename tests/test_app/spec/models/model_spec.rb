@@ -17,6 +17,14 @@ describe Impression do
     @article.impressions.last.message.should eq "test message"
   end
 
+  it "should return the impression count for the message specified" do
+    @article.impressions.create(:message => "pageview")
+    @article.impressions.create(:message => "pageview")
+    @article.impressions.create(:message => "visit")
+
+    @article.impressionist_count(:message => "pageview", :filter => :all).should eq 2
+  end
+
   it "should return the impression count for all with no date range specified" do
     @article.impressionist_count(:filter=>:all).should eq 11
   end

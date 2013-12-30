@@ -124,6 +124,10 @@ Usage
 
         @widget.impressionist_count(:filter=>:all)
 
+9. Get impression count by message.  This only counts impressions of the given message.
+
+        @widget.impressionist_count(:message=>"pageview", :filter=>:all)
+
 Logging impressions for authenticated users happens automatically.  If you have
 a current_user helper or use @current_user in your before_filter to set your
 authenticated user, current_user.id will be written to the user_id field in the
