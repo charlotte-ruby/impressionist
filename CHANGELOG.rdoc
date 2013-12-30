@@ -1,3 +1,7 @@
+== 1.5.13 (2013-12-30)
+* Added message filtering.
+* (@overovermind)
+
 == 1.4.8 (2013-09-01)
 * Fixed #108
 * Clean up
