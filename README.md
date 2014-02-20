@@ -108,3 +108,20 @@ Given you have added minions, actions to controllers, you just have to override 
           end
 
         end
+
+Good to know
+------------
+
+Here is the payload, hash, impressionist uses to save an impression.
+Note this hash is returned from an instrumentation impressionist does for every action, minion, added.
+The instrumentation is "process_impression.impressionist" just in case one would like to subscribe to it.
+
+    {
+      action:     self.action_name,
+      params:     request.filtered_parameters,
+      format:     request.format.try(:ref),
+      path:       (request.fullpath rescue "unknown"),
+      status:     response.status,
+      user_agent: request.user_agent,
+      ip_address: request.ip_address
+    }
