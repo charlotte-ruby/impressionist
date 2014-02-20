@@ -7,4 +7,6 @@ tests/dummy/tmp/
 tests/dummy/.sass-cache
 tests/spec/impressionist/**/*.swp
 tests/spec/tmp
-*.swp
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+*.un~
