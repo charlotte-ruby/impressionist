@@ -1,49 +1,49 @@
 require 'minitest_helper'
 require 'impressionist/minion/minion_creator'
 
-GranpaController = Class.new
-Granpa = Class.new
+FakeController  = Class.new
+Fake            = Class.new
 
 module Impressionist
   describe Minion::MinionCreator do
-    let(:granny)  { Minion::MinionCreator }
-    let(:granpa) { GranpaController }
+    let(:creator)  { Minion::MinionCreator }
+    let(:controller) { FakeController }
 
-    before { granny.add(:granpa, :index) }
+    before { creator.add(:fake, :index) }
 
     it "must respond_to impressionable" do
-      granpa.must_respond_to :impressionable
+      controller.must_respond_to :impressionable
     end
 
     it "must have index action" do
-      granpa.impressionable[:actions].first.must_equal :index
+      controller.impressionable[:actions].first.must_equal :index
     end
 
     it "must have unique set to false" do
-      granpa.impressionable[:unique].must_equal false
+      controller.impressionable[:unique].must_equal false
     end
 
     it "must have a Model" do
-      granpa.impressionable[:class_name].must_equal ::Granpa
+      controller.impressionable[:class_name].must_equal ::Fake
     end
 
     it "wont be counter_caching" do
-      granpa.impressionable[:counter_cache].wont_equal true
+      controller.impressionable[:counter_cache].wont_equal true
     end
 
     it "must have total_impressions as default column_name" do
-      granpa.impressionable[:column_name].must_equal :impressions_total
+      controller.impressionable[:column_name].must_equal :impressions_total
     end
 
     describe "Banana Potato" do
 
-      let(:creator) { Impressionist::Minion::MinionCreator }
+      let(:mcreator) { Impressionist::Minion::MinionCreator }
       it "must respond_to banana_potato" do
-        creator.must_respond_to :banana_potato
+        mcreator.must_respond_to :banana_potato
       end
 
       it "must set self to MinionCreator" do
-        creator.banana_potato do
+        mcreator.banana_potato do
           self.must_equal Impressionist::Minion::MinionCreator
         end
       end

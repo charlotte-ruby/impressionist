@@ -26,3 +26,6 @@ end
 Object.instance_eval do
   def after_filter(*args); args end
 end
+
+# Default Cache
+ImpressionsCache    = Class.new

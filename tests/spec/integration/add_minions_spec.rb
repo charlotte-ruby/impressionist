@@ -6,9 +6,6 @@ CommentsController  = Class.new
 StuartsController   = Class.new
 Steven              = Class.new
 
-# Default Cache
-ImpressionsCache    = Class.new
-
 describe "Adding impressions ( minions ) to Controllers" do
 
   parallelize_me!
