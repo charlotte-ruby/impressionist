@@ -111,7 +111,7 @@ module Impressionist
       end
 
       def options
-        @options ||= Hash.new
+        @options ||= {}
       end
 
     end

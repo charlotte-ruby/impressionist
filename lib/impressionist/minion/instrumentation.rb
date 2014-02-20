@@ -58,7 +58,7 @@ module Impressionist
     # instrumentation in order to save an
     # impression.
     #
-    # class Bottles < ApplicationController
+    # class BottlesController < ApplicationController
     #
     #   def append_to_imp_payload(payload)
     #     payload[:extra_info]  = :here
@@ -66,6 +66,7 @@ module Impressionist
     #   end
     # end
     #
+    # TODO: Change this to yield a block whose value is self itself.
     def append_to_imp_payload(payload); end
 
 
@@ -87,6 +88,9 @@ module Impressionist
       # This shifts burden to rails *_filter callbacks, instead of
       # having impressionist to 'parse' what actions an impression
       # should be saved for.
+      #
+      # TODO:
+      # Allow a programmer to use a different hook.
       #
       def set_impressionist_instrumentation
         self.after_filter(:imp_instrumentation, only: self.impressionable[:actions])
