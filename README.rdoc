@@ -1,7 +1,0 @@
-= Impressionist
-
-This project rocks and uses MIT-LICENSE.
-
-TODO
-----
-Add generators for other ORMS such as mongoid, mongo or mapper.
