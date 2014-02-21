@@ -13,7 +13,7 @@ module ImpressionistController
     end
 
     def impressionist(obj,message=nil,opts={})
-      unless bypass || !should_count_impression?(opts[:if]) || should_count_impression?(opts[:unless])
+      if should_count_impression?(opts)
         if obj.respond_to?("impressionable?")
           if unique_instance?(obj, opts[:unique])
             obj.impressions.create(associative_create_statement({:message => message}))
@@ -30,7 +30,7 @@ module ImpressionistController
     end
 
     def impressionist_subapp_filter(opts = {})
-      unless bypass || !should_count_impression?(opts[:if]) || should_count_impression?(opts[:unless])
+      if should_count_impression?(opts)
         actions = opts[:actions]
         actions.collect!{|a|a.to_s} unless actions.blank?
         if (actions.blank? || actions.include?(action_name)) && unique?(opts[:unique])
@@ -60,12 +60,20 @@ module ImpressionistController
       Impressionist::Bots.bot?(request.user_agent)
     end
 
-    def should_count_impression?(condition)
-      if condition.present?
-        condition.is_a?(Symbol) ? self.send(condition) : condition.call
-      else
-        true
-      end
+    def should_count_impression?(opts)
+      !bypass && condition_true?(opts[:if]) && condition_false?(opts[:unless])
+    end
+
+    def condition_true?(condition)
+      condition.present? ? conditional?(condition) : true
+    end
+
+    def condition_false?(condition)
+      condition.present? ? !conditional?(condition) : true
+    end
+
+    def conditional?(condition)
+      condition.is_a?(Symbol) ? self.send(condition) : condition.call
     end
 
     def unique_instance?(impressionable, unique_opts)
