@@ -3,7 +3,7 @@ require 'digest/sha2'
 module ImpressionistController
   module ClassMethods
     def impressionist(opts={})
-      before_filter { |c| c.impressionist_subapp_filter(opts[:actions], opts[:unique])}
+      before_filter { |c| c.impressionist_subapp_filter(opts)}
     end
   end
 
@@ -13,7 +13,7 @@ module ImpressionistController
     end
 
     def impressionist(obj,message=nil,opts={})
-      unless bypass
+      unless bypass || !should_count_impression?(opts[:if]) || should_count_impression?(opts[:unless])
         if obj.respond_to?("impressionable?")
           if unique_instance?(obj, opts[:unique])
             obj.impressions.create(associative_create_statement({:message => message}))
@@ -29,10 +29,11 @@ module ImpressionistController
       @impressionist_hash = Digest::SHA2.hexdigest(Time.now.to_f.to_s+rand(10000).to_s)
     end
 
-    def impressionist_subapp_filter(actions=nil,unique_opts=nil)
-      unless bypass
+    def impressionist_subapp_filter(opts = {})
+      unless bypass || !should_count_impression?(opts[:if]) || should_count_impression?(opts[:unless])
+        actions = opts[:actions]
         actions.collect!{|a|a.to_s} unless actions.blank?
-        if (actions.blank? || actions.include?(action_name)) && unique?(unique_opts)
+        if (actions.blank? || actions.include?(action_name)) && unique?(opts[:unique])
           Impression.create(direct_create_statement)
         end
       end
@@ -57,6 +58,14 @@ module ImpressionistController
 
     def bypass
       Impressionist::Bots.bot?(request.user_agent)
+    end
+
+    def should_count_impression?(condition)
+      if condition.present?
+        condition.is_a?(Symbol) ? self.send(condition) : condition.call
+      else
+        true
+      end
     end
 
     def unique_instance?(impressionable, unique_opts)
