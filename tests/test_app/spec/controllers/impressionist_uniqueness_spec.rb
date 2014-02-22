@@ -331,7 +331,7 @@ describe DummyController do
         end
 
         it_behaves_like 'an impressionable action' do
-          let(:condition) {{ if: lambda { true_condition } }}
+          let(:condition) {{ if: lambda { true } }}
         end
       end
 
@@ -344,7 +344,7 @@ describe DummyController do
         end
 
         it_behaves_like 'an unimpressionable action' do
-          let(:condition) {{ if: lambda { false_condition } }}
+          let(:condition) {{ if: lambda { false } }}
         end
       end
     end
@@ -359,7 +359,7 @@ describe DummyController do
         end
 
         it_behaves_like 'an unimpressionable action' do
-          let(:condition) {{ unless: lambda { true_condition } }}
+          let(:condition) {{ unless: lambda { true } }}
         end
       end
 
@@ -368,11 +368,11 @@ describe DummyController do
           controller.stub(:false_condition).and_return(false)
         end
         it_behaves_like 'an impressionable action' do
-          let(:condition) {{ if: :false_condition }}
+          let(:condition) {{ unless: :false_condition }}
         end
 
         it_behaves_like 'an impressionable action' do
-          let(:condition) {{ if: lambda { false_condition } }}
+          let(:condition) {{ unless: lambda { false } }}
         end
       end
     end
