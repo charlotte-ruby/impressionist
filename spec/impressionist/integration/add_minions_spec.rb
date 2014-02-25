@@ -9,11 +9,12 @@ describe "Adding impressions ( minions ) to Controllers" do
     add(:comments, :index)
     add(:stuarts, :index, :show, :edit, :mine, class_name: Steven)
     add(:hooks, hook: :around)
-    add(:others, :mine, :their, :__all__, hook: :around)
+    add(:others, :mine, :their, :__all__)
   end
 
   it "must add a minion to books controller" do
     BooksController.impressionable[:actions].should eq [ :destroy ]
+    BooksController.impressionable[:class_name].should eq Book
   end
 
   it "must add a minion to comments controller " do
