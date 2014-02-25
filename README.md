@@ -91,9 +91,20 @@ Usage
 
         add( :lobster, [ :show, :edit ], unique: true )
 
-7. Logs actions based on unique's parameters
+7. Logs all actions based on unique's parameters, NOTE: If you do not pass any action, Impressionist things you want to log impressions for all your RESTful controller actions
 
-        add( :logs, :all, unique: [ :request_hash, :ip_address ] )
+        add( :logs, unique: [ :request_hash, :ip_address ] )
+
+8. Logs all actions plus some extra actions, NOTE: Whenever Impressionist sees the key :__all__ it concates all RESTful controller actions with other custom  action you have passed.
+So Impressionist now will log impressions for all BananasController actions including bananas
+        add( :bananas, :__all__, :eat_banana, unique: true )
+
+Controller hooks
+----------------
+
+You can add any controller hook, filter, such as:
+        before | after | around
+        add( :tests, hook: :around )
 
 If I want to add extra info to be saved with a particular impression?
 --------------------------------------------------------------------

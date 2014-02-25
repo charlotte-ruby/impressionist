@@ -31,8 +31,12 @@ module Impressionist
       controller.impressionable[:counter_cache].wont_equal true
     end
 
-    it "must have total_impressions as default column_name" do
+    it "must have default column_name" do
       controller.impressionable[:column_name].must_equal :impressions_total
+    end
+
+    it "must have default hook" do
+      controller.impressionable[:hook].must_equal "before"
     end
 
     describe "Banana Potato" do

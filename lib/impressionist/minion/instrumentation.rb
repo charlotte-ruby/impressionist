@@ -10,9 +10,9 @@ module Impressionist
     # such as user_agent, ip_address, etc...
     #
     def imp_instrumentation
-      notifications.
+      notifier.
         instrument("process_impression.impressionist", raw_payload) do |payload|
-          append_to_imp_payload(payload)
+          append_to_imp_payload(payload[:extra])
         end
     end
 
@@ -24,13 +24,14 @@ module Impressionist
     #
     def raw_payload
       {
-        action: self.action_name,
-        params: request.filtered_parameters,
-        format: request.format.try(:ref),
-        path:   (request.fullpath rescue "unknown"),
-        status: response.status,
+        action:     self.action_name,
+        params:     request.filtered_parameters,
+        format:     request.format.try(:ref),
+        path:       (request.fullpath rescue "unknown"),
+        status:     response.status,
         user_agent: request.user_agent,
-        ip_address: request.ip_address
+        ip_address: request.ip_address,
+        extra:      {}
       }.merge(impressionable_hash)
     end
 
@@ -51,12 +52,9 @@ module Impressionist
 
     ##
     # This method is invoked everytime an
-    # impression is processed, returning its
-    # payload ( i.e raw_payload ). So one can
-    # add EXTRA information to be passed in
-    # when impressionist subscribes to this
-    # instrumentation in order to save an
-    # impression.
+    # impression is processed, returning an
+    # empty hash whose key is :extra.
+    # So one can add EXTRA information to be passed in.
     #
     # class BottlesController < ApplicationController
     #
@@ -66,12 +64,14 @@ module Impressionist
     #   end
     # end
     #
-    # TODO: Change this to yield a block whose value is self itself.
+    # => { payload... extra: { extra_info: :here, db_column: :here } }
+    #
+    # TODO: Change this to yield a block whose argument is self itself.
     def append_to_imp_payload(payload); end
 
 
-    def notifications
-      @notifications ||= ::ActiveSupport::Notifications
+    def notifier
+      @notifier ||= ::ActiveSupport::Notifications
     end
 
     module ClassMethods

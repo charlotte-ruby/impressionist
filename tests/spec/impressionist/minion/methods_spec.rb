@@ -31,7 +31,7 @@ module Impressionist
   describe Minion::Methods do
       parallelize_me!
 
-      let(:m)     { Dummy.new }
+      let(:m)     { Dummy.new.tap { |d| d.actions = [] } }
       let(:posts) { PostsController }
 
       it "must safe_constantize a class" do
@@ -66,7 +66,9 @@ module Impressionist
                         counter_cache: true,
                         class_name: Posts,
                         cache_class: Cache,
-                        column_name: :mine })
+                        column_name: :mine,
+                        hook: "after"
+                        })
 
         m.generate_hash.must_equal m.options
       end
@@ -109,15 +111,33 @@ module Impressionist
         m.generate_hash[:column_name].must_equal 'different'
       end
 
-      it "must set a different column_name passing a symbol" do
+      it "must set a different column_name" do
         m.options = { column_name: :different }
         m.generate_hash[:column_name].must_equal :different
+      end
+
+      it "has a default hook" do
+        m.generate_hash[:hook].must_equal "before"
+      end
+
+      it "sets a different hook" do
+        m.options = { hook: :after }
+        m.generate_hash[:hook].must_equal :after
+      end
+
+      it "adds minions to all actions when nil is passed" do
+        m.generate_hash[:actions].must_equal [ :index, :show, :edit, :new, :create, :update, :delete ]
+      end
+
+      it "adds minions to all actions plus other actions when :__all__ is present" do
+        m.actions = [ :my_own_action, :__all__ ]
+        m.generate_hash[:actions].size.must_equal 8
       end
 
       describe "Adding a minion to a given entity" do
 
         let(:creator) { Dummy.new }
-        let(:steven)  { StuartController }
+        let(:stuart)  { StuartController }
 
         before { creator.add(:stuart, :index, :edit) }
 
@@ -126,23 +146,23 @@ module Impressionist
         end
 
         it "must have created a minion" do
-          steven.must_respond_to :impressionable
+          stuart.must_respond_to :impressionable
         end
 
         it "must have a name" do
-          steven.impressionable[:name].must_equal :stuart
+          stuart.impressionable[:name].must_equal :stuart
         end
 
         it "must have some actions" do
-          steven.impressionable[:actions].must_equal [:index, :edit]
+          stuart.impressionable[:actions].must_equal [:index, :edit]
         end
 
         it "must have class_name the same as its name" do
-          steven.impressionable[:class_name].must_equal Stuart
+          stuart.impressionable[:class_name].must_equal Stuart
         end
 
         it "must include Instrumentation" do
-          steven.must_include Minion::Instrumentation
+          stuart.must_include Minion::Instrumentation
         end
 
         it "must set_impressionist_instrumentation" do

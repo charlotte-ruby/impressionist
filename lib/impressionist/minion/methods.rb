@@ -40,13 +40,14 @@ module Impressionist
       ##
       # Generates a hash for impressionable method.
       def generate_hash
-        { name: name,
-          actions: actions,
-          unique: unique,
-          counter_cache: counter_cache,
-          class_name: class_name,
-          cache_class: cache_class,
-          column_name: column_name }
+        { name:           name,
+          actions:        get_actions,
+          unique:         unique,
+          counter_cache:  counter_cache,
+          class_name:     class_name,
+          cache_class:    cache_class,
+          column_name:    column_name,
+          hook:           hook_type }
       end
 
       ##
@@ -56,6 +57,19 @@ module Impressionist
       def unique
         _unique = options[:unique] || false
         _unique === true ? :ip_address : _unique
+      end
+
+      DEFAULT_ACTIONS = [ :index, :show, :edit, :new, :create, :update, :delete ]
+
+      ##
+      # Uses passed in actions or when no action is passed it thinks user
+      # wants to track all actions. Impressionist uses the key :__all__ as
+      # a shortcut for concatenating all the RESTful controller actions with
+      # other actions one may have passed in.
+      #
+      def get_actions
+       temp_actions = actions.empty? ? DEFAULT_ACTIONS : actions
+       temp_actions.tap { |a| a.include?(:__all__) and a.delete(:__all__) and a.concat(DEFAULT_ACTIONS) }
       end
 
       ##
@@ -95,6 +109,14 @@ module Impressionist
       def controller
         _controller = name.to_s + "_controller"
         get_constant _controller.classify
+      end
+
+      ##
+      # Defines a hook type, ( before|after|around )_filter
+      # Uses before as default.
+      #
+      def hook_type
+        options[:hook] or "before"
       end
 
       def get_constant(_name)

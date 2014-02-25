@@ -5,11 +5,9 @@ require 'impressionist/minion/instrumentation'
 class Instrumenter
   include Impressionist::Minion::Instrumentation
 
-  attr_writer :notifications
+  attr_writer :notifier
   # Stub some Rails Metal methods
-  def action_name
-    :index
-  end
+  def action_name; :index; end
 
   # Returns self, so we it looks
   # for the following method .method_name
@@ -35,10 +33,9 @@ class Instrumenter
   def ip_address; '127.0.0.1'; end
 
   def self.impressionable; { actions: [:index, :edit] }; end
-  # Make private methods public
-  # in order to better test them
+
   public( :imp_instrumentation, :raw_payload,
-          :impressionable_hash, :notifications,
+          :impressionable_hash, :notifier,
           :append_to_imp_payload )
 end
 
@@ -72,13 +69,13 @@ module Impressionist
       redbull.must_respond_to :raw_payload
     end
 
-    it "must respond to notifications" do
-      redbull.must_respond_to :notifications
+    it "must have a notifier" do
+      redbull.notifier.wont_be_nil
     end
 
     class ActiveSupport; Notifications = Class.new; end
     it "s notifications must be As::Notifications" do
-      redbull.notifications.must_equal ::ActiveSupport::Notifications
+      redbull.notifier.must_equal ::ActiveSupport::Notifications
     end
 
     describe ".raw_payload" do
@@ -112,6 +109,9 @@ module Impressionist
         raw_payload[:ip_address].must_equal '127.0.0.1'
       end
 
+      it "must have extra params empty" do
+        raw_payload[:extra].must_be_empty
+      end
     end
 
     describe "Append extra info to impressionist payload" do
@@ -120,20 +120,20 @@ module Impressionist
       end
 
       it "must append_to_imp_payload" do
-        redbull.notifications = MockInstrument.new
+        redbull.notifier = MockInstrument.new
+
         def redbull.append_to_imp_payload(p)
-          p[:extra] = :goes_here
-          p[:extra].must_equal :goes_here
+          p[:info] = :goes_here
         end
 
-        redbull.imp_instrumentation
+        redbull.imp_instrumentation[:payload][:extra][:info].must_equal :goes_here
       end
 
     end
 
     describe "Instrumenting" do
 
-      before { redbull.notifications = MockInstrument.new }
+      before { redbull.notifier = MockInstrument.new }
 
       it "must have instrument's name" do
         redbull.imp_instrumentation[:name].must_equal "process_impression.impressionist"
