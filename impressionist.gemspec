@@ -22,7 +22,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails', '>= 3.0'
 
   s.add_development_dependency 'rake', '>= 0.9'
-  s.add_development_dependency 'rack'
   s.add_development_dependency 'rdoc', '>= 2.4.2'
   s.add_development_dependency 'simplecov'
   s.add_development_dependency 'systemu'

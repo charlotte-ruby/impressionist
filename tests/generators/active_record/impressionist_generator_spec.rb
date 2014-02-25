@@ -1,4 +1,3 @@
-require 'spec_helper'
 require 'rails/generators'
 require 'rails/generators/active_record'
 require 'generators/active_record/impressionist_generator'

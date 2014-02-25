@@ -106,7 +106,6 @@ DEPENDENCIES
   impressionist!
   jdbc-sqlite3
   jruby-openssl
-  rack
   rake (>= 0.9)
   rdoc (>= 2.4.2)
   rspec

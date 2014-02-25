@@ -1,4 +1,3 @@
-require 'minitest_helper'
 require 'rails/generators'
 require 'generators/impressionist/install_generator'
 
