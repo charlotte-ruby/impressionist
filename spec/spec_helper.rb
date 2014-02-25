@@ -1,11 +1,15 @@
-require 'minitest/autorun'
-require 'minitest/pride'
-
 require 'active_support/concern'
-
 require 'active_support/core_ext/module/attribute_accessors'
-
 require 'active_support/core_ext/string/inflections.rb'
+
+##
+# Require support files.
+#
+support_path = File.
+  dirname(__FILE__) + "/support/**/*.rb"
+
+Dir[support_path].each {|f| require f }
+
 
 # Fake Rails::Engine
 module Rails
@@ -28,4 +32,4 @@ Object.instance_eval do
 end
 
 # Default Cache
-ImpressionsCache    = Class.new
+ImpressionsCache = Class.new

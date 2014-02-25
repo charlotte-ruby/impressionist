@@ -1,4 +1,4 @@
-require 'minitest_helper'
+require 'spec_helper'
 require 'impressionist'
 
 describe Impressionist do

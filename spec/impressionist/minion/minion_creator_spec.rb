@@ -1,4 +1,4 @@
-require 'minitest_helper'
+require 'spec_helper'
 require 'impressionist/minion/minion_creator'
 
 FakeController  = Class.new
@@ -11,44 +11,37 @@ module Impressionist
 
     before { creator.add(:fake, :index) }
 
-    it "must respond_to impressionable" do
-      controller.must_respond_to :impressionable
-    end
-
     it "must have index action" do
-      controller.impressionable[:actions].first.must_equal :index
+      controller.impressionable[:actions].first.should eq :index
     end
 
     it "must have unique set to false" do
-      controller.impressionable[:unique].must_equal false
+      controller.impressionable[:unique].should eq false
     end
 
     it "must have a Model" do
-      controller.impressionable[:class_name].must_equal ::Fake
+      controller.impressionable[:class_name].should eq ::Fake
     end
 
     it "wont be counter_caching" do
-      controller.impressionable[:counter_cache].wont_equal true
+      controller.impressionable[:counter_cache].should be_false
     end
 
     it "must have default column_name" do
-      controller.impressionable[:column_name].must_equal :impressions_total
+      controller.impressionable[:column_name].should eq :impressions_total
     end
 
     it "must have default hook" do
-      controller.impressionable[:hook].must_equal "before"
+      controller.impressionable[:hook].should eq "before"
     end
 
     describe "Banana Potato" do
 
       let(:mcreator) { Impressionist::Minion::MinionCreator }
-      it "must respond_to banana_potato" do
-        mcreator.must_respond_to :banana_potato
-      end
 
       it "must set self to MinionCreator" do
         mcreator.banana_potato do
-          self.must_equal Impressionist::Minion::MinionCreator
+          self.should == Impressionist::Minion::MinionCreator
         end
       end
 

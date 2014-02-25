@@ -1,4 +1,4 @@
-require 'minitest_helper'
+require 'spec_helper'
 require 'impressionist/minion'
 
 BooksController     = Class.new
@@ -10,8 +10,6 @@ OthersController    = Class.new
 
 describe "Adding impressions ( minions ) to Controllers" do
 
-  parallelize_me!
-
   # Rationale for adding minions to controllers
   Impressionist::Minion::MinionCreator.banana_potato do
     add(:books, :destroy)
@@ -22,27 +20,23 @@ describe "Adding impressions ( minions ) to Controllers" do
   end
 
   it "must add a minion to books controller" do
-    BooksController.must_respond_to :impressionable
-    BooksController.impressionable[:actions].must_equal [ :destroy ]
+    BooksController.impressionable[:actions].should eq [ :destroy ]
   end
 
   it "must add a minion to comments controller " do
-    CommentsController.must_respond_to :impressionable
-    CommentsController.impressionable[:actions].must_equal [ :index ]
+    CommentsController.impressionable[:actions].should eq [ :index ]
   end
 
   it "must add a minion to stuarts controller" do
-    StuartsController.must_respond_to :impressionable
-    StuartsController.impressionable[:class_name].must_equal Steven
+    StuartsController.impressionable[:class_name].should eq Steven
   end
 
   it "adds minion with all actions and a different hook" do
-    HooksController.impressionable[:actions].size.must_equal 7
-    HooksController.impressionable[:hook].must_equal :around
+    HooksController.impressionable[:hook].should eq :around
   end
 
   it "adds minion with all actions plus other actions using flag :__all__" do
-    OthersController.impressionable[:actions].size.must_equal 9
+    OthersController.impressionable[:actions].size.should eq 9
   end
 
 end

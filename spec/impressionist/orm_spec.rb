@@ -1,9 +1,7 @@
-require 'minitest_helper'
+require 'spec_helper'
 require 'impressionist/orm'
 
 describe Impressionist::ORM do
-
-  parallelize_me!
 
   let(:steve) { Impressionist::ORM }
   let(:sean)  { Impressionist::ORM.dup }
@@ -26,7 +24,7 @@ describe Impressionist::ORM do
 
 
   it "must have active_record as default orm" do
-    steve.orm_name.must_equal "active_record"
+    steve.orm_name.should eq "active_record"
   end
 
   it "must load files based on orm's name" do
@@ -37,18 +35,18 @@ describe Impressionist::ORM do
 
   it "must require based on name" do
     steve.require_based_on_name(:active_record).
-      must_equal imp_path(:active_record)
+      should eq imp_path(:active_record)
   end
 
   it "must change orm's name" do
     sean.set_orm = "mongoid"
 
-    sean.orm_name.must_equal "mongoid"
+    sean.orm_name.should eq "mongoid"
   end
 
   it "must load_files_based on :test name" do
     paul.require_based_on_name(:test).
-      must_equal imp_path(:test)
+      should eq imp_path(:test)
   end
 
 end
