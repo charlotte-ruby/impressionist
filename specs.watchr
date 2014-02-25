@@ -6,9 +6,9 @@
 # --------------------------------------------------
 # Rules
 # --------------------------------------------------
-watch('^tests/spec/.*_spec\.rb')          { |m| ruby  m[0] }
-watch('^lib/(.*)\.rb')                    { |m| ruby "tests/spec/#{m[1]}_spec.rb" }
-watch('^tests/spec/minitest_helper\.rb')  { ruby tests }
+watch('^spec/.*_spec\.rb')          { |m| ruby  m[0] }
+watch('^lib/(.*)\.rb')              { |m| ruby "spec/#{m[1]}_spec.rb" }
+watch('^spec/spec_helper\.rb')      { ruby tests }
 
 # --------------------------------------------------
 # Signal Handling
@@ -20,11 +20,11 @@ Signal.trap('INT' ) { abort("\n") } # Ctrl-C
 # Helpers
 # --------------------------------------------------
 def ruby(*paths)
-  run "ruby #{gem_opt} -I.:lib:.:tests/spec -e'%w( #{paths.flatten.join(' ')} ).each {|p| require p }'"
+  run "rspec #{gem_opt} -I.:lib:.:tests/spec -e'%w( #{paths.flatten.join(' ')} ).each {|p| require p }'"
 end
 
 def tests
-  Dir['tests/spec/**/*_spec.rb'] - ['tests/spec/minitest_helper.rb']
+  Dir['spec/**/*_spec.rb'] - ['spec/spec_helper.rb']
 end
 
 def run( cmd )
