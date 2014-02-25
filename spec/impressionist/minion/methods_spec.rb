@@ -1,28 +1,4 @@
 require 'spec_helper'
-require 'impressionist/minion/methods.rb'
-
-class Dummy
-  include Impressionist::Minion::Methods
-
-  # Helper methods, test ^-O vim
-  attr_writer :name, :options, :actions
-
-  # Make private methods public
-  # to test them
-  public( :controller, :get_constant,
-          :add_impressionable_method,
-          :generate_hash, :options,
-          :reset_parameters! )
-end
-
-# Mock classes
-PostsController   = Class.new
-Posts             = Class.new
-Cache             = Class.new
-Different         = Class.new
-DifferentCache    = Class.new
-Stuart            = Class.new
-StuartController  = Class.new
 
 module Impressionist
 
@@ -51,7 +27,7 @@ module Impressionist
       end
 
       it "must add after_filter" do
-        ::HummersController = Class.new
+
         m.name = :hummers
         m.add_impressionable_method
       end

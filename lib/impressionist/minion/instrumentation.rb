@@ -85,15 +85,11 @@ module Impressionist
       #
       # self.impressionable[:actions] are the actions defined
       # when creating a new minion.
-      # This shifts burden to rails *_filter callbacks, instead of
-      # having impressionist to 'parse' what actions an impression
-      # should be saved for.
-      #
-      # TODO:
-      # Allow a programmer to use a different hook.
       #
       def set_impressionist_instrumentation
-        self.after_filter(:imp_instrumentation, only: self.impressionable[:actions])
+        hook    = "#{self.impressionable[:hook]}_action"
+        actions = self.impressionable[:actions]
+        self.send(hook, :imp_instrumentation, only: actions)
       end
 
     end

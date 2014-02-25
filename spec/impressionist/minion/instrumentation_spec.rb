@@ -143,22 +143,33 @@ module Impressionist
     end
 
     describe "Adding instrumentation" do
+
       class ::Cola
         include Minion::Instrumentation
-
         class << self
           public :set_impressionist_instrumentation
         end
-
       end
 
       let(:coke) { Cola }
 
-      it "must instrument to index, :edit actions" do
-        def coke.impressionable; { actions: [ :edit, :show ] }; end
+      before do
+        def coke.impressionable
+          { hook: :before, actions: [ :edit, :show ] }
+        end
+      end
 
-        coke.set_impressionist_instrumentation.
-          should eq [ :imp_instrumentation, only: [ :edit, :show ] ]
+      it "must instrument for a default hook" do
+       coke.should_receive(:before_action).
+        with( :imp_instrumentation, only: [ :edit, :show ] )
+
+        coke.set_impressionist_instrumentation
+      end
+
+      it "must instrument for a different hook" do
+        coke.stub(:impressionable).and_return({ hook: :after })
+        coke.should_receive(:after_action)
+        coke.set_impressionist_instrumentation
       end
 
     end

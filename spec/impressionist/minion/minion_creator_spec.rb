@@ -1,9 +1,6 @@
 require 'spec_helper'
 require 'impressionist/minion/minion_creator'
 
-FakeController  = Class.new
-Fake            = Class.new
-
 module Impressionist
   describe Minion::MinionCreator do
     let(:creator)  { Minion::MinionCreator }

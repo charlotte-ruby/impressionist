@@ -1,13 +1,6 @@
 require 'spec_helper'
 require 'impressionist/minion'
 
-BooksController     = Class.new
-CommentsController  = Class.new
-StuartsController   = Class.new
-Steven              = Class.new
-HooksController     = Class.new
-OthersController    = Class.new
-
 describe "Adding impressions ( minions ) to Controllers" do
 
   # Rationale for adding minions to controllers
