@@ -30,7 +30,7 @@ module Impressionist
         path:       (request.fullpath rescue "unknown"),
         status:     response.status,
         user_agent: request.user_agent,
-        ip_address: request.ip_address,
+        ip_address: request.remote_ip,
         extra:      {}
       }.merge(impressionable_hash)
     end

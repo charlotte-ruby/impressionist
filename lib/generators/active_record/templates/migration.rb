@@ -1,4 +1,4 @@
-class ImpressionistCreateImpression < ActiveRecord::Migration
+class CreateImpressionsTable < ActiveRecord::Migration
   def change
     create_table(:impressions, force: true) do |t|
       t.string :impressionable_type
@@ -15,6 +15,7 @@ class ImpressionistCreateImpression < ActiveRecord::Migration
 
       t.timestamps
     end
+
 add_index :impressions, [:impressionable_type, :extra, :impressionable_id], :name => "impressionable_type_extra_index", :unique => false, :length => {:extra => 255 }
     add_index :impressions, [:impressionable_type, :impressionable_id, :request_hash], :name => "poly_request_index", :unique => false
     add_index :impressions, [:impressionable_type, :impressionable_id, :ip_address], :name => "poly_ip_index", :unique => false
@@ -23,6 +24,7 @@ add_index :impressions, [:impressionable_type, :extra, :impressionable_id], :nam
     add_index :impressions, [:controller_name,:action_name,:ip_address], :name => "controlleraction_ip_index", :unique => false
     add_index :impressions, [:controller_name,:action_name,:session_hash], :name => "controlleraction_session_index", :unique => false
     add_index :impressions, :user_id
+  end
 
   def self.down
     drop_table :impressions

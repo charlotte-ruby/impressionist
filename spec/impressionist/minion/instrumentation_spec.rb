@@ -30,7 +30,7 @@ class Instrumenter
   def status; 200; end
 
   def user_agent; 'USER_AGENT'; end
-  def ip_address; '127.0.0.1'; end
+  def remote_ip; '127.0.0.1'; end
 
   def self.impressionable; { actions: [:index, :edit] }; end
 
