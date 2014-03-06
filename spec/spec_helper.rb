@@ -3,6 +3,11 @@ require 'active_support/core_ext/module/attribute_accessors'
 require 'active_support/core_ext/string/inflections.rb'
 require 'async_io/rescuer'
 
+module ActionSupport
+  class Notifications
+  end
+end
+
 class AsyncIO::Logger; def self.error(n); end; end;
 
 class FakeAsync
@@ -30,6 +35,8 @@ class FakeQueue
   def pop; @queue.pop;      end
   def size; @queue.size;    end
 end
+
+FakeConsumer = FakeQueue
 
 ##
 # Require support files.
