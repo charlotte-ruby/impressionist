@@ -3,7 +3,7 @@ require 'impressionist/consumer'
 
 describe Impressionist::Consumer do
 
-  let!(:options)  { { async: FakeAsync, queue: Queue.new } }
+  let!(:options)  { { async: FakeAsync, queue: Queue.new, processor: FakeBorderForce } }
   let!(:consumer) { Impressionist::Consumer.new( options ) }
 
   describe "Pushing data" do
@@ -12,6 +12,11 @@ describe Impressionist::Consumer do
       consumer.push(1)
       consumer.push(2)
       consumer.size.should eq 2
+    end
+
+    it "pushes instances of processor objects onto queue via call" do
+      consumer.processor.should_receive(:new).with(2)
+      consumer.call(2)
     end
   end
 

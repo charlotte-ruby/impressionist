@@ -8,6 +8,13 @@ module ActionSupport
   end
 end
 
+class FakeBorderForce
+  attr_reader :args
+  def initialize(args)
+    @args = args
+  end
+end
+
 class AsyncIO::Logger; def self.error(n); end; end;
 
 class FakeAsync
