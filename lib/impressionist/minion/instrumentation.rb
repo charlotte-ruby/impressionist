@@ -23,14 +23,16 @@ module Impressionist
     #
     def raw_payload
       {
-        user_id:          (current_user.id rescue :none),
-        controller_name:  controller_name,
-        action_name:      self.action_name,
-        format:           request.format.try(:ref),
-        path:             (request.fullpath rescue "unknown"),
-        status:           response.status,
-        user_agent:       request.user_agent,
-        ip_address:       request.remote_ip
+        user_id:              (current_user.id rescue :none),
+        controller_name:      controller_name,
+        action_name:          self.action_name,
+        format:               request.format.try(:ref),
+        path:                 (request.fullpath rescue "unknown"),
+        status:               response.status,
+        user_agent:           request.user_agent,
+        ip_address:           request.remote_ip,
+        impressionable_type:  impressionable_hash[:class_name],
+        impressionable_id:    params[:id]
       }.merge(impressionable_hash)
     end
 

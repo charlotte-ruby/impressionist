@@ -8,33 +8,31 @@ class Instrumenter
   attr_writer :notifier
   # Stub some Rails Metal methods
   def action_name; :index; end
-
   def controller_name; "TestController"; end
-
   # Returns self, so we it looks
   # for the following method .method_name
   # in the same object, as we don't have
   # those methods defined.
   def request; self; end
-
   def filtered_parameters
     { smile: :when_you_see_it }
   end
-
   def format; self; end
-
   def try(param)
     :html
   end
-
   def response; self; end
-
   def status; 200; end
-
   def user_agent; 'USER_AGENT'; end
   def remote_ip; '127.0.0.1'; end
 
-  def self.impressionable; { actions: [:index, :edit] }; end
+  def params
+    { id: 1 }
+  end
+
+  def self.impressionable
+    { class_name: "Test", actions: [:index, :edit] }
+  end
 
   public( :imp_instrumentation, :raw_payload,
           :impressionable_hash, :notifier,
@@ -103,6 +101,14 @@ module Impressionist
         raw_payload[:ip_address].should eq '127.0.0.1'
       end
 
+      it "mus include impressionable_type" do
+        raw_payload[:impressionable_type].should eq "Test"
+      end
+
+      it "mus include impressionable_id" do
+        raw_payload[:impressionable_id].should eq 1
+      end
+
     end
 
     describe "Append extra info to impressionist payload" do
@@ -131,12 +137,6 @@ module Impressionist
         redbull.imp_instrumentation[:payload].should eq redbull.raw_payload
       end
 
-    end
-
-    describe "impressionable_hash" do
-      it "must get impressionable hash of contents" do
-        redbull.impressionable_hash.should eq({ actions: [:index, :edit] })
-      end
     end
 
     describe "Merges impressionable_hash into raw_payload" do
