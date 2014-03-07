@@ -12,15 +12,23 @@ module Impressionist
     end
 
     def call
-      savable? { model.save_impression create_statement }
+      valid_to_save? and model.save_impression create_savable_hash
     end
 
     def savable?
-      _user_agent_checker.valid?(user_agent) and unique? and yield
+      valid_to_save? and yield
     end
 
+    def valid_to_save?
+      _user_agent_checker.valid?(user_agent) and unique?
+    end
+
+    #
+    # Returns false if impression exists based on unique filter,
+    # otherwise true.
+    #
     def unique?
-      not(!unique.empty? and model.impression_exist?(get_unique_hash))
+      not(!unique.empty? and model.impression_exist?(get_unique_filters))
     end
 
     def model
@@ -33,7 +41,7 @@ module Impressionist
     # When generate_unique_hash
     # Then #=> { ip_address: "127.0.0.1" }
     #
-    def get_unique_hash
+    def get_unique_filters
       {}.tap { |h| unique.each { |k| h[k] = self.send(k) } }
     end
 
@@ -49,7 +57,7 @@ module Impressionist
     # Deletes config_params and returns a hash of info ready
     # to be saved. i.e call save on model and pass this hash.
     #
-    def create_statement
+    def create_savable_hash
       _payload.tap do |payload|
         CONFIG_PARAMS.each { |key| payload.delete(key) }
       end

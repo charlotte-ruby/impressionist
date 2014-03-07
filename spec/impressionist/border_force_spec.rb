@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'impressionist/border_force'
+require 'impressionist/user_agent_checker'
 
 describe Impressionist::BorderForce do
   let!(:fake_model) { FakeModel.new }
@@ -64,19 +65,19 @@ describe Impressionist::BorderForce do
     it "builds a new hash containing values of unique options" do
       ip_address = { ip_address: "127.0.0.1" }
       bf = Impressionist::BorderForce.new([ { unique: [ :ip_address ], class_name: fake_model }.merge(ip_address) ])
-      bf.get_unique_hash.should eq ip_address
+      bf.get_unique_filters.should eq ip_address
     end
 
     it "builds a new hash containing multiple values of unique options" do
       values = { ip_address: "127.0.0.1", unique: [ :ip_address, :request_hash ], class_name: fake_model, unique_id:"3232323232kjkdjkds" }
       bf = Impressionist::BorderForce.new([ values ])
-      bf.get_unique_hash[:ip_address].should eq "127.0.0.1"
-      bf.get_unique_hash[:request_hash].should eq values[:unique_id]
+      bf.get_unique_filters[:ip_address].should eq "127.0.0.1"
+      bf.get_unique_filters[:request_hash].should eq values[:unique_id]
     end
 
     it "builds a new hash containing value of unique options with nil value if unique does not exist" do
       bf = Impressionist::BorderForce.new([ { unique: [ :nope ] } ])
-      bf.get_unique_hash[:nope].should be_nil
+      bf.get_unique_filters[:nope].should be_nil
     end
   end
 
