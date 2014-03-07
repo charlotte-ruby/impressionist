@@ -7,13 +7,15 @@ describe Impressionist::BorderForce do
   let!(:payload) { [ "inst_name", Time.now, Time.now, :unique_id, { action: "/test", format: "html", class_name: fake_model } ] }
   let!(:border_force) { Impressionist::BorderForce.new( payload ) }
 
-  describe "Constantize model" do
+  describe "Constantise model" do
+
     context "String" do
       it "returns constant" do
         bf = Impressionist::BorderForce.new( [ { class_name: "FakeModel" } ] )
         bf.model.should eq FakeModel
       end
     end
+
     context "Non string" do
       it "returns object" do
         bf = Impressionist::BorderForce.new( [ { class_name: FakeModel } ] )
