@@ -3,7 +3,3 @@ class FakeUserAgentChecker
     user_agent == :valid ? true : false
   end
 end
-
-module Impressionist
-  UserAgentChecker ||= ::FakeUserAgentChecker
-end

@@ -20,6 +20,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'async_io'
   s.add_dependency 'rails', '>= 3.0'
+  s.add_dependency 'agent_orange'
 
   s.add_development_dependency 'rake', '>= 0.9'
   s.add_development_dependency 'rdoc', '>= 2.4.2'
