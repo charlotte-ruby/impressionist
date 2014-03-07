@@ -9,6 +9,8 @@ class Instrumenter
   # Stub some Rails Metal methods
   def action_name; :index; end
 
+  def controller_name; "TestController"; end
+
   # Returns self, so we it looks
   # for the following method .method_name
   # in the same object, as we don't have
@@ -70,15 +72,19 @@ module Impressionist
       let(:raw_payload) { redbull.raw_payload }
 
       it "must include action" do
-        raw_payload[:action].should eq :index
+        raw_payload[:action_name].should eq :index
       end
 
-      it "must include params" do
-        raw_payload[:params].should eq({ smile: :when_you_see_it })
+      it "must include user_id" do
+        raw_payload[:user_id].should eq :none
       end
 
       it "must include format" do
         raw_payload[:format].should eq :html
+      end
+
+      it "must include controller_name" do
+        raw_payload[:controller_name].should eq "TestController"
       end
 
       it "must include path" do
@@ -97,9 +103,6 @@ module Impressionist
         raw_payload[:ip_address].should eq '127.0.0.1'
       end
 
-      it "must have extra params empty" do
-        raw_payload[:extra].should be_empty
-      end
     end
 
     describe "Append extra info to impressionist payload" do
@@ -107,11 +110,11 @@ module Impressionist
       it "must append_to_imp_payload" do
         redbull.notifier = MockInstrument.new
 
-        def redbull.append_to_imp_payload(p)
-          p[:info] = :goes_here
+        def redbull.append_to_imp_payload(payload)
+          payload[:info] = :goes_here
         end
 
-        redbull.imp_instrumentation[:payload][:extra][:info].should eq :goes_here
+        redbull.imp_instrumentation[:payload][:info].should eq :goes_here
       end
 
     end

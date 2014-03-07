@@ -10,9 +10,8 @@ module Impressionist
     # such as user_agent, ip_address, etc...
     #
     def imp_instrumentation
-      notifier.
-        instrument("process_impression.impressionist", raw_payload) do |payload|
-          append_to_imp_payload(payload[:extra])
+      notifier.instrument("process_impression.impressionist", raw_payload) do |payload|
+          append_to_imp_payload(payload)
         end
     end
 
@@ -24,14 +23,14 @@ module Impressionist
     #
     def raw_payload
       {
-        action:     self.action_name,
-        params:     request.filtered_parameters,
-        format:     request.format.try(:ref),
-        path:       (request.fullpath rescue "unknown"),
-        status:     response.status,
-        user_agent: request.user_agent,
-        ip_address: request.remote_ip,
-        extra:      {}
+        user_id:          (current_user.id rescue :none),
+        controller_name:  controller_name,
+        action_name:      self.action_name,
+        format:           request.format.try(:ref),
+        path:             (request.fullpath rescue "unknown"),
+        status:           response.status,
+        user_agent:       request.user_agent,
+        ip_address:       request.remote_ip
       }.merge(impressionable_hash)
     end
 
@@ -52,23 +51,21 @@ module Impressionist
 
     ##
     # This method is invoked everytime an
-    # impression is processed, returning an
-    # empty hash whose key is :extra.
-    # So one can add EXTRA information to be passed in.
+    # impression is processed, returning its payload
+    # So one can add EXTRA information to be saved with
+    # an impression.
     #
     # class BottlesController < ApplicationController
     #
     #   def append_to_imp_payload(payload)
     #     payload[:extra_info]  = :here
-    #     payload[:db_column]   = :here
+    #     payload[:banana]      = :here
     #   end
     # end
     #
-    # => { payload... extra: { extra_info: :here, db_column: :here } }
+    # => { payload..., extra_info: :here, db_column: :here }
     #
-    # TODO: Change this to yield a block whose argument is self itself.
     def append_to_imp_payload(payload); end
-
 
     def notifier
       @notifier ||= ::ActiveSupport::Notifications
