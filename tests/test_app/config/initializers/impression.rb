@@ -5,4 +5,4 @@
 #end
 
 
-Impressionist.orm = :active_record
+
