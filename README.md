@@ -93,7 +93,7 @@ Usage
 
         def show
           @widget = Widget.find
-          impressionist(@widget,message:"wtf is a widget?") #message is optional
+          impressionist(@widget, "message...") # 2nd argument is optional
         end
 
 5. Get unique impression count from a model.  This groups impressions by
