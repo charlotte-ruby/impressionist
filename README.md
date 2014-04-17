@@ -89,7 +89,10 @@ Usage
    not necessary to specify "impressionist" (usage #1) in the top of you
    controller if you are using this method.  If you add "impressionist" to the
    top of your controller and also use this method in your action, it will
-   result in 2 impressions being logged (but associated with one request_hash)
+   result in 2 impressions being logged (but associated with one request_hash).
+   If you're using [friendly_id](https://github.com/norman/friendly_id) be sure 
+   to log impressionist this way, as params[:id] will return a string(url slug) 
+   while impressionable_id is a Integer column in database.
 
         def show
           @widget = Widget.find
