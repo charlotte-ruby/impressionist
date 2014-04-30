@@ -8,7 +8,7 @@ class Impression
   include Impressionist::CounterCache
   Impressionist::SetupAssociation.new(self).set
 
-  field :impressionable_id
+  field :impressionable_id, type: BSON::ObjectId
   field :impressionable_type
   field :user_id
   field :controller_name
