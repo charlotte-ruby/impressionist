@@ -53,6 +53,14 @@ describe ArticlesController do
     click_link "Same Page"
     Impression.last.referrer.should eq "http://test.host/articles/1"
   end
+
+  it "should save the additional fields" do
+    class Impression
+      attr_accessible :article_name
+    end
+    visit additional_fields_article_path(Article.first)
+    Impression.last.article_name.should eq Article.first.name
+  end
 end
 
 
