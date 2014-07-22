@@ -18,7 +18,7 @@ group :test do
   gem 'minitest'
   gem 'minitest-rails'
   gem 'rails', '~> 3.2.15'
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 2.14.2'
   gem 'simplecov'
   gem 'systemu'
 end
