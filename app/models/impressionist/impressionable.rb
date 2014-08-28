@@ -39,7 +39,7 @@ module Impressionist
         imps = imps.where("impressions.message = ?", options[:message])
       end
       
-      if options[:passed_params] && options[:passed_params].is_a? Hash
+      if options[:passed_params] && options[:passed_params].is_a?(Hash)
         imps = imps.where(options[:passed_params])
       end
 
