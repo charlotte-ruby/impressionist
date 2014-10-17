@@ -227,6 +227,14 @@ describe DummyController do
       Impression.should have(@impression_count + 1).records
     end
 
+    it "should recognize unique impressionable for a session" do
+      controller.stub(:session_hash).and_return(request.session_options[:id])
+      impressionable = Post.create
+      controller.impressionist(impressionable, nil, :unique => [:impressionable_id, :impressionable_type, :session_hash])
+      controller.impressionist(impressionable, nil, :unique => [:impressionable_id, :impressionable_type, :session_hash])
+      Impression.should have(@impression_count + 1).records
+    end
+
     it "should recognize different session" do
       impressionable = Post.create
       controller.stub(:session_hash).and_return("foo")

@@ -77,7 +77,7 @@ module ImpressionistController
     end
 
     def unique_instance?(impressionable, unique_opts)
-      return unique_opts.blank? || !impressionable.impressions.where(unique_query(unique_opts)).exists?
+      return unique_opts.blank? || !impressionable.impressions.where(unique_query(unique_opts).reject { |k,_| %w(impressionable_id impressionable_type).include?(k.to_s) }).exists?
     end
 
     def unique?(unique_opts)
