@@ -8,7 +8,7 @@ module Impressionist
       DEFAULT_CACHE ||= {
         :counter_cache => false,
         :column_name => :impressions_count,
-        :unique => false
+        :unique => :all
       }
 
       def impressionist_counter_cache_options
