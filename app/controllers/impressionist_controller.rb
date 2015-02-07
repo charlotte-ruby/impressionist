@@ -77,7 +77,7 @@ module ImpressionistController
     end
 
     def unique_instance?(impressionable, unique_opts)
-      return unique_opts.blank? || !impressionable.impressions.where(unique_query(unique_opts)).exists?
+      return unique_opts.blank? || !impressionable.impressions.where(unique_query(unique_opts, impressionable)).exists?
     end
 
     def unique?(unique_opts)
@@ -85,8 +85,8 @@ module ImpressionistController
     end
 
     # creates the query to check for uniqueness
-    def unique_query(unique_opts)
-      full_statement = direct_create_statement
+    def unique_query(unique_opts,impressionable=nil)
+      full_statement = direct_create_statement({},impressionable)
       # reduce the full statement to the params we need for the specified unique options
       unique_opts.reduce({}) do |query, param|
         query[param] = full_statement[param]
@@ -95,10 +95,10 @@ module ImpressionistController
     end
 
     # creates a statment hash that contains default values for creating an impression.
-    def direct_create_statement(query_params={})
+    def direct_create_statement(query_params={},impressionable=nil)
       query_params.reverse_merge!(
         :impressionable_type => controller_name.singularize.camelize,
-        :impressionable_id=> params[:id]
+        :impressionable_id => impressionable.present? ? impressionable.id : params[:id]
         )
       associative_create_statement(query_params)
     end

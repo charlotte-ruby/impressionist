@@ -306,6 +306,22 @@ describe DummyController do
 
   end
 
+  describe 'impressionist with friendly id' do
+    it 'should unique' do
+      impressionable = Profile.find 1
+      # get 'profiles/test_profile'
+      # get 'profiles/test_profile'
+      controller.stub(:controller_name).and_return('profile')
+      controller.stub(:action_name).and_return('show')
+      controller.stub(:params).and_return({id: 'test_profile'})
+      controller.request.stub(:remote_ip).and_return('1.2.3.4')
+
+      controller.impressionist(impressionable, nil, :unique => [:impressionable_type, :impressionable_id])
+      controller.impressionist(impressionable, nil, :unique => [:impressionable_type, :impressionable_id])
+      Impression.should have(@impression_count + 1).records
+    end
+  end
+
   shared_examples_for 'an impressionable action' do
     it 'should record an impression' do
       controller.impressionist_subapp_filter(condition)

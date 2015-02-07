@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Impression do
-  fixtures :articles,:impressions,:posts
+  fixtures :articles,:impressions,:posts,:profiles
 
   before(:each) do
     @article = Article.find(1)
