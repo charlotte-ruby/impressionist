@@ -2,8 +2,6 @@ class ProfilesController < ApplicationController
   helper_method :current_user
 
   def show
-    @profile = Profile.friendly.find params[:id]
-    impressionist(@profile, nil, :unique => [:impressionable_type, :impressionable_id])
   end
 
   def current_user
