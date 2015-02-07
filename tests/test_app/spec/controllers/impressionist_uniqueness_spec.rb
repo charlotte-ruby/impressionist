@@ -308,12 +308,11 @@ describe DummyController do
 
   describe 'impressionist with friendly id' do
     it 'should unique' do
-      impressionable = Profile.find 1
-      # get 'profiles/test_profile'
-      # get 'profiles/test_profile'
+      impressionable = Profile.create({username: 'test_profile', slug: 'test_profile'})
+
       controller.stub(:controller_name).and_return('profile')
       controller.stub(:action_name).and_return('show')
-      controller.stub(:params).and_return({id: 'test_profile'})
+      controller.stub(:params).and_return({id: impressionable.slug})
       controller.request.stub(:remote_ip).and_return('1.2.3.4')
 
       controller.impressionist(impressionable, nil, :unique => [:impressionable_type, :impressionable_id])

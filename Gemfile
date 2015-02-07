@@ -21,7 +21,6 @@ group :test do
   gem 'rspec-rails'
   gem 'simplecov'
   gem 'systemu'
-  gem 'friendly_id', '~> 4.0.9'
 end
 
 gemspec
