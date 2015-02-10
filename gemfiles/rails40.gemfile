@@ -18,9 +18,10 @@ group :test do
   gem 'minitest'
   gem 'minitest-rails'
   gem 'rails', '~> 4.0.1'
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 2.14.0'
   gem 'simplecov'
   gem 'systemu'
+  gem 'friendly_id', '~> 5.1.0'
 end
 
 gemspec :path => '../'

@@ -34,7 +34,7 @@ end
 
 group :development, :test do
   gem 'autotest-notification'
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 2.14.0'
   gem 'spork'
 end
 
@@ -45,3 +45,4 @@ group :test do
 end
 
 gem 'jquery-rails'
+gem 'friendly_id', '~> 4.0.9'

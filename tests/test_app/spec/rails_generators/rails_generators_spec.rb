@@ -4,7 +4,7 @@ require 'systemu'
 # FIXME this test might break the others if run before them
 # started fixing @nbit001
 describe Impressionist, :migration do
-  fixtures :articles,:impressions,:posts
+  fixtures :articles,:impressions,:posts,:profiles
   it "should delete existing migration and generate the migration file" do
     pending
     migrations_dir = "#{Rails.root}/db/migrate"
