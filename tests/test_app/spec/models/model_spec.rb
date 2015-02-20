@@ -57,7 +57,7 @@ describe Impression do
     @article.impressionist_count(:filter=>:session_hash).should eq 7
   end
 
-  # tests :dependent => :destroy
+  # tests :dependent => :delete_all
   it "should delete impressions on deletion of impressionable" do
     #impressions_count = Impression.all.size
     a = Article.create
