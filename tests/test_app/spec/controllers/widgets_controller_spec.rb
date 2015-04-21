@@ -44,7 +44,6 @@ describe WidgetsController do
     it "should log unique impressions only once per id" do
       get "show", :id=> 1
       Impression.all.size.should eq 12
-
       get "show", :id=> 2
       Impression.all.size.should eq 13
 
@@ -55,6 +54,38 @@ describe WidgetsController do
       Impression.all.size.should eq 14
     end
 
+  end
+
+  context "Impresionist unique params options" do
+    it "should log unique impressions at the per action and params level" do
+      get "show", :id => 1
+      Impression.all.size.should eq 12
+      get "show", :id => 2, checked: true
+      Impression.all.size.should eq 13	
+      get "show", :id => 2, checked: false
+      Impression.all.size.should eq 14
+      get "index"
+      Impression.all.size.should eq 15
+    end
+
+    it "should not log impression for same params and same id" do
+      get "show", :id => 1
+      Impression.all.size.should eq 12
+      get "show", :id => 1
+      Impression.all.size.should eq 12
+      get "show", :id => 1, checked: true
+      Impression.all.size.should eq 13	
+      get "show", :id => 1, checked: false
+      Impression.all.size.should eq 14
+      get "show", :id => 1, checked: true
+      Impression.all.size.should eq 14
+      get "show", :id => 1, checked: false
+      Impression.all.size.should eq 14
+      get "show", :id => 1
+      Impression.all.size.should eq 14
+      get "show", :id => 2
+      Impression.all.size.should eq 15
+    end
   end
 
 end
