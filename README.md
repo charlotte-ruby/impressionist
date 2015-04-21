@@ -55,6 +55,7 @@ The following fields are provided in the migration:
     t.string   "request_hash"         # unique ID per request, in case you want to log multiple impressions and group them
     t.string   "session_hash"         # logs the rails session
     t.string   "ip_address"           # request.remote_ip
+    t.text     "params"               # request.params, except action name, controller name and resource id
     t.string   "referrer"             # request.referer
     t.string   "message"              # custom message you can add
     t.datetime "created_at"           # I am not sure what this is.... Any clue?
@@ -114,7 +115,12 @@ Usage
 
         @widget.impressionist_count(:filter=>:ip_address)
 
-7. Get the unique impression count from a model filtered by session hash.  Same
+7. Get the unique impression count from a model filtered by params.  This
+   in turn will give you impressions with unique params.
+
+        @widget.impressionist_count(:filter => :params)
+        
+8. Get the unique impression count from a model filtered by session hash.  Same
    as #6 regarding request hash.  This may be more desirable than filtering by
    IP address depending on your situation, since filtering by IP may ignore
    visitors that use the same IP.  The downside to this filtering is that a
@@ -122,12 +128,12 @@ Usage
 
         @widget.impressionist_count(:filter=>:session_hash)
 
-8. Get total impression count.  This may return more than 1 impression per http
+9. Get total impression count.  This may return more than 1 impression per http
    request, depending on how you are logging impressions
 
         @widget.impressionist_count(:filter=>:all)
 
-9. Get impression count by message.  This only counts impressions of the given message.
+10. Get impression count by message.  This only counts impressions of the given message.
 
         @widget.impressionist_count(:message=>"pageview", :filter=>:all)
 
@@ -182,6 +188,9 @@ impressions in your controller:
 
     # only record impression if session is unique
     impressionist :unique => [:session_hash]
+    
+    # only record impression if param is unique
+    impressionist :unique => [:params]
 
 Or you can use the `impressionist` method directly:
 
