@@ -9,6 +9,6 @@ class Impression < ActiveRecord::Base
   # sets belongs_to and attr_accessible depending on Rails version
   Impressionist::SetupAssociation.new(self).set
 
+  store :params
   after_save :impressionable_counter_cache_updatable?
-
 end
