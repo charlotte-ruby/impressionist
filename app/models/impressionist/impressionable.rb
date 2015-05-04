@@ -32,19 +32,18 @@ module Impressionist
       # Uses these options as defaults unless overridden in options hash
       options.reverse_merge!(:filter => :request_hash, :start_date => nil, :end_date => Time.now)
 
-      # If a start_date is provided, finds impressions between then and the end_date. Otherwise returns all impressions
-      imps = options[:start_date].blank? ? impressions : impressions.where("created_at >= ? and created_at <= ?", options[:start_date], options[:end_date])
-
-      if options[:message]
-        imps = imps.where("impressions.message = ?", options[:message])
-      end
+      # If a start_date is provided, finds impressions between then
+      # and the end_date. Otherwise returns all impressions
+      imps = impressions.where('created_at <= ?', options[:end_date])
+      imps = imps.where('created_at >= ?', options[:start_date]) if options[:start_date]
+      imps = imps.where("impressions.message = ?", options[:message]) if options[:message]
 
       # Count all distinct impressions unless the :all filter is provided.
       distinct = options[:filter] != :all
       if Rails::VERSION::MAJOR == 4
-        distinct ? imps.select(options[:filter]).distinct.count : imps.count
+        distinct ? imps.select(options[:filter]).distinct.each.size : imps.count
       else
-        distinct ? imps.count(options[:filter], :distinct => true) : imps.count
+        distinct ? imps.count(options[:filter], distinct: true) : imps.count
       end
     end
 
@@ -56,7 +55,5 @@ module Impressionist
     def impressionable?
       true
     end
-
   end
-
 end
