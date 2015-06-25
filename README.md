@@ -79,7 +79,7 @@ Usage
    an AR model instance.  Impressionist will automatically log the Model name
    (based on action_name) and the id (based on params[:id]), but in order to
    get the count of impressions (example: @widget.impression_count), you will
-   need to make your model impressionalble
+   need to make your model impressionable
 
         class Widget < ActiveRecord::Base
           is_impressionable
