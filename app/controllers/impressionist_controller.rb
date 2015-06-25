@@ -3,7 +3,7 @@ require 'digest/sha2'
 module ImpressionistController
   module ClassMethods
     def impressionist(opts={})
-      before_filter { |c| c.impressionist_subapp_filter(opts)}
+      before_filter { |c| c.impressionist_subapp_filter(opts) }
     end
   end
 
@@ -50,7 +50,8 @@ module ImpressionistController
         :request_hash => @impressionist_hash,
         :session_hash => session_hash,
         :ip_address => request.remote_ip,
-        :referrer => request.referer
+        :referrer => request.referer,
+        :params => params_hash
         )
     end
 
@@ -81,9 +82,28 @@ module ImpressionistController
     end
 
     def unique?(unique_opts)
-      return unique_opts.blank? || !Impression.where(unique_query(unique_opts)).exists?
+      return unique_opts.blank? || check_impression?(unique_opts)
     end
 
+    def check_impression?(unique_opts)
+      impressions = Impression.where(unique_query(unique_opts - [:params]))
+      check_unique_impression?(impressions, unique_opts)
+    end
+
+    def check_unique_impression?(impressions, unique_opts)
+      impressions_present = impressions.exists?
+      impressions_present && unique_opts_has_params?(unique_opts) ? check_unique_with_params?(impressions) : !impressions_present
+    end
+
+    def unique_opts_has_params?(unique_opts)
+      unique_opts.include?(:params)
+    end
+
+    def check_unique_with_params?(impressions)
+      request_param = params_hash
+      impressions.detect{|impression| impression.params == request_param }.nil?
+    end
+    
     # creates the query to check for uniqueness
     def unique_query(unique_opts,impressionable=nil)
       full_statement = direct_create_statement({},impressionable)
@@ -110,6 +130,10 @@ module ImpressionistController
       # logger.debug "Encoding: #{str.encoding.inspect}"
       # # request.session_options[:id].encode("ISO-8859-1")
       request.session_options[:id]
+    end
+
+    def params_hash
+      request.params.except(:controller, :action, :id)
     end
 
     #use both @current_user and current_user helper

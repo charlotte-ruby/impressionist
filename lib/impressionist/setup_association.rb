@@ -35,7 +35,8 @@ module Impressionist
                         :view_name,
                         :referrer,
                         :message,
-                        :user_id)
+                        :user_id,
+                        :params)
       end
 
       def toggle

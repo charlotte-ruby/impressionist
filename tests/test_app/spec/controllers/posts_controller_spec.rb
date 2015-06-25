@@ -16,4 +16,13 @@ describe PostsController do
     Post.first.impressions.last.user_id.should eq 123
   end
 
+  it "should log impression at the action level with params" do
+    get "show", id: 1, checked: true
+    Impression.all.size.should eq 12
+    Impression.last.params.should eq({"checked"=>true})
+    Impression.last.controller_name.should eq "posts"
+    Impression.last.action_name.should eq "show"
+    Impression.last.impressionable_type.should eq "Post"
+    Impression.last.impressionable_id.should eq 1
+  end
 end

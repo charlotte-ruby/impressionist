@@ -53,8 +53,24 @@ describe ArticlesController do
     click_link "Same Page"
     Impression.last.referrer.should eq "http://test.host/articles/1"
   end
+
+  it "should log request with params (checked = true)" do
+    get "show", id: 1, checked: true
+    Impression.last.params.should eq({"checked"=>true})
+    Impression.last.request_hash.size.should eq 64
+    Impression.last.ip_address.should eq "0.0.0.0"
+    Impression.last.session_hash.size.should eq 32
+    Impression.last.referrer.should eq nil
+  end
+
+  it "should log request with params {}" do
+    get "index"
+    Impression.last.params.should eq({})
+    Impression.last.request_hash.size.should eq 64
+    Impression.last.ip_address.should eq "0.0.0.0"
+    Impression.last.session_hash.size.should eq 32
+    Impression.last.referrer.should eq nil
+  end
 end
-
-
 
 
