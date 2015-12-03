@@ -2,7 +2,6 @@
 # If impressionist_counter_cache_options[:counter_cache] is false(default)
 # it won't even run this class
 module Impressionist
-
   class UpdateCounters
     attr_reader :receiver, :klass
 
@@ -12,8 +11,7 @@ module Impressionist
     end
 
     def update
-      klass.
-      update_counters(id, column_name => result)
+      klass.update_counters(id, column_name => result)
     end
 
     private
@@ -34,7 +32,7 @@ module Impressionist
     end
 
     def filter
-      {:filter => unique_filter}
+      { filter: unique_filter }
     end
 
     # :filter gets assigned to :ip_address as default
@@ -42,9 +40,7 @@ module Impressionist
     # is_impressionable :counter_cache => true,
     # :unique => :any_other_filter
     def unique_filter
-      Symbol === unique ?
-      unique :
-      :ip_address
+      Symbol === unique ? unique : :ip_address
     end
 
     def unique
@@ -56,14 +52,11 @@ module Impressionist
     end
 
     def cache_options
-      klass.
-      impressionist_counter_cache_options
+      klass.impressionist_counter_cache_options
     end
 
     def id
       receiver.id
     end
-
   end
-
 end

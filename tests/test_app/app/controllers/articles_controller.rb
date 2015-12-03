@@ -9,7 +9,7 @@ class ArticlesController < ApplicationController
   end
 
   def index
-    impressionist(Article.first,"this is a test article impression")
+    impressionist(Article.first, 'this is a test article impression')
   end
 
   def show

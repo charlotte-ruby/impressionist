@@ -12,7 +12,8 @@ class Impression
   key :session_hash, String
   key :message, String
   key :referrer, String
+  key :user_agent, String
   timestamps!
 
-  belongs_to :impressionable, :polymorphic=>true
+  belongs_to :impressionable, polymorphic: true
 end

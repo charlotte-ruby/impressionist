@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '~> 3.2'
 
-gem 'impressionist', :path => '../../'
+gem 'impressionist', path: '../../'
 
 platforms :jruby do
   gem 'activerecord-jdbcsqlite3-adapter'
