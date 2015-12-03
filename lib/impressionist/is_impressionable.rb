@@ -3,7 +3,7 @@ module Impressionist
     extend ActiveSupport::Concern
 
     module ClassMethods
-      def is_impressionable(options={})
+      def is_impressionable(options = {})
         define_association
         @impressionist_cache_options = options
 
@@ -14,10 +14,9 @@ module Impressionist
 
       def define_association
         has_many(:impressions,
-        :as => :impressionable,
-        :dependent => :destroy)
+                 as: :impressionable,
+                 dependent: :destroy)
       end
     end
-  
   end
 end

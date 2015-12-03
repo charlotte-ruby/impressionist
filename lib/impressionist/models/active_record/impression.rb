@@ -3,7 +3,6 @@
 # * asks updatable? whether it may or may not be updated
 
 class Impression < ActiveRecord::Base
-
   include Impressionist::CounterCache
 
   # sets belongs_to and attr_accessible depending on Rails version

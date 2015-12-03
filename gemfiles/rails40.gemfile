@@ -24,4 +24,4 @@ group :test do
   gem 'friendly_id', '~> 5.1.0'
 end
 
-gemspec :path => '../'
+gemspec path: '../'

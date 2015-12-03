@@ -7,7 +7,6 @@ module Impressionist
       def copy_config_file
         template 'impression.rb', 'config/initializers/impression.rb'
       end
-
     end
   end
 end
