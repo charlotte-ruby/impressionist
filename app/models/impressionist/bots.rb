@@ -1462,6 +1462,10 @@ module Impressionist
             'Zippy v2.0 - Zippyfinder.com',
             'ZoomSpider - wrensoft.com',
             'zspider/0.9-dev http://feedback.redkolibri.com/',
-            'ZyBorg/1.0 (ZyBorg@WISEnut.com; http://www.WISEnut.com)']
+            'ZyBorg/1.0 (ZyBorg@WISEnut.com; http://www.WISEnut.com)',
+
+            # sougou of China
+            'Sogou web spider/4.0(+http://www.sogou.com/docs/help/webmasters.htm#07)'
+          ]
   end
 end
