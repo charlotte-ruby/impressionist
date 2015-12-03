@@ -44,7 +44,7 @@ module Impressionist
       if Rails::VERSION::MAJOR == 4
         distinct ? imps.select(options[:filter]).distinct.count : imps.count
       else
-        distinct ? imps.count(options[:filter], :distinct => true) : imps.count
+        distinct ? imps.count(options[:filter], distinct: true) : imps.count
       end
     end
 
@@ -56,7 +56,5 @@ module Impressionist
     def impressionable?
       true
     end
-
   end
-
 end

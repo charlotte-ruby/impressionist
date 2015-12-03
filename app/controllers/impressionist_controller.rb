@@ -2,7 +2,7 @@ require 'digest/sha2'
 
 module ImpressionistController
   module ClassMethods
-    def impressionist(opts={})
+    def impressionist(opts = {})
       before_filter { |c| c.impressionist_subapp_filter(opts) }
     end
   end
@@ -12,11 +12,11 @@ module ImpressionistController
       base.before_filter :impressionist_app_filter
     end
 
-    def impressionist(obj,message=nil,opts={})
+    def impressionist(obj, message = nil, opts = {})
       if should_count_impression?(opts)
         if obj.respond_to?("impressionable?")
           if unique_instance?(obj, opts[:unique])
-            obj.impressions.create(associative_create_statement({:message => message}))
+            obj.impressions.create(associative_create_statement({message: message}))
           end
         else
           # we could create an impression anyway. for classes, too. why not?
@@ -44,15 +44,16 @@ module ImpressionistController
     # creates a statment hash that contains default values for creating an impression via an AR relation.
     def associative_create_statement(query_params={})
       query_params.reverse_merge!(
-        :controller_name => controller_name,
-        :action_name => action_name,
-        :user_id => user_id,
-        :request_hash => @impressionist_hash,
-        :session_hash => session_hash,
-        :ip_address => request.remote_ip,
-        :referrer => request.referer,
-        :params => params_hash
-        )
+        controller_name: controller_name,
+        action_name: action_name,
+        user_id: user_id,
+        request_hash: @impressionist_hash,
+        session_hash: session_hash,
+        ip_address: request.remote_ip,
+        referrer: request.referer,
+        user_agent: request.user_agent,
+        params: params_hash
+      )
     end
 
     private
@@ -103,7 +104,7 @@ module ImpressionistController
       request_param = params_hash
       impressions.detect{|impression| impression.params == request_param }.nil?
     end
-    
+
     # creates the query to check for uniqueness
     def unique_query(unique_opts,impressionable=nil)
       full_statement = direct_create_statement({},impressionable)
@@ -117,9 +118,9 @@ module ImpressionistController
     # creates a statment hash that contains default values for creating an impression.
     def direct_create_statement(query_params={},impressionable=nil)
       query_params.reverse_merge!(
-        :impressionable_type => controller_name.singularize.camelize,
-        :impressionable_id => impressionable.present? ? impressionable.id : params[:id]
-        )
+        impressionable_type: controller_name.singularize.camelize,
+        impressionable_id: impressionable.present? ? impressionable.id : params[:id]
+      )
       associative_create_statement(query_params)
     end
 

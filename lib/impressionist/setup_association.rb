@@ -34,6 +34,7 @@ module Impressionist
                         :ip_address,
                         :view_name,
                         :referrer,
+                        :user_agent,
                         :message,
                         :user_id,
                         :params)
@@ -45,5 +46,3 @@ module Impressionist
       end
   end
 end
-
-
