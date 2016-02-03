@@ -22,6 +22,9 @@ group :test do
   gem 'simplecov'
   gem 'systemu'
   gem 'friendly_id', '~> 5.1.0'
+
+  # test/unit has been removed by default in Ruby 2.2.x+
+  gem 'test-unit'
 end
 
 gemspec :path => '../'

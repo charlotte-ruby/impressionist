@@ -2,7 +2,7 @@ language: ruby
 before_script:
   - cd tests/test_app
   - bundle exec rails g impressionist -f
-  - bundle exec rake db:migrate
+  - bundle exec rake db:create db:migrate RAILS_ENV=test
   - cd ..
 rvm:
   - 1.9.3

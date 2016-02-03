@@ -36,6 +36,9 @@ group :development, :test do
   gem 'autotest-notification'
   gem 'rspec-rails', '~> 2.14.0'
   gem 'spork'
+
+  # test/unit has been removed by default in Ruby 2.2.x+
+  gem 'test-unit'
 end
 
 group :test do
