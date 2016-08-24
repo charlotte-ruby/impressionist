@@ -1,0 +1,30 @@
+source 'https://rubygems.org'
+
+gem 'rake', '>= 0.9'
+gem 'rdoc', '>= 2.4.2'
+
+platforms :jruby do
+  gem 'activerecord-jdbcsqlite3-adapter'
+  gem 'jdbc-sqlite3'
+  gem 'jruby-openssl'
+end
+
+platforms :ruby, :mswin, :mingw do
+  gem 'sqlite3'
+end
+
+group :test do
+  gem 'capybara', '>= 2.0.3'
+  gem 'minitest'
+  gem 'minitest-rails'
+  gem 'rails', '~> 5.0.0'
+  gem 'rspec-rails', '~> 2.14.0'
+  gem 'simplecov'
+  gem 'systemu'
+  gem 'friendly_id', '~> 5.1.0'
+
+  # test/unit has been removed by default in Ruby 2.2.x+
+  gem 'test-unit'
+end
+
+gemspec :path => '../'
