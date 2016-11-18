@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_filter :test_current_user_var
+  before_action :test_current_user_var
 
   def test_current_user_var
     if session[:user_id]

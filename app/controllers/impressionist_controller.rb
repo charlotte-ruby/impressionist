@@ -3,13 +3,13 @@ require 'digest/sha2'
 module ImpressionistController
   module ClassMethods
     def impressionist(opts={})
-      before_filter { |c| c.impressionist_subapp_filter(opts) }
+      before_action { |c| c.impressionist_subapp_filter(opts) }
     end
   end
 
   module InstanceMethods
     def self.included(base)
-      base.before_filter :impressionist_app_filter
+      base.before_action :impressionist_app_filter
     end
 
     def impressionist(obj,message=nil,opts={})
