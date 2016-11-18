@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131004135319) do
+ActiveRecord::Schema.define(:version => 20150207140310) do
 
   create_table "articles", :force => true do |t|
     t.string   "name"
@@ -41,7 +41,6 @@ ActiveRecord::Schema.define(:version => 20131004135319) do
     t.string   "ip_address"
     t.string   "session_hash"
     t.text     "message"
-    t.text     "params"
     t.text     "referrer"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
@@ -52,7 +51,6 @@ ActiveRecord::Schema.define(:version => 20131004135319) do
   add_index "impressions", ["controller_name", "action_name", "request_hash"], :name => "controlleraction_request_index"
   add_index "impressions", ["controller_name", "action_name", "session_hash"], :name => "controlleraction_session_index"
   add_index "impressions", ["impressionable_type", "impressionable_id", "ip_address"], :name => "poly_ip_index"
-  add_index "impressions", ["impressionable_type", "impressionable_id", "params"], :name => "poly_params_request_index"
   add_index "impressions", ["impressionable_type", "impressionable_id", "request_hash"], :name => "poly_request_index"
   add_index "impressions", ["impressionable_type", "impressionable_id", "session_hash"], :name => "poly_session_index"
   add_index "impressions", ["impressionable_type", "message", "impressionable_id"], :name => "impressionable_type_message_index"
