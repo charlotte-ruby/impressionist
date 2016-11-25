@@ -26,7 +26,7 @@ describe ArticlesController do
     Article.first.impressions.last.action_name.should eq "show"
   end
 
-  it "should log the user_id if user is authenticated (@current_user before_filter method)" do
+  it "should log the user_id if user is authenticated (@current_user before_action method)" do
     session[:user_id] = 123
     get "show", :id=> 1
     Article.first.impressions.last.user_id.should eq 123
