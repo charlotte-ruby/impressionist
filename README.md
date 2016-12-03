@@ -91,9 +91,10 @@ Usage
    controller if you are using this method.  If you add "impressionist" to the
    top of your controller and also use this method in your action, it will
    result in 2 impressions being logged (but associated with one request_hash).
-   If you're using [friendly_id](https://github.com/norman/friendly_id) be sure 
-   to log impressionist this way, as params[:id] will return a string(url slug) 
-   while impressionable_id is a Integer column in database.
+   If you're using [friendly_id](https://github.com/norman/friendly_id) be sure
+   to log impressionist this way, as params[:id] will return a string(url slug)
+   while impressionable_id is a Integer column in database. Also note that you
+   have to take step #3 for the Widget model for this to work.
 
         def show
           @widget = Widget.find
@@ -119,7 +120,7 @@ Usage
    in turn will give you impressions with unique params.
 
         @widget.impressionist_count(:filter => :params)
-        
+
 8. Get the unique impression count from a model filtered by session hash.  Same
    as #6 regarding request hash.  This may be more desirable than filtering by
    IP address depending on your situation, since filtering by IP may ignore
@@ -188,7 +189,7 @@ impressions in your controller:
 
     # only record impression if session is unique
     impressionist :unique => [:session_hash]
-    
+
     # only record impression if param is unique
     impressionist :unique => [:params]
 
