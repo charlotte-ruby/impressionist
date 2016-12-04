@@ -59,7 +59,7 @@ module ImpressionistController
         :session_hash => session_hash,
         :ip_address => request.remote_ip,
         :referrer => request.referer,
-        :params => params_hash
+        :params => params_hash.except(Rails.application.config.filter_parameters)
         )
     end
 
