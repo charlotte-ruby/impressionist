@@ -6,6 +6,8 @@ before_script:
   - bundle exec rails g impressionist -f
   - bundle exec rake db:create db:migrate RAILS_ENV=test
   - cd ..
+script:
+  - bundle exec rake
 rvm:
   - 1.9.3
   - 2.0.0
