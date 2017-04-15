@@ -4,16 +4,23 @@
 module Impressionist
 
   class UpdateCounters
-    attr_reader :receiver, :klass
+    attr_reader :impressionable, :receiver, :receiver_column_name
 
-    def initialize(receiver)
-      @receiver = receiver
-      @klass = receiver.class
+    def initialize(impressionable)
+      @impressionable = impressionable
+
+      @receiver = @impressionable
+      @receiver_column_name = column_name
+      while @receiver_column_name.instance_of? Hash do
+        key = @receiver_column_name.keys.first
+        @receiver = @receiver.send(key)
+        @receiver_column_name = @receiver_column_name[key]
+      end
     end
 
     def update
-      klass.
-      update_counters(id, column_name => result)
+      receiver.class.
+      update_counters(id, receiver_column_name => result)
     end
 
     private
@@ -25,12 +32,12 @@ module Impressionist
     # Count impressions based on unique_filter
     # default is :ip_address when unique: true
     def impressions_total
-      receiver.impressionist_count filter
+      impressionable.impressionist_count filter
     end
 
     # Fetch impressions from a receiver's column
     def impressions_cached
-      receiver.send(column_name) || 0
+      receiver.send(receiver_column_name) || 0
     end
 
     def filter
@@ -52,11 +59,11 @@ module Impressionist
     end
 
     def column_name
-      cache_options[:column_name].to_s
+      cache_options[:column_name]
     end
 
     def cache_options
-      klass.
+      impressionable.class.
       impressionist_counter_cache_options
     end
 
