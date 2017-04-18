@@ -175,6 +175,10 @@ It is as simple as this:
 
     t.integer :my_column_name, :default => 0
 
+If you want to use the typical Rails 4 migration generator, you can:
+
+    rails g migration AddImpressionsCountToBook impressions_count:int
+
 What if I only want to record unique impressions?
 -------------------------------------------------
 Maybe you only care about unique impressions and would like to avoid
