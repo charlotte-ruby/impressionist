@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rake', '>= 0.9'
+gem 'rake', '>= 0.9', '< 11.0'
 gem 'rdoc', '>= 2.4.2'
 
 platforms :jruby do
@@ -14,6 +14,7 @@ platforms :ruby, :mswin, :mingw do
 end
 
 group :test do
+  gem 'public_suffix', '< 1.5.0'
   gem 'capybara', '>= 2.0.3'
   gem 'minitest'
   gem 'minitest-rails'
