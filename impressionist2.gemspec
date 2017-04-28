@@ -3,7 +3,7 @@ $:.push File.expand_path('../lib', __FILE__)
 require 'impressionist/version'
 
 Gem::Specification.new do |s|
-  s.name          = 'impressionist'
+  s.name          = 'impressionist2'
   s.version       = Impressionist::VERSION.dup
   s.platform      = Gem::Platform::RUBY
   s.licenses      = ['MIT']
