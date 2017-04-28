@@ -3,13 +3,13 @@ require 'digest/sha2'
 module ImpressionistController
   module ClassMethods
     def impressionist(opts={})
-      before_filter { |c| c.impressionist_subapp_filter(opts) }
+      before_action { |c| c.impressionist_subapp_filter(opts) }
     end
   end
 
   module InstanceMethods
     def self.included(base)
-      base.before_filter :impressionist_app_filter
+      base.before_action :impressionist_app_filter
     end
 
     def impressionist(obj,message=nil,opts={})
@@ -109,7 +109,11 @@ module ImpressionistController
       full_statement = direct_create_statement({},impressionable)
       # reduce the full statement to the params we need for the specified unique options
       unique_opts.reduce({}) do |query, param|
-        query[param] = full_statement[param]
+        if param == :daily 
+          query['created_at'] = (Time.now.midnight)..Time.now.end_of_day
+        else
+          query[param] = full_statement[param]
+        end
         query
       end
     end
