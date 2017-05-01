@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_filter :test_current_user_var
+  before_action :test_current_user_var
 
   def test_current_user_var
     if session[:user_id]
@@ -10,6 +10,10 @@ class ArticlesController < ApplicationController
 
   def index
     impressionist(Article.first,"this is a test article impression")
+  end
+
+  def additional_fields
+    impressionist(Article.first,"this is a test article impression", { article_name: Article.first.name })
   end
 
   def show

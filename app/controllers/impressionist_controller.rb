@@ -3,20 +3,20 @@ require 'digest/sha2'
 module ImpressionistController
   module ClassMethods
     def impressionist(opts={})
-      before_filter { |c| c.impressionist_subapp_filter(opts) }
+      before_action { |c| c.impressionist_subapp_filter(opts) }
     end
   end
 
   module InstanceMethods
     def self.included(base)
-      base.before_filter :impressionist_app_filter
+      base.before_action :impressionist_app_filter
     end
 
     def impressionist(obj,message=nil,opts={})
       if should_count_impression?(opts)
         if obj.respond_to?("impressionable?")
           if unique_instance?(obj, opts[:unique])
-            obj.impressions.create(associative_create_statement({:message => message}))
+            obj.impressions.create(associative_create_statement({:message => message}.merge(opts.except(:unique))))
           end
         else
           # we could create an impression anyway. for classes, too. why not?

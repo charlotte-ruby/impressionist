@@ -1,8 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  before_filter :secondary_before_filter
+  before_action :secondary_before_action
 
-  def secondary_before_filter
-    @test_secondary_before_filter = "this is a test"
+  def secondary_before_action
+    @test_secondary_before_action = "this is a test"
   end
 end

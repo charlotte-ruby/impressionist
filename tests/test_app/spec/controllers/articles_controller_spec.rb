@@ -26,7 +26,7 @@ describe ArticlesController do
     Article.first.impressions.last.action_name.should eq "show"
   end
 
-  it "should log the user_id if user is authenticated (@current_user before_filter method)" do
+  it "should log the user_id if user is authenticated (@current_user before_action method)" do
     session[:user_id] = 123
     get "show", :id=> 1
     Article.first.impressions.last.user_id.should eq 123
@@ -53,6 +53,15 @@ describe ArticlesController do
     click_link "Same Page"
     Impression.last.referrer.should eq "http://test.host/articles/1"
   end
+
+  it "should save the additional fields" do
+    class Impression
+      attr_accessible :article_name
+    end
+    visit additional_fields_article_path(Article.first)
+    Impression.last.article_name.should eq Article.first.name
+  end
+
 
   it "should log request with params (checked = true)" do
     get "show", id: 1, checked: true
