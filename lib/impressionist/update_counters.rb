@@ -42,9 +42,17 @@ module Impressionist
     # is_impressionable :counter_cache => true,
     # :unique => :any_other_filter
     def unique_filter
-      Symbol === unique ?
-      unique :
-      :ip_address
+      # Support `is_impressionable :counter_cache => true, :unique => true`
+      # defaulting to `:ip_address` for counting unique impressions.
+      return :ip_address if unique == true
+
+      # Should a user try `is_impressionable :counter_cache => true, :unique => false`
+      # then support that as well
+      return :all if unique == false
+
+      # Otherwise set the filter to either what the user supplied as the `unique` option
+      # or the default (`:all`)
+      unique
     end
 
     def unique
