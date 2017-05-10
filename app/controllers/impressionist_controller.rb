@@ -3,13 +3,21 @@ require 'digest/sha2'
 module ImpressionistController
   module ClassMethods
     def impressionist(opts={})
-      before_filter { |c| c.impressionist_subapp_filter(opts) }
+      if Rails::VERSION::MAJOR >= 5
+        before_action { |c| c.impressionist_subapp_filter(opts) }
+      else
+        before_filter { |c| c.impressionist_subapp_filter(opts) }
+      end
     end
   end
 
   module InstanceMethods
     def self.included(base)
-      base.before_filter :impressionist_app_filter
+      if Rails::VERSION::MAJOR >= 5
+        base.before_action :impressionist_app_filter
+      else
+        base.before_filter :impressionist_app_filter
+      end
     end
 
     def impressionist(obj,message=nil,opts={})
@@ -103,7 +111,7 @@ module ImpressionistController
       request_param = params_hash
       impressions.detect{|impression| impression.params == request_param }.nil?
     end
-    
+
     # creates the query to check for uniqueness
     def unique_query(unique_opts,impressionable=nil)
       full_statement = direct_create_statement({},impressionable)

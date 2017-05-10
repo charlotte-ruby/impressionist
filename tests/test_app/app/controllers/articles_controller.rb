@@ -1,5 +1,9 @@
 class ArticlesController < ApplicationController
-  before_filter :test_current_user_var
+  if Rails::VERSION::MAJOR >= 5
+    before_action :test_current_user_var
+  else
+    before_filter :test_current_user_var
+  end
 
   def test_current_user_var
     if session[:user_id]

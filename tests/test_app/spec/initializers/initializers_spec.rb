@@ -13,7 +13,7 @@ describe Impressionist do
     expect(ApplicationController).to respond_to(method)
   end
 
-  it "should include the before_filter method in ApplicationController" do
+  it "should include the before_action method in ApplicationController" do
      filters = ApplicationController._process_action_callbacks.select { |c| c.kind == :before }
      filters.collect{|filter|filter.filter}.include?(:impressionist_app_filter).should be_true
   end
