@@ -11,7 +11,7 @@ module Impressionist
       # expects attr_accessible to return true
       # and pass 12 arguments
       mock.
-        expect(:attr_accessible, true) do |*args|
+        expect(:attr_accessible, true) do |args|
           args.size == 12
         end
 
