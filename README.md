@@ -247,7 +247,8 @@ Want to run the tests? Ok mummy
 Contributors
 ------------
 * [johnmcaliley - creator](https://github.com/johnmcaliley)
-* [Antonio C Nalesso - maintainer](https://github.com/acnalesso)
+* [jgrau - maintainer](https://github.com/jgrau)
+* [acnalesso](https://github.com/acnalesso)
 * [coryschires](https://github.com/coryschires)
 * [georgmittendorfer](https://github.com/georgmittendorfer)
 
