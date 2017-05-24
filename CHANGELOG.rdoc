@@ -1,3 +1,14 @@
+== 1.6.0 (2016-09-16)
+* Documentation example for counter_cache (#239, @fwolfst)
+* Green Travis CI builds (#238, @jgrau)
+* Rails 5.1 support (#241, @msimonborg)
+* Use `dependent: :delete_all` instead of `:destroy` for performance gains (#242, @midnightSuyama & @jgrau)
+* Fix counter cache not updating when no `unique` option is set (#243, @sachiotomita & @jgrau)
+
+== 1.5.2 (2016-09-16)
+
+== 1.5.1 (2013-12-31)
+
 == 1.5.0 (2013-12-30)
 * Added message filtering.
 * (@overovermind)
