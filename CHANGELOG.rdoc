@@ -1,4 +1,4 @@
-== 1.6.0 (2016-09-16)
+== 1.6.0 (2017-05-24)
 * Documentation example for counter_cache (#239, @fwolfst)
 * Green Travis CI builds (#238, @jgrau)
 * Rails 5.1 support (#241, @msimonborg)
