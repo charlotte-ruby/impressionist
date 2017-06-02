@@ -71,4 +71,20 @@ describe ArticlesController do
     Impression.last.session_hash.size.should eq 32
     Impression.last.referrer.should eq nil
   end
+
+  describe "when filtering params" do
+    before do
+      @_filtered_params = Rails.application.config.filter_parameters
+      Rails.application.config.filter_parameters = [:password]
+    end
+
+    it "should FILTER params that are included in filtering {}" do
+      get "index", password: "best-password-ever"
+      Impression.last.params.should eq("password" => "[FILTERED]")
+    end
+
+    after do
+      Rails.application.config.filter_parameters = @_filtered_params
+    end
+  end
 end
