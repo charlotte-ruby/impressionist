@@ -51,6 +51,7 @@ module ImpressionistController
 
     # creates a statment hash that contains default values for creating an impression via an AR relation.
     def associative_create_statement(query_params={})
+      filter = ActionDispatch::Http::ParameterFilter.new(Rails.application.config.filter_parameters)
       query_params.reverse_merge!(
         :controller_name => controller_name,
         :action_name => action_name,
@@ -59,7 +60,7 @@ module ImpressionistController
         :session_hash => session_hash,
         :ip_address => request.remote_ip,
         :referrer => request.referer,
-        :params => params_hash
+        :params => filter.filter(params_hash)
         )
     end
 
