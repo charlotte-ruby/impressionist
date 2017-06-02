@@ -78,7 +78,7 @@ describe ArticlesController do
       Rails.application.config.filter_parameters = [:password]
     end
 
-    it "should FILTER params that are included in filtering {}" do
+    it "values should not be recorded" do
       get "index", password: "best-password-ever"
       Impression.last.params.should eq("password" => "[FILTERED]")
     end
