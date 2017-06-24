@@ -1,4 +1,4 @@
-class CreateImpressionsTable < ActiveRecord::Migration
+class CreateImpressionsTable < ActiveRecord::Migration<%= Rails::VERSION::MAJOR >= 5 ? "[#{Rails.version.to_f}]" : "" %>
   def self.up
     create_table :impressions, :force => true do |t|
       t.string :impressionable_type
