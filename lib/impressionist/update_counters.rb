@@ -13,7 +13,7 @@ module Impressionist
 
     def update
       klass.
-      update_counters(id, column_name => result)
+      update_counters(id, column_name => result, touch: true)
     end
 
     private
