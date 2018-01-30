@@ -168,6 +168,9 @@ Any option you pass to unique, impressionist_count will use it as its filter to 
     is_impressionable :counter_cache => true, :column_name => :my_column_name, :unique => :request_hash
     is_impressionable :counter_cache => true, :column_name => :my_column_name, :unique => :all
 
+By default, when Impresssionist updates your model's countner cache column, the model's `updated_at` column won't be updated. If you'd like to update the `updated_at` field of your model whenever the counter cache is changed, set `:touch => true`:
+    
+    is_impressionable :counter_cache => true, :column_name => :my_column_name, :touch => true
 
 Adding column to model
 ----------------------
