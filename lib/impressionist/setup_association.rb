@@ -12,7 +12,7 @@ module Impressionist
     end
 
     def define_belongs_to
-      receiver.belongs_to(:impressionable, :polymorphic => true)
+      receiver.belongs_to(:impressionable, :polymorphic => true, :optional => true)
     end
 
     def set
