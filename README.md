@@ -246,8 +246,10 @@ Want to run the tests? Ok mummy
 
 Contributors
 ------------
+WE ARE CURRENTLY LOOKING FOR SOMEONE TO HELP MAINTAIN THIS REPOSITORY.  IF YOU ARE INTERESTED, MESSAGE @johnmcaliley.
+
 * [johnmcaliley - creator](https://github.com/johnmcaliley)
-* [jgrau - maintainer](https://github.com/jgrau)
+* [jgrau](https://github.com/jgrau)
 * [acnalesso](https://github.com/acnalesso)
 * [coryschires](https://github.com/coryschires)
 * [georgmittendorfer](https://github.com/georgmittendorfer)
