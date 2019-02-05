@@ -1,20 +1,19 @@
 require 'timeout'
 require 'net/http'
-require 'nokogiri'
+require 'json'
 
 module Impressionist
   module Bots
-    LIST_URL = "http://www.user-agents.org/allagents.xml"
+    LIST_URL = "https://raw.githubusercontent.com/monperrus/crawler-user-agents/master/crawler-user-agents.json"
     def self.consume
       Timeout.timeout(4) do
         response = Net::HTTP.get(URI.parse(LIST_URL))
-        doc = Nokogiri::XML(response)
+        my_hash = JSON.parse(response)
         list = []
-        doc.xpath('//user-agent').each do |agent|
-          type = agent.xpath("Type").text
-          list << agent.xpath("String").text.gsub("&lt;","<") if ["R","S"].include?(type) #gsub hack for badly formatted data
+        my_hash.each do |agent|
+          list << agent['instances']
         end
-        list
+        pp list.flatten
       end
     end
   end
