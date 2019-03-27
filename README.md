@@ -22,9 +22,11 @@ reporting yet.. this thingy just creates the data.
 
 What about bots?
 ----------------
-They are ignored.  1200 known bots have been added to the ignore list as of
-February 1, 2011.  Impressionist uses this list:
-http://www.user-agents.org/allagents.xml
+They are ignored by using [Device Detector's](https://rubygems.org/gems/device_detector/versions/0.2.0) user agent database.
+
+https://github.com/podigee/device_detector/blob/develop/regexes/bots.yml
+
+You can also get a list of bots identified, by running `rake impressionist:bots`
 
 Installation
 ------------
