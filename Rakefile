@@ -16,7 +16,7 @@ task :default => [:test, :test_app]
 namespace :impressionist do
   require File.dirname(__FILE__) + "/lib/impressionist/bots"
 
-  desc "output the list of bots from http://www.user-agents.org/"
+  desc "output the list of bots from https://github.com/podigee/device_detector"
   task :bots do
     p Impressionist::Bots.consume
   end

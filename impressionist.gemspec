@@ -18,7 +18,6 @@ Gem::Specification.new do |s|
   s.require_path  = 'lib'
   s.required_rubygems_version = Gem::Requirement.new('>= 1.3.6') if s.respond_to? :required_rubygems_version=
 
-  s.add_dependency 'nokogiri', RUBY_VERSION < '2.1.0' ? '~> 1.6.0' : '~> 1'
   s.add_dependency 'device_detector', '~> 1.0'
   s.add_development_dependency 'bundler', '~> 1.0'
 end
