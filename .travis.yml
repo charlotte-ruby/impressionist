@@ -4,6 +4,7 @@ before_install:
   - yes | gem update --system --force
   - gem install bundler -v '< 2'
   - gem uninstall bundler -v '>= 2' || true
+  - gem list bundler
 before_script:
   - cd tests/test_app
   - bundle exec rails g impressionist -f
