@@ -10,19 +10,19 @@ script:
   - bundle exec rake
 rvm:
   - 1.9.3 # EOL
-  - 2.0.0 # EOL
+  # - 2.0.0 # EOL
   - 2.7.0
-  - jruby-head
-  - rbx
-  - ruby-head
+  # - jruby-head
+  # - rbx
+  # - ruby-head
 gemfile:
   - gemfiles/rails32.gemfile
   - gemfiles/rails40.gemfile
 matrix:
-  allow_failures:
-    - rvm: jruby-head
-    - rvm: rbx
-    - rvm: ruby-head
+  # allow_failures:
+  #   - rvm: jruby-head
+  #   - rvm: rbx
+  #   - rvm: ruby-head
   fast_finish: true
 notifications:
   email:
