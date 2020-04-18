@@ -1,5 +1,8 @@
 language: ruby
 before_install:
+  # hack to support older versions of ruby
+  # see https://docs.travis-ci.com/user/languages/ruby/#bundler-20
+  - yes | gem update --system --force
   - gem install bundler
 before_script:
   - cd tests/test_app
