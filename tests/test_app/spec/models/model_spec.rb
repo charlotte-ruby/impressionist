@@ -63,8 +63,8 @@ describe Impression do
     a = Article.create
     i = a.impressions.create
     a.destroy
-    a.destroyed?.should be_true
-    Impression.exists?(i.id).should be_false
+    a.destroyed?.should be_truthy
+    Impression.exists?(i.id).should be_falsey
   end
 
 end

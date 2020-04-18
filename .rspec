@@ -1,1 +1,3 @@
 --color
+-I tests/spec
+-I tests/test_app/spec

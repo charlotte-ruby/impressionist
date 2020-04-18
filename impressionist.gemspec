@@ -1,5 +1,6 @@
-# -*- encoding: utf-8 -*-
-$:.push File.expand_path('../lib', __FILE__)
+# frozen_string_literal: false
+
+$LOAD_PATH.push File.expand_path('lib', __dir__)
 require 'impressionist/version'
 
 Gem::Specification.new do |s|
@@ -16,8 +17,12 @@ Gem::Specification.new do |s|
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- tests/**/*`.split("\n")
   s.require_path  = 'lib'
-  s.required_rubygems_version = Gem::Requirement.new('>= 1.3.6') if s.respond_to? :required_rubygems_version=
+  if s.respond_to? :required_rubygems_version=
+    s.required_rubygems_version = Gem::Requirement.new('>= 1.3.6')
+  end
 
   s.add_dependency 'nokogiri', RUBY_VERSION < '2.1.0' ? '~> 1.6.0' : '~> 1'
   s.add_development_dependency 'bundler', '~> 1.0'
+  s.add_development_dependency 'rspec', '~> 3'
+  s.add_development_dependency 'pry'
 end

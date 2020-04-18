@@ -5,7 +5,7 @@ describe Impressionist do
 
   it "should be extended from ActiveRecord::Base" do
     expect(ActiveRecord::Base).to respond_to(imp)
-    #ActiveRecord::Base.methods.include?(method).should be_true
+    #ActiveRecord::Base.methods.include?(method).should be_truthy
   end
 
   it "should include methods in ApplicationController" do
@@ -15,6 +15,6 @@ describe Impressionist do
 
   it "should include the before_action method in ApplicationController" do
      filters = ApplicationController._process_action_callbacks.select { |c| c.kind == :before }
-     filters.collect{|filter|filter.filter}.include?(:impressionist_app_filter).should be_true
+     filters.collect{|filter|filter.filter}.include?(:impressionist_app_filter).should be_truthy
   end
 end

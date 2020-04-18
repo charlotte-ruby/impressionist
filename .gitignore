@@ -11,3 +11,4 @@ Gemfile.lock
 gemfiles/*.lock
 *.swo
 *.swp
+.DS_Store
