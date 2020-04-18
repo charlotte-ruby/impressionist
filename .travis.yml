@@ -2,9 +2,8 @@ language: ruby
 before_install:
   # hack to support bundler 1
   - yes | gem update --system --force
-  - gem uninstall bundler -v '>= 2' || true
   - gem install bundler -v '< 2'
-
+  - gem uninstall bundler -v '>= 2' || true
 before_script:
   - cd tests/test_app
   - bundle exec rails g impressionist -f
