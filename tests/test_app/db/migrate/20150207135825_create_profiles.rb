@@ -1,4 +1,4 @@
-class CreateProfiles < ActiveRecord::Migration
+class CreateProfiles < ActiveRecord::Migration<%= Rails::VERSION::MAJOR >= 5 ? "[#{Rails.version.to_f}]" : "" %>
   def change
     create_table :profiles do |t|
       t.string :username

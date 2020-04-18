@@ -1,4 +1,4 @@
-class CreateWidgets < ActiveRecord::Migration
+class CreateWidgets < ActiveRecord::Migration<%= Rails::VERSION::MAJOR >= 5 ? "[#{Rails.version.to_f}]" : "" %>
   def self.up
     create_table :widgets do |t|
       t.string :name

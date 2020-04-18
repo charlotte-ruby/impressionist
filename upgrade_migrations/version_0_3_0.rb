@@ -1,4 +1,4 @@
-class CreateImpressionsTable < ActiveRecord::Migration
+class CreateImpressionsTable < ActiveRecord::Migration<%= Rails::VERSION::MAJOR >= 5 ? "[#{Rails.version.to_f}]" : "" %>
   def self.up
     add_column :impressions, :session_hash, :string
     remove_index :impressions, :name => :poly_index
