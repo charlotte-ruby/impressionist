@@ -2,7 +2,7 @@ language: ruby
 before_install:
   # hack to support bundler 1
   - yes | gem update --system --force
-  - gem install bundler -v '< 2'
+  - gem install --default bundler -v '< 2'
   - gem uninstall bundler -v '>= 2' || true
   - gem list bundler
 before_script:
