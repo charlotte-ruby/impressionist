@@ -1,6 +1,7 @@
 language: ruby
 before_install:
   # hack to support bundler 1
+  - yes | gem update --system --force
   - gem uninstall bundler -v '>= 2' || true
   - gem install bundler -v '< 2'
 
@@ -14,7 +15,7 @@ script:
 rvm:
   # - 1.9.3 # EOL
   # - 2.0.0 # EOL
-  - 2.4.0
+  - 2.4.9
   # - 2.7.0
   # - jruby-head
   # - rbx
