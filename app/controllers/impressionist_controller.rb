@@ -138,7 +138,10 @@ module ImpressionistController
       # str = request.session_options[:id]
       # logger.debug "Encoding: #{str.encoding.inspect}"
       # # request.session_options[:id].encode("ISO-8859-1")
-      request.session_options[:id]
+      id = request.session_options[:id]
+      # rack 2.0.8 releases new version of session id, id.to_s will raise error!
+      id = id.cookie_value if Rack::Session::SessionId.const_defined?(:ID_VERSION) && Rack::Session::SessionId::ID_VERSION == 2
+      id
     end
 
     def params_hash
