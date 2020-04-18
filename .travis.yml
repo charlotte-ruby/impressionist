@@ -4,11 +4,10 @@ before_install:
   # see https://docs.travis-ci.com/user/languages/ruby/#bundler-20
   # - yes | gem update --system --force
   # - gem install bundler
-  - env | sort
   - gem uninstall -v '>= 2' -i $(rvm gemdir)@global -ax bundler || true
   - gem install bundler -v '< 2'
 
-  before_script:
+before_script:
   - cd tests/test_app
   - bundle exec rails g impressionist -f
   - bundle exec rake db:create db:migrate RAILS_ENV=test
@@ -18,7 +17,7 @@ script:
 rvm:
   - 1.9.3 # EOL
   # - 2.0.0 # EOL
-  # - 2.7.0
+  - 2.7.0
   # - jruby-head
   # - rbx
   # - ruby-head
