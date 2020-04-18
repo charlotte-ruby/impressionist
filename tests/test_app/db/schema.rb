@@ -13,15 +13,23 @@
 
 ActiveRecord::Schema.define(:version => 20150207140310) do
 
+  create_table "ar_internal_metadata", :primary_key => "key", :force => true do |t|
+    t.string   "value",      :limit => nil
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  add_index "ar_internal_metadata", ["key"], :name => "sqlite_autoindex_ar_internal_metadata_1", :unique => true
+
   create_table "articles", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "name",       :limit => nil
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   create_table "friendly_id_slugs", :force => true do |t|
-    t.string   "slug",                         :null => false
-    t.integer  "sluggable_id",                 :null => false
+    t.string   "slug",           :limit => nil, :null => false
+    t.integer  "sluggable_id",                  :null => false
     t.string   "sluggable_type", :limit => 40
     t.datetime "created_at"
   end
@@ -31,20 +39,20 @@ ActiveRecord::Schema.define(:version => 20150207140310) do
   add_index "friendly_id_slugs", ["sluggable_type"], :name => "index_friendly_id_slugs_on_sluggable_type"
 
   create_table "impressions", :force => true do |t|
-    t.string   "impressionable_type"
+    t.string   "impressionable_type", :limit => nil
     t.integer  "impressionable_id"
     t.integer  "user_id"
-    t.string   "controller_name"
-    t.string   "action_name"
-    t.string   "view_name"
-    t.string   "request_hash"
-    t.string   "ip_address"
-    t.string   "session_hash"
+    t.string   "controller_name",     :limit => nil
+    t.string   "action_name",         :limit => nil
+    t.string   "view_name",           :limit => nil
+    t.string   "request_hash",        :limit => nil
+    t.string   "ip_address",          :limit => nil
+    t.string   "session_hash",        :limit => nil
     t.text     "message"
     t.text     "params"
     t.text     "referrer"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
   end
 
   add_index "impressions", ["controller_name", "action_name", "ip_address"], :name => "controlleraction_ip_index"
@@ -58,23 +66,23 @@ ActiveRecord::Schema.define(:version => 20150207140310) do
   add_index "impressions", ["user_id"], :name => "index_impressions_on_user_id"
 
   create_table "posts", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "name",       :limit => nil
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   create_table "profiles", :force => true do |t|
-    t.string   "username"
-    t.string   "slug"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "username",   :limit => nil
+    t.string   "slug",       :limit => nil
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   create_table "widgets", :force => true do |t|
-    t.string   "name"
-    t.integer  "impressions_count", :default => 0
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
+    t.string   "name",              :limit => nil
+    t.integer  "impressions_count",                :default => 0
+    t.datetime "created_at",                                      :null => false
+    t.datetime "updated_at",                                      :null => false
   end
 
 end

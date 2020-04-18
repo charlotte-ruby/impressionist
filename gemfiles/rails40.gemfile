@@ -18,7 +18,7 @@ group :test do
   gem 'capybara', '>= 2.0.3'
   gem 'minitest'
   gem 'minitest-rails'
-  gem 'rails', '~> 4.0.1'
+  gem 'rails', '~> 4.2.8'
   gem 'rspec-rails', '~> 3.9'
   gem 'simplecov'
   gem 'systemu'
@@ -27,5 +27,7 @@ group :test do
   # test/unit has been removed by default in Ruby 2.2.x+
   gem 'test-unit'
 end
+
+gem 'sqlite3'
 
 gemspec :path => '../'
