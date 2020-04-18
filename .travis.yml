@@ -6,7 +6,7 @@ before_script:
   - gem list rails
   - bundle exec rails --version
   - bundle exec rails g impressionist -f
-  - bundle exec rake db:create db:migrate RAILS_ENV=test
+  - bundle exec rake db:create db:schema:load RAILS_ENV=test
   - cd ..
 script:
   - bundle exec rake
