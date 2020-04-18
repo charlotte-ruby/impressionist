@@ -9,10 +9,6 @@ platforms :jruby do
   gem 'jruby-openssl'
 end
 
-platforms :ruby, :mswin, :mingw do
-  gem 'sqlite3'
-end
-
 group :test do
   gem 'public_suffix', '< 1.5.0'
   gem 'capybara', '>= 2.0.3'
@@ -28,6 +24,6 @@ group :test do
   gem 'test-unit'
 end
 
-gem 'sqlite3'
+gem 'sqlite3', '~> 1.4'
 
 gemspec :path => '../'
