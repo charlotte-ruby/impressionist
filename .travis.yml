@@ -17,8 +17,8 @@ before_script:
 script:
   - bundle exec rake
 rvm:
-  - 1.9.3 # EOL
-  # - 2.0.0 # EOL
+  # - 1.9.3 # EOL
+  - 2.0.0 # EOL
   # - 2.7.0
   # - jruby-head
   # - rbx
