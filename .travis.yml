@@ -1,15 +1,15 @@
 language: ruby
 before_script:
-  - gem install bundler -v '1.7.13'
+  - gem update --system
+  - gem install bundler
   - cd tests/test_app
-  - bundle _1.7.13_
-  - bundle _1.7.13_ exec rails g impressionist -f
-  - bundle _1.7.13_ exec rake db:create db:schema:load RAILS_ENV=test
+  - bundle
+  - bundle exec rails g impressionist -f
+  - bundle exec rake db:create db:schema:load RAILS_ENV=test
   - cd ..
 script:
-  - bundle _1.7.13_ exec rake
+  - bundle exec rake
 rvm:
-  - 2.4.5
   - 2.7.0
   # - jruby-head
   # - rbx
