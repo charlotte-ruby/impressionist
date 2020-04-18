@@ -3,6 +3,9 @@
 [![Build Status](https://secure.travis-ci.org/charlotte-ruby/impressionist.png?branch=master)](http://travis-ci.org/charlotte-ruby/impressionist)
 [![Code Climate](https://codeclimate.com/github/charlotte-ruby/impressionist.png)](https://codeclimate.com/github/charlotte-ruby/impressionist)
 
+WE ARE LOOKING FOR MAINTAINERS.  CONTACT @johnmcaliley IF YOU ARE INTERESTED IN HELPING
+=======================================================================================
+
 impressionist
 =============
 
