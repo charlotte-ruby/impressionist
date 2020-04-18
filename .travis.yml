@@ -21,7 +21,7 @@ rvm:
 gemfile:
   - gemfiles/rails32.gemfile
   - gemfiles/rails40.gemfile
-matrix:
+jobs:
   # allow_failures:
   #   - rvm: jruby-head
   #   - rvm: rbx
@@ -29,6 +29,6 @@ matrix:
   fast_finish: true
 notifications:
   email:
-    - acnalesso@yahoo.co.uk
-    - john@couponshack.com
+    # - acnalesso@yahoo.co.uk
+    # - john@couponshack.com
     - mmcmahand@gmail.com
