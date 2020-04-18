@@ -1,6 +1,8 @@
 language: ruby
 before_script:
   - cd tests/test_app
+  - env | sort
+  - bundle
   - gem list rails
   - bundle exec rails --version
   - bundle exec rails g impressionist -f
