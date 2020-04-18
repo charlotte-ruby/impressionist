@@ -1,24 +1,15 @@
 language: ruby
-before_install:
-  # hack to support bundler 1
-  #- yes | gem update --system --force
-  # - gem uninstall -v '>= 2' -i $(rvm gemdir)@global -ax bundler || true
-  # - gem install --default bundler -v '< 2'
-  # - gem uninstall bundler -v '>= 2' --force || true
-  - ruby -v
-  - bundle -v
-  - gem list
 before_script:
   - cd tests/test_app
+  - gem list rails
+  - bundle exec rails --version
   - bundle exec rails g impressionist -f
   - bundle exec rake db:create db:migrate RAILS_ENV=test
   - cd ..
 script:
   - bundle exec rake
 rvm:
-  # - 1.9.3 # EOL
-  # - 2.0.0 # EOL
-  - 2.4.9
+  - 2.4.5
   # - 2.7.0
   # - jruby-head
   # - rbx
