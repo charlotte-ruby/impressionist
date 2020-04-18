@@ -6,7 +6,7 @@ before_install:
   # - gem install bundler
   - gem list
   - env | sort
-  - gem uninstall -v '>= 2' -i $(rvm gemdir)@global -ax bundler || true
+  - gem uninstall bundler -v '>= 2' || true
   - gem install bundler -v '< 2'
 
 before_script:
