@@ -6,6 +6,7 @@ module Impressionist
   class RailsToggle
     # decides where or not to include attr_accessible
     def should_include?
+      # require 'pry'; binding.pry
       supported_by_rails? && (not using_strong_parameters?)
     end
 
@@ -18,6 +19,7 @@ module Impressionist
       # returns false if rails >= 4
       # true if rails < 4
       def supported_by_rails?
+        # require 'pry'; binding.pry
         ::Rails::VERSION::MAJOR.to_i < 4
       end
 

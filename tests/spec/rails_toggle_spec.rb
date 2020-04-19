@@ -6,13 +6,11 @@ require 'impressionist/rails_toggle'
 
 module Impressionist
   describe RailsToggle do
-
     before {
       @toggle = RailsToggle.new
     }
 
     describe "Rails 4" do
-
       # see your_minitest_path/lib/minitest/mock.rb
       it "must not include attr_accessible" do
         @toggle.stub :supported_by_rails?, false do
