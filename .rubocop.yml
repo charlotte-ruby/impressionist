@@ -1,0 +1,16 @@
+inherit_from: .rubocop_todo.yml
+
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+Lint/RaiseException:
+  Enabled: True
+Lint/StructNewOverride:
+  Enabled: True
+Style/ExponentialNotation:
+  Enabled: True
+Style/HashEachMethods:
+  Enabled: True
+Style/HashTransformKeys:
+  Enabled: True
+Style/HashTransformValues:
+  Enabled: True

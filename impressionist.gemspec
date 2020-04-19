@@ -22,7 +22,11 @@ Gem::Specification.new do |s|
   end
 
   s.add_dependency 'nokogiri', RUBY_VERSION < '2.1.0' ? '~> 1.6.0' : '~> 1'
+
   s.add_development_dependency 'rspec', '~> 3'
+  s.add_development_dependency 'guard-rspec', '~> 4.7'
+  s.add_development_dependency 'guard-rubocop', '~> 1.0'
+
   s.add_development_dependency 'pry'
   s.add_development_dependency 'sqlite3', '~> 1.4'
 end
