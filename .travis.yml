@@ -2,12 +2,7 @@ language: ruby
 before_script:
   - gem update --system
   - gem install bundler
-  - cd tests/test_app
   - bundle
-  - bundle exec rails g impressionist -f
-  - RAILS_ENV=test bundle exec rake db:create db:schema:load
-  - RAILS_ENV=test bundle exec rake assets:precompile
-  - cd ..
 script:
   - bundle exec rspec spec
 rvm:
