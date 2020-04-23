@@ -8,7 +8,7 @@ describe Impressionist::Bots do
     end
 
     it "is true if user_agent is on bot list" do
-      Impressionist::Bots.bot?("A-Online Search").should be_true
+      Impressionist::Bots.bot?("Domain Re-Animator Bot (http://domainreanimator.com) - support@domainreanimator.com").should be_true
     end
 
     it "is false if user_agent is blank" do
