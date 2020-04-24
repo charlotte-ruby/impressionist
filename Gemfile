@@ -10,7 +10,7 @@ platforms :jruby do
 end
 
 platforms :ruby, :mswin, :mingw do
-  gem 'sqlite3'
+  gem 'sqlite3', '~> 1.3.13'
 end
 
 group :test do

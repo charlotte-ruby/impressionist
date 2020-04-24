@@ -4,11 +4,12 @@ describe Impressionist::Bots do
 
   describe "self.bot?" do
     it "is true if user_agent is matches wild card" do
-      Impressionist::Bots.bot?("google.com bot").should be_true
+      Impressionist::Bots.bot?("bot").should be_true
+      Impressionist::Bots.bot?("crawler").should be_true
     end
 
     it "is true if user_agent is on bot list" do
-      Impressionist::Bots.bot?("A-Online Search").should be_true
+      Impressionist::Bots.bot?("acoonbot").should be_true
     end
 
     it "is false if user_agent is blank" do

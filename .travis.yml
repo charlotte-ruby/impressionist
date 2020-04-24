@@ -1,6 +1,6 @@
 language: ruby
 before_install:
-  - gem install bundler
+  - gem install bundler -v 1.17.3
 before_script:
   - cd tests/test_app
   - bundle exec rails g impressionist -f
