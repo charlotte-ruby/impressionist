@@ -17,7 +17,7 @@ script:
 rvm:
   - 2.7.0
   - jruby-head
-  - rbx
+  - rbx-4
   - ruby-head
 matrix:
   allow_failures:
