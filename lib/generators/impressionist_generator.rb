@@ -5,7 +5,7 @@ module Impressionist
       source_root File.expand_path('../templates', __FILE__)
 
       def copy_config_file
-        template 'impression.rb', 'config/initializers/impression.rb'
+        template 'impression.rb.erb', 'config/initializers/impression.rb'
       end
 
     end
