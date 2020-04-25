@@ -1,4 +1,4 @@
-class CreateWidgets < ActiveRecord::Migration
+class CreateWidgets < ActiveRecord::Migration[4.2]
   def self.up
     create_table :widgets do |t|
       t.string :name

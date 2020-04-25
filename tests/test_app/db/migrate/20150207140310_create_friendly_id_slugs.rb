@@ -1,4 +1,4 @@
-class CreateFriendlyIdSlugs < ActiveRecord::Migration
+class CreateFriendlyIdSlugs < ActiveRecord::Migration[4.2]
 
   def self.up
     create_table :friendly_id_slugs do |t|
