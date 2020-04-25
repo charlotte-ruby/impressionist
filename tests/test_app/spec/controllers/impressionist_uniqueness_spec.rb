@@ -2,13 +2,11 @@ require 'spec_helper'
 
 # we use the posts controller as it uses the impressionsist module. any such controller would do.
 describe DummyController do
-
   before do
     @impression_count = Impression.all.size
   end
 
   describe "impressionist filter uniqueness" do
-
     it "ignore uniqueness if not requested" do
       controller.impressionist_subapp_filter
       controller.impressionist_subapp_filter
@@ -77,7 +75,7 @@ describe DummyController do
     end
 
     it "recognize unique id" do
-      allow(controller).to receive(:params).and_return({:id => "666"}) # for correct impressionable id in filter
+      allow(controller).to receive(:params).and_return({ :id => "666" }) # for correct impressionable id in filter
 
       controller.impressionist_subapp_filter(unique: [:impressionable_id])
       controller.impressionist_subapp_filter(unique: [:impressionable_id])
@@ -174,12 +172,12 @@ describe DummyController do
     end
 
     it "recognize different id" do
-      allow(controller).to receive(:params).and_return({:id => "666"}) # for correct impressionable id in filter
+      allow(controller).to receive(:params).and_return({ :id => "666" }) # for correct impressionable id in filter
 
       controller.impressionist_subapp_filter(unique: [:impressionable_type, :impressionable_id])
       controller.impressionist_subapp_filter(unique: [:impressionable_type, :impressionable_id])
 
-      allow(controller).to receive(:params).and_return({:id => "42"}) # for correct impressionable id in filter
+      allow(controller).to receive(:params).and_return({ :id => "42" }) # for correct impressionable id in filter
 
       controller.impressionist_subapp_filter(unique: [:impressionable_type, :impressionable_id])
       controller.impressionist_subapp_filter(unique: [:impressionable_type, :impressionable_id])
@@ -217,11 +215,9 @@ describe DummyController do
 
       expect(Impression.count).to equal(@impression_count + 3)
     end
-
   end
 
   describe "impressionist method uniqueness for impressionables" do
-
     # in this test we reuse the post model. might break if model changes.
 
     it "ignore uniqueness if not requested" do
@@ -358,15 +354,13 @@ describe DummyController do
       controller.impressionist(impressionable, nil, :unique => [:ip_address, :session_hash])
       expect(Impression.count).to equal(@impression_count + 3)
     end
-
   end
 
   describe "impressionist filter and method uniqueness" do
-
     it "recognize uniqueness" do
       impressionable = Post.create
       allow(controller).to receive(:controller_name).and_return("posts") # for correct impressionable type in filter
-      allow(controller).to receive(:params).and_return({:id => impressionable.id.to_s}) # for correct impressionable id in filter
+      allow(controller).to receive(:params).and_return({ :id => impressionable.id.to_s }) # for correct impressionable id in filter
       allow(controller).to receive(:session_hash).and_return("foo")
       allow(controller.request).to receive(:remote_ip).and_return("1.2.3.4")
       # order of the following methods is important for the test!
@@ -374,17 +368,15 @@ describe DummyController do
       controller.impressionist(impressionable, nil, :unique => [:ip_address, :request_hash, :session_hash])
       expect(Impression.count).to equal(@impression_count + 1)
     end
-
   end
-
 
   describe 'impressionist with friendly id' do
     it 'unique' do
-      impressionable = Profile.create({username: 'test_profile', slug: 'test_profile'})
+      impressionable = Profile.create({ username: 'test_profile', slug: 'test_profile' })
 
       allow(controller).to receive(:controller_name).and_return('profile')
       allow(controller).to receive(:action_name).and_return('show')
-      allow(controller).to receive(:params).and_return({id: impressionable.slug})
+      allow(controller).to receive(:params).and_return({ id: impressionable.slug })
       allow(controller.request).to receive(:remote_ip).and_return('1.2.3.4')
 
       controller.impressionist(impressionable, nil, :unique => [:impressionable_type, :impressionable_id])
@@ -413,12 +405,13 @@ describe DummyController do
         before do
           allow(controller).to receive(:true_condition).and_return(true)
         end
+
         it_behaves_like 'an impressionable action' do
-          let(:condition) {{ if: :true_condition }}
+          let(:condition) { { if: :true_condition } }
         end
 
         it_behaves_like 'an impressionable action' do
-          let(:condition) {{ if: lambda { true } }}
+          let(:condition) { { if: -> { true } } }
         end
       end
 
@@ -426,12 +419,13 @@ describe DummyController do
         before do
           allow(controller).to receive(:false_condition).and_return(false)
         end
+
         it_behaves_like 'an unimpressionable action' do
-          let(:condition) {{ if: :false_condition }}
+          let(:condition) { { if: :false_condition } }
         end
 
         it_behaves_like 'an unimpressionable action' do
-          let(:condition) {{ if: lambda { false } }}
+          let(:condition) { { if: -> { false } } }
         end
       end
     end
@@ -441,12 +435,13 @@ describe DummyController do
         before do
           allow(controller).to receive(:true_condition).and_return(true)
         end
+
         it_behaves_like 'an unimpressionable action' do
-          let(:condition) {{ unless: :true_condition }}
+          let(:condition) { { unless: :true_condition } }
         end
 
         it_behaves_like 'an unimpressionable action' do
-          let(:condition) {{ unless: lambda { true } }}
+          let(:condition) { { unless: -> { true } } }
         end
       end
 
@@ -454,15 +449,15 @@ describe DummyController do
         before do
           allow(controller).to receive(:false_condition).and_return(false)
         end
+
         it_behaves_like 'an impressionable action' do
-          let(:condition) {{ unless: :false_condition }}
+          let(:condition) { { unless: :false_condition } }
         end
 
         it_behaves_like 'an impressionable action' do
-          let(:condition) {{ unless: lambda { false } }}
+          let(:condition) { { unless: -> { false } } }
         end
       end
     end
   end
 end
-

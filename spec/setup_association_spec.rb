@@ -6,18 +6,18 @@ require 'impressionist/rails_toggle'
 
 describe Impressionist::SetupAssociation do
   let(:mock) { double }
-  let(:setup_association) { Impressionist::SetupAssociation.new(mock) }
+  let(:setup_association) { described_class.new(mock) }
 
   it 'will include when togglable' do
     expect(mock).to receive(:attr_accessible).with(any_args).and_return(true)
     expect(setup_association).to receive(:toggle).and_return(true)
 
-    expect(setup_association.include_attr_acc?).to be_truthy
+    expect(setup_association).to be_include_attr_acc
   end
 
   it 'will not include if it is not togglable' do
     expect(setup_association).to receive(:toggle).and_return(false)
-    expect(setup_association.include_attr_acc?).to be_falsy
+    expect(setup_association).not_to be_include_attr_acc
   end
 
   context 'when using rails >= 5' do

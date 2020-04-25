@@ -7,12 +7,12 @@ describe ArticlesController, type: :controller do
 
   render_views
 
-  it 'should make the impressionable_hash available' do
+  it 'makes the impressionable_hash available' do
     get :index
     expect(response.body).to include('false')
   end
 
-  it 'should log an impression with a message' do
+  it 'logs an impression with a message' do
     get 'index'
 
     latest_impression = Article.first.impressions.last
@@ -24,7 +24,7 @@ describe ArticlesController, type: :controller do
     expect(latest_impression.action_name).to eq 'index'
   end
 
-  it 'should log an impression without a message' do
+  it 'logs an impression without a message' do
     get :show, params: { id: 1 }
 
     latest_impression = Article.first.impressions.last
@@ -36,20 +36,20 @@ describe ArticlesController, type: :controller do
     expect(latest_impression.action_name).to eq 'show'
   end
 
-  it 'should log the user_id if user is authenticated (@current_user before_action method)' do
+  it 'logs the user_id if user is authenticated (@current_user before_action method)' do
     session[:user_id] = 123
     get :show, params: { id: 1 }
 
     expect(Article.first.impressions.last.user_id).to eq 123
   end
 
-  it 'should not log the user_id if user is authenticated' do
+  it 'does not log the user_id if user is authenticated' do
     get :show, params: { id: 1 }
 
     expect(Article.first.impressions.last.user_id).to eq nil
   end
 
-  it 'should log the request_hash, ip_address, referrer and session_hash' do
+  it 'logs the request_hash, ip_address, referrer and session_hash' do
     get :show, params: { id: 1 }
 
     impression = Impression.last
@@ -63,7 +63,7 @@ describe ArticlesController, type: :controller do
   # Capybara has change the way it works
   # We need to pass :type options in order to make include helper methods
   # see https://github.com/jnicklas/capybara#using-capybara-with-rspec
-  it 'should log the referrer when you click a link', type: :feature do
+  it 'logs the referrer when you click a link', type: :feature do
     default_url_options[:host] = "test.host"
 
     visit article_url(Article.first)
@@ -71,7 +71,7 @@ describe ArticlesController, type: :controller do
     expect(Impression.last.referrer).to eq 'http://test.host/articles/1'
   end
 
-  it 'should log request with params (checked = true)' do
+  it 'logs request with params (checked = true)' do
     get :show, params: { id: 1, checked: true }
 
     impression = Impression.last
@@ -83,7 +83,7 @@ describe ArticlesController, type: :controller do
     expect(impression.referrer).to eq nil
   end
 
-  it 'should log request with params: {}' do
+  it 'logs request with params: {}' do
     get 'index'
 
     impression = Impression.last
@@ -101,13 +101,13 @@ describe ArticlesController, type: :controller do
       Rails.application.config.filter_parameters = [:password]
     end
 
+    after do
+      Rails.application.config.filter_parameters = @_filtered_params
+    end
+
     it 'values should not be recorded' do
       get 'index', params: { password: 'best-password-ever' }
       expect(Impression.last.params).to eq('password' => '[FILTERED]')
-    end
-
-    after do
-      Rails.application.config.filter_parameters = @_filtered_params
     end
   end
 end

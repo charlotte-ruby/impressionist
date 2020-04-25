@@ -5,18 +5,17 @@ unless ENV['CI']
   SimpleCov.start 'rails'
 end
 
-require File.expand_path("../../config/environment", __FILE__)
+require File.expand_path('../config/environment', __dir__)
 
 require 'rspec/rails'
 require 'capybara/rails'
 
 # Custom matchers and macros, etc...
-Dir[Rails.root.join("spec/support/**/*.rb")].each {|f|
+Dir[Rails.root.join("spec/support/**/*.rb")].sort.each do |f|
   require f
-}
+end
 
 RSpec.configure do |config|
-
   config.infer_spec_type_from_file_location!
 
   config.mock_with :rspec
@@ -36,5 +35,4 @@ RSpec.configure do |config|
   def logger
     Rails.logger
   end
-
 end

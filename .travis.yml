@@ -9,6 +9,7 @@ before_script:
   - bundle exec rake db:create db:migrate RAILS_ENV=test
   - cd ../..
 script:
+  - rubocop
   - bundle exec rspec
   - cd tests/test_app
   - export BUNDLE_GEMFILE=./Gemfile
