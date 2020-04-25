@@ -22,8 +22,10 @@ TestApp::Application.configure do
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
 
+  config.eager_load = false
+
   # Raise exception on mass assignment protection for Active Record models
-  config.active_record.mass_assignment_sanitizer = :strict
+  # config.active_record.mass_assignment_sanitizer = :strict
 
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)

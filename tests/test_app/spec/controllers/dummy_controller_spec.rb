@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe DummyController do
+describe DummyController, type: :controller do
   fixtures :impressions
   render_views
 

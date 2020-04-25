@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ArticlesController do
+describe ArticlesController, type: :controller do
   fixtures :articles,:impressions,:posts,:widgets
 
   render_views
