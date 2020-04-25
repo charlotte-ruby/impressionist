@@ -11,11 +11,11 @@ before_script:
   - bundle exec rake db:create db:migrate RAILS_ENV=test
   - cd ../..
 script:
-  - bundle exec rspec spec
+  - bundle exec rspec
   - cd tests/test_app
   - export BUNDLE_GEMFILE=./Gemfile
   - bundle
-  - bundle exec rspec spec
+  - bundle exec rspec
 rvm:
   - 2.7.0
   - jruby-head
