@@ -23,7 +23,7 @@ rvm:
 matrix:
   allow_failures:
     - rvm: jruby-head
-    - rvm: rbx
+    - rvm: rbx-4
     - rvm: ruby-head
   fast_finish: true
 notifications:
