@@ -12,7 +12,6 @@ end
 group :test do
   gem 'minitest'
   gem 'rspec', "~> 3.0"
-  gem 'rspec-rails', "~> 3.0"
   gem 'simplecov'
   gem 'systemu'
 end

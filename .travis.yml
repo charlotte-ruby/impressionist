@@ -7,7 +7,7 @@ before_install:
 before_script:
   - bundle
   - cd tests/test_app
-  - bundle _${BUNDLER_VERSION}_
+  - bundle _${BUNDLER_VERSION}_ --gemfile=./Gemfile
   - bundle _${BUNDLER_VERSION}_ exec rails g impressionist -f
   - bundle _${BUNDLER_VERSION}_ exec rake db:create db:migrate RAILS_ENV=test
   - cd ../..
