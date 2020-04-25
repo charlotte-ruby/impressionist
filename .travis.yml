@@ -7,15 +7,16 @@ before_install:
 before_script:
   - bundle
   - cd tests/test_app
-  - bundle _${BUNDLER_VERSION}_ --gemfile=./Gemfile
-  - bundle _${BUNDLER_VERSION}_ exec rails g impressionist -f
-  - bundle _${BUNDLER_VERSION}_ exec rake db:create db:migrate RAILS_ENV=test
+  - bundle --gemfile=./Gemfile
+  - bundle exec rails g impressionist -f
+  - bundle exec rake db:create db:migrate RAILS_ENV=test
   - cd ../..
 script:
-  - bundle _${BUNDLER_VERSION}_ exec rspec spec
+  - bundle exec rspec spec
   - cd tests/test_app
-  - BUNDLE_GEMFILE=./Gemfile bundle _${BUNDLER_VERSION}_
-  - BUNDLE_GEMFILE=./Gemfile bundle _${BUNDLER_VERSION}_ exec rspec spec
+  - export BUNDLE_GEMFILE=./Gemfile
+  - bundle
+  - bundle exec rspec spec
 rvm:
   - 2.7.0
   - jruby-head

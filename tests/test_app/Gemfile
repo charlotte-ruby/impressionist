@@ -12,7 +12,6 @@ platforms :jruby do
   gem 'jruby-openssl'
 end
 
-gem 'sqlite3', '~> 1.4'
 gem 'bigdecimal', '1.4.2'
 
 platforms :ruby, :mswin, :mingw do
