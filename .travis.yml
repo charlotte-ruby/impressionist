@@ -14,8 +14,8 @@ before_script:
 script:
   - bundle _${BUNDLER_VERSION}_ exec rspec spec
   - cd tests/test_app
-  - bundle _${BUNDLER_VERSION}_ config
-  - bundle _${BUNDLER_VERSION}_ --verbose exec rspec spec
+  - BUNDLE_GEMFILE=./Gemfile bundle _${BUNDLER_VERSION}_
+  - BUNDLE_GEMFILE=./Gemfile bundle _${BUNDLER_VERSION}_ exec rspec spec
 rvm:
   - 2.7.0
   - jruby-head
