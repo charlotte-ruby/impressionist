@@ -9,10 +9,6 @@ platforms :jruby do
   gem 'jruby-openssl'
 end
 
-platforms :ruby, :mswin, :mingw do
-  gem 'sqlite3', '< 1.4'
-end
-
 group :test do
   gem 'capybara', '>= 2.0.3'
   gem 'minitest'

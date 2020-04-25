@@ -14,37 +14,50 @@ describe ArticlesController, type: :controller do
 
   it 'should log an impression with a message' do
     get 'index'
-    Impression.all.size.should eq 12
-    Article.first.impressions.last.message.should eq 'this is a test article impression'
-    Article.first.impressions.last.controller_name.should eq 'articles'
-    Article.first.impressions.last.action_name.should eq 'index'
+
+    latest_impression = Article.first.impressions.last
+
+    expect(Impression.all.size).to eq 12
+
+    expect(latest_impression.message).to eq 'this is a test article impression'
+    expect(latest_impression.controller_name).to eq 'articles'
+    expect(latest_impression.action_name).to eq 'index'
   end
 
   it 'should log an impression without a message' do
     get :show, params: { id: 1 }
-    Impression.all.size.should eq 12
-    Article.first.impressions.last.message.should eq nil
-    Article.first.impressions.last.controller_name.should eq 'articles'
-    Article.first.impressions.last.action_name.should eq 'show'
+
+    latest_impression = Article.first.impressions.last
+
+    expect(Impression.all.size).to eq 12
+
+    expect(latest_impression.message).to eq nil
+    expect(latest_impression.controller_name).to eq 'articles'
+    expect(latest_impression.action_name).to eq 'show'
   end
 
   it 'should log the user_id if user is authenticated (@current_user before_action method)' do
     session[:user_id] = 123
     get :show, params: { id: 1 }
-    Article.first.impressions.last.user_id.should eq 123
+
+    expect(Article.first.impressions.last.user_id).to eq 123
   end
 
   it 'should not log the user_id if user is authenticated' do
     get :show, params: { id: 1 }
-    Article.first.impressions.last.user_id.should eq nil
+
+    expect(Article.first.impressions.last.user_id).to eq nil
   end
 
   it 'should log the request_hash, ip_address, referrer and session_hash' do
     get :show, params: { id: 1 }
-    Impression.last.request_hash.size.should eq 64
-    Impression.last.ip_address.should eq '0.0.0.0'
-    Impression.last.session_hash.size.should eq 32
-    Impression.last.referrer.should eq nil
+
+    impression = Impression.last
+
+    expect(impression.request_hash.size).to eq 64
+    expect(impression.ip_address).to eq '0.0.0.0'
+    expect(impression.session_hash.size).to eq 32
+    expect(impression.referrer).to eq nil
   end
 
   # Capybara has change the way it works
@@ -55,25 +68,31 @@ describe ArticlesController, type: :controller do
 
     visit article_url(Article.first)
     click_link 'Same Page'
-    Impression.last.referrer.should eq 'http://test.host/articles/1'
+    expect(Impression.last.referrer).to eq 'http://test.host/articles/1'
   end
 
   it 'should log request with params (checked = true)' do
     get :show, params: { id: 1, checked: true }
-    Impression.last.params.should eq({ 'checked' => "true" })
-    Impression.last.request_hash.size.should eq 64
-    Impression.last.ip_address.should eq '0.0.0.0'
-    Impression.last.session_hash.size.should eq 32
-    Impression.last.referrer.should eq nil
+
+    impression = Impression.last
+
+    expect(impression.params).to eq({ 'checked' => "true" })
+    expect(impression.request_hash.size).to eq 64
+    expect(impression.ip_address).to eq '0.0.0.0'
+    expect(impression.session_hash.size).to eq 32
+    expect(impression.referrer).to eq nil
   end
 
   it 'should log request with params: {}' do
     get 'index'
-    Impression.last.params.should eq({})
-    Impression.last.request_hash.size.should eq 64
-    Impression.last.ip_address.should eq '0.0.0.0'
-    Impression.last.session_hash.size.should eq 32
-    Impression.last.referrer.should eq nil
+
+    impression = Impression.last
+
+    expect(impression.params).to eq({})
+    expect(impression.request_hash.size).to eq 64
+    expect(impression.ip_address).to eq '0.0.0.0'
+    expect(impression.session_hash.size).to eq 32
+    expect(impression.referrer).to eq nil
   end
 
   describe 'when filtering params' do
@@ -84,7 +103,7 @@ describe ArticlesController, type: :controller do
 
     it 'values should not be recorded' do
       get 'index', params: { password: 'best-password-ever' }
-      Impression.last.params.should eq('password' => '[FILTERED]')
+      expect(Impression.last.params).to eq('password' => '[FILTERED]')
     end
 
     after do

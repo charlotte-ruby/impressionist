@@ -15,6 +15,7 @@ describe Impressionist do
 
   it "should include the before_action method in ApplicationController" do
      filters = ApplicationController._process_action_callbacks.select { |c| c.kind == :before }
-     filters.collect{|filter|filter.filter}.include?(:impressionist_app_filter).should be_truthy
+
+     expect(filters.collect{|filter|filter.filter}.include?(:impressionist_app_filter)).to be_truthy
   end
 end

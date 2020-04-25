@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 5'
+gem 'rails', '~> 6'
 gem 'rake', '< 11.0'
 gem 'public_suffix', '< 1.5.0'
 
@@ -12,7 +12,7 @@ platforms :jruby do
   gem 'jruby-openssl'
 end
 
-gem 'sqlite3', '< 1.4'
+gem 'sqlite3', '~> 1.4'
 gem 'bigdecimal', '1.4.2'
 
 platforms :ruby, :mswin, :mingw do
@@ -39,7 +39,7 @@ end
 
 group :development, :test do
   gem 'autotest-notification'
-  gem 'rspec-rails', '~> 3.0'
+  gem 'rspec-rails', '~> 4.0'
   gem 'spork'
 
   # test/unit has been removed by default in Ruby 2.2.x+

@@ -11,23 +11,23 @@ describe Impression do
 
   describe "self#impressionist_counter_caching?" do
     it "should know when counter caching is enabled" do
-      Widget.should be_impressionist_counter_caching
+      expect(Widget).to be_impressionist_counter_caching
     end
 
     it "should know when counter caching is disabled" do
-      Article.should_not be_impressionist_counter_caching
+      expect(Article).not_to be_impressionist_counter_caching
     end
   end
 
   describe "self#counter_caching?" do
     it "should know when counter caching is enabled" do
-      ActiveSupport::Deprecation.should_receive(:warn)
-      Widget.should be_counter_caching
+      allow(ActiveSupport::Deprecation).to receive(:warn)
+      expect(Widget).to be_counter_caching
     end
 
     it "should know when counter caching is disabled" do
-      ActiveSupport::Deprecation.should_receive(:warn)
-      Article.should_not be_counter_caching
+      allow(ActiveSupport::Deprecation).to receive(:warn)
+      expect(Article).not_to be_counter_caching
     end
 
   end
