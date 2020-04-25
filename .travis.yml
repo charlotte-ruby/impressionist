@@ -1,19 +1,18 @@
 language: ruby
+env:
+  - BUNDLER_VERSION=1.17.3
 before_install:
-  - gem install bundler
+  - gem install bundler --version $BUNDLER_VERSION
 before_script:
   - cd tests/test_app
-  - bundle exec rails g impressionist -f
-  - bundle exec rake db:create db:migrate RAILS_ENV=test
+  - bundle _${BUNDLER_VERSION}_
+  - bundle _${BUNDLER_VERSION}_ exec rails g impressionist -f
+  - bundle _${BUNDLER_VERSION}_ exec rake db:create db:migrate RAILS_ENV=test
   - cd ..
 script:
-  - bundle exec rake
+  - bundle _${BUNDLER_VERSION}_ exec rake
 rvm:
-  - 1.9.3
-  - 2.0.0
-  - 2.1.0
-  - 2.2.0
-  - 2.3.0
+  - 2.7.0
   - jruby-head
   - rbx
   - ruby-head
