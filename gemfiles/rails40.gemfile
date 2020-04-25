@@ -18,6 +18,7 @@ group :test do
   gem 'capybara', '>= 2.0.3'
   gem 'minitest'
   gem 'minitest-rails'
+  gem 'bigdecimal', '~> 1.4'
   gem 'rails', '~> 4.0.1'
   gem 'rspec-rails', '~> 2.14.0'
   gem 'simplecov'

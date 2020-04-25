@@ -20,6 +20,7 @@ group :test do
   gem 'minitest-rails'
   gem 'rails', '~> 3.2.15'
   gem 'rspec-rails', '~> 2.14.0'
+  gem 'bigdecimal', '~> 1.4'
   gem 'simplecov'
   gem 'systemu'
   gem 'friendly_id', '~> 4.0.9'
