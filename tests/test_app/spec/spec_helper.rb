@@ -20,10 +20,6 @@ RSpec.configure do |config|
 
   config.infer_spec_type_from_file_location!
 
-  # in order to pass tags(symbols) as true values
-  # you need to tell rspec to do so by
-  config.treat_symbols_as_metadata_keys_with_true_values = true
-
   config.mock_with :rspec
 
   config.fixture_path = "#{::Rails.root}/spec/fixtures"

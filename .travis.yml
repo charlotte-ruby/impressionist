@@ -4,6 +4,7 @@ env:
 before_install:
   - gem install bundler --version $BUNDLER_VERSION
 before_script:
+  - bundle
   - cd tests/test_app
   - bundle _${BUNDLER_VERSION}_
   - bundle _${BUNDLER_VERSION}_ exec rails g impressionist -f
@@ -18,9 +19,6 @@ rvm:
   - jruby-head
   - rbx
   - ruby-head
-gemfile:
-  - gemfiles/rails32.gemfile
-  - gemfiles/rails40.gemfile
 matrix:
   allow_failures:
     - rvm: jruby-head

@@ -9,7 +9,7 @@ describe ArticlesController, type: :controller do
 
   it 'should make the impressionable_hash available' do
     get :index
-    response.body.include?('false').should eq true
+    expect(response.body).to include('false')
   end
 
   it 'should log an impression with a message' do
