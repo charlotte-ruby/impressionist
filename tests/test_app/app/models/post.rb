@@ -1,3 +1,3 @@
-class Post < ApplicationRecord
+class Post < ActiveRecord::Base
   is_impressionable
 end

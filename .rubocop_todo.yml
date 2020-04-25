@@ -12,14 +12,14 @@
 # Include: **/*.gemfile, **/Gemfile, **/gems.rb
 Bundler/OrderedGems:
   Exclude:
-    - 'tests/test_app/Gemfile'
+    - "tests/test_app/Gemfile"
 
 # Offense count: 1
 # Configuration parameters: Include.
 # Include: **/*.gemspec
 Gemspec/RubyVersionGlobalsUsage:
   Exclude:
-    - 'impressionist.gemspec'
+    - "impressionist.gemspec"
 
 # Offense count: 1
 # Cop supports --auto-correct.
@@ -27,7 +27,7 @@ Gemspec/RubyVersionGlobalsUsage:
 # SupportedStyles: outdent, indent
 Layout/AccessModifierIndentation:
   Exclude:
-    - 'lib/impressionist/engine.rb'
+    - "lib/impressionist/engine.rb"
 
 # Offense count: 2
 # Cop supports --auto-correct.
@@ -35,8 +35,8 @@ Layout/AccessModifierIndentation:
 # SupportedStyles: with_first_argument, with_fixed_indentation
 Layout/ArgumentAlignment:
   Exclude:
-    - 'lib/impressionist/is_impressionable.rb'
-    - 'lib/impressionist/models/mongo_mapper/impressionist/impressionable.rb'
+    - "lib/impressionist/is_impressionable.rb"
+    - "lib/impressionist/models/mongo_mapper/impressionist/impressionable.rb"
 
 # Offense count: 1455
 # Cop supports --auto-correct.
@@ -44,7 +44,7 @@ Layout/ArgumentAlignment:
 # SupportedStyles: with_first_element, with_fixed_indentation
 Layout/ArrayAlignment:
   Exclude:
-    - 'app/models/impressionist/bots.rb'
+    - "app/models/impressionist/bots.rb"
 
 # Offense count: 1
 # Cop supports --auto-correct.
@@ -52,21 +52,21 @@ Layout/ArrayAlignment:
 # SupportedStylesAlignWith: either, start_of_block, start_of_line
 Layout/BlockAlignment:
   Exclude:
-    - 'lib/impressionist/engine.rb'
+    - "lib/impressionist/engine.rb"
 
 # Offense count: 3
 # Cop supports --auto-correct.
 Layout/ClosingParenthesisIndentation:
   Exclude:
-    - 'app/controllers/impressionist_controller.rb'
-    - 'lib/impressionist/controllers/mongoid/impressionist_controller.rb'
+    - "app/controllers/impressionist_controller.rb"
+    - "lib/impressionist/controllers/mongoid/impressionist_controller.rb"
 
 # Offense count: 3
 # Cop supports --auto-correct.
 Layout/CommentIndentation:
   Exclude:
-    - 'app/controllers/impressionist_controller.rb'
-    - 'tests/test_app/config/initializers/impression.rb'
+    - "app/controllers/impressionist_controller.rb"
+    - "tests/test_app/config/initializers/impression.rb"
 
 # Offense count: 7
 # Cop supports --auto-correct.
@@ -74,42 +74,42 @@ Layout/CommentIndentation:
 # SupportedStyles: leading, trailing
 Layout/DotPosition:
   Exclude:
-    - 'lib/impressionist/counter_cache.rb'
-    - 'lib/impressionist/models/active_record/impressionist/impressionable.rb'
-    - 'lib/impressionist/models/mongoid/impressionist/impressionable.rb'
-    - 'lib/impressionist/setup_association.rb'
-    - 'lib/impressionist/update_counters.rb'
+    - "lib/impressionist/counter_cache.rb"
+    - "lib/impressionist/models/active_record/impressionist/impressionable.rb"
+    - "lib/impressionist/models/mongoid/impressionist/impressionable.rb"
+    - "lib/impressionist/setup_association.rb"
+    - "lib/impressionist/update_counters.rb"
 
 # Offense count: 1
 # Cop supports --auto-correct.
 Layout/EmptyLineAfterGuardClause:
   Exclude:
-    - 'app/models/impressionist/bots.rb'
+    - "app/models/impressionist/bots.rb"
 
 # Offense count: 1
 # Cop supports --auto-correct.
 Layout/EmptyLineAfterMagicComment:
   Exclude:
-    - 'tests/test_app/db/schema.rb'
+    - "tests/test_app/db/schema.rb"
 
 # Offense count: 1
 # Cop supports --auto-correct.
 # Configuration parameters: AllowAdjacentOneLineDefs, NumberOfEmptyLines.
 Layout/EmptyLineBetweenDefs:
   Exclude:
-    - 'lib/impressionist/counter_cache.rb'
+    - "lib/impressionist/counter_cache.rb"
 
 # Offense count: 8
 # Cop supports --auto-correct.
 Layout/EmptyLines:
   Exclude:
-    - 'Rakefile'
-    - 'app/controllers/impressionist_controller.rb'
-    - 'lib/impressionist/counter_cache.rb'
-    - 'lib/impressionist/engine.rb'
-    - 'lib/impressionist/models/mongoid/impressionist/impressionable.rb'
-    - 'tests/test_app/Gemfile'
-    - 'tests/test_app/lib/tasks/cucumber.rake'
+    - "Rakefile"
+    - "app/controllers/impressionist_controller.rb"
+    - "lib/impressionist/counter_cache.rb"
+    - "lib/impressionist/engine.rb"
+    - "lib/impressionist/models/mongoid/impressionist/impressionable.rb"
+    - "tests/test_app/Gemfile"
+    - "tests/test_app/lib/tasks/cucumber.rake"
 
 # Offense count: 1
 # Cop supports --auto-correct.
@@ -117,7 +117,7 @@ Layout/EmptyLines:
 # SupportedStyles: around, only_before
 Layout/EmptyLinesAroundAccessModifier:
   Exclude:
-    - 'lib/impressionist/setup_association.rb'
+    - "lib/impressionist/setup_association.rb"
 
 # Offense count: 2
 # Cop supports --auto-correct.
@@ -125,7 +125,7 @@ Layout/EmptyLinesAroundAccessModifier:
 # SupportedStyles: empty_lines, no_empty_lines
 Layout/EmptyLinesAroundBlockBody:
   Exclude:
-    - 'tests/test_app/db/schema.rb'
+    - "tests/test_app/db/schema.rb"
 
 # Offense count: 8
 # Cop supports --auto-correct.
@@ -133,24 +133,24 @@ Layout/EmptyLinesAroundBlockBody:
 # SupportedStyles: empty_lines, empty_lines_except_namespace, empty_lines_special, no_empty_lines, beginning_only, ending_only
 Layout/EmptyLinesAroundClassBody:
   Exclude:
-    - 'lib/generators/impressionist_generator.rb'
-    - 'lib/impressionist/engine.rb'
-    - 'lib/impressionist/models/active_record/impression.rb'
-    - 'lib/impressionist/models/mongoid/impression.rb'
-    - 'lib/impressionist/rails_toggle.rb'
-    - 'lib/impressionist/update_counters.rb'
-    - 'tests/test_app/app/controllers/dummy_controller.rb'
-    - 'tests/test_app/db/migrate/20150207140310_create_friendly_id_slugs.rb'
+    - "lib/generators/impressionist_generator.rb"
+    - "lib/impressionist/engine.rb"
+    - "lib/impressionist/models/active_record/impression.rb"
+    - "lib/impressionist/models/mongoid/impression.rb"
+    - "lib/impressionist/rails_toggle.rb"
+    - "lib/impressionist/update_counters.rb"
+    - "tests/test_app/app/controllers/dummy_controller.rb"
+    - "tests/test_app/db/migrate/20150207140310_create_friendly_id_slugs.rb"
 
 # Offense count: 7
 # Cop supports --auto-correct.
 Layout/EmptyLinesAroundMethodBody:
   Exclude:
-    - 'app/controllers/impressionist_controller.rb'
-    - 'lib/impressionist/counter_cache.rb'
-    - 'lib/impressionist/models/mongoid/impressionist/impressionable.rb'
-    - 'tests/test_app/app/controllers/posts_controller.rb'
-    - 'upgrade_migrations/version_0_3_0.rb'
+    - "app/controllers/impressionist_controller.rb"
+    - "lib/impressionist/counter_cache.rb"
+    - "lib/impressionist/models/mongoid/impressionist/impressionable.rb"
+    - "tests/test_app/app/controllers/posts_controller.rb"
+    - "upgrade_migrations/version_0_3_0.rb"
 
 # Offense count: 19
 # Cop supports --auto-correct.
@@ -158,26 +158,26 @@ Layout/EmptyLinesAroundMethodBody:
 # SupportedStyles: empty_lines, empty_lines_except_namespace, empty_lines_special, no_empty_lines
 Layout/EmptyLinesAroundModuleBody:
   Exclude:
-    - 'app/models/impressionist/bots.rb'
-    - 'app/models/impressionist/impressionable.rb'
-    - 'lib/impressionist/counter_cache.rb'
-    - 'lib/impressionist/is_impressionable.rb'
-    - 'lib/impressionist/models/active_record/impressionist/impressionable.rb'
-    - 'lib/impressionist/models/mongo_mapper/impressionist/impressionable.rb'
-    - 'lib/impressionist/models/mongoid/impressionist/impressionable.rb'
-    - 'lib/impressionist/rails_toggle.rb'
-    - 'lib/impressionist/update_counters.rb'
+    - "app/models/impressionist/bots.rb"
+    - "app/models/impressionist/impressionable.rb"
+    - "lib/impressionist/counter_cache.rb"
+    - "lib/impressionist/is_impressionable.rb"
+    - "lib/impressionist/models/active_record/impressionist/impressionable.rb"
+    - "lib/impressionist/models/mongo_mapper/impressionist/impressionable.rb"
+    - "lib/impressionist/models/mongoid/impressionist/impressionable.rb"
+    - "lib/impressionist/rails_toggle.rb"
+    - "lib/impressionist/update_counters.rb"
 
 # Offense count: 7
 # Cop supports --auto-correct.
 # Configuration parameters: AllowForAlignment, AllowBeforeTrailingComments, ForceEqualSignAlignment.
 Layout/ExtraSpacing:
   Exclude:
-    - 'lib/impressionist/counter_cache.rb'
-    - 'tests/test_app/config.ru'
-    - 'tests/test_app/config/environments/pg_test.rb'
-    - 'tests/test_app/config/environments/test.rb'
-    - 'tests/test_app/script/rails'
+    - "lib/impressionist/counter_cache.rb"
+    - "tests/test_app/config.ru"
+    - "tests/test_app/config/environments/pg_test.rb"
+    - "tests/test_app/config/environments/test.rb"
+    - "tests/test_app/script/rails"
 
 # Offense count: 1
 # Cop supports --auto-correct.
@@ -185,7 +185,7 @@ Layout/ExtraSpacing:
 # SupportedStyles: consistent, consistent_relative_to_receiver, special_for_inner_method_call, special_for_inner_method_call_in_parentheses
 Layout/FirstArgumentIndentation:
   Exclude:
-    - 'lib/impressionist/controllers/mongoid/impressionist_controller.rb'
+    - "lib/impressionist/controllers/mongoid/impressionist_controller.rb"
 
 # Offense count: 1
 # Cop supports --auto-correct.
@@ -195,7 +195,7 @@ Layout/FirstArgumentIndentation:
 # SupportedLastArgumentHashStyles: always_inspect, always_ignore, ignore_implicit, ignore_explicit
 Layout/HashAlignment:
   Exclude:
-    - 'lib/impressionist/controllers/mongoid/impressionist_controller.rb'
+    - "lib/impressionist/controllers/mongoid/impressionist_controller.rb"
 
 # Offense count: 18
 # Cop supports --auto-correct.
@@ -203,11 +203,11 @@ Layout/HashAlignment:
 # SupportedStyles: normal, indented_internal_methods
 Layout/IndentationConsistency:
   Exclude:
-    - 'lib/impressionist/counter_cache.rb'
-    - 'lib/impressionist/engine.rb'
-    - 'lib/impressionist/models/mongoid/impressionist/impressionable.rb'
-    - 'lib/impressionist/rails_toggle.rb'
-    - 'lib/impressionist/setup_association.rb'
+    - "lib/impressionist/counter_cache.rb"
+    - "lib/impressionist/engine.rb"
+    - "lib/impressionist/models/mongoid/impressionist/impressionable.rb"
+    - "lib/impressionist/rails_toggle.rb"
+    - "lib/impressionist/setup_association.rb"
 
 # Offense count: 8
 # Cop supports --auto-correct.
@@ -215,32 +215,32 @@ Layout/IndentationConsistency:
 # SupportedStyles: spaces, tabs
 Layout/IndentationStyle:
   Exclude:
-    - 'lib/impressionist/controllers/mongoid/impressionist_controller.rb'
+    - "lib/impressionist/controllers/mongoid/impressionist_controller.rb"
 
 # Offense count: 25
 # Cop supports --auto-correct.
 # Configuration parameters: Width, IgnoredPatterns.
 Layout/IndentationWidth:
   Exclude:
-    - 'app/models/impressionist/impressionable.rb'
-    - 'lib/impressionist/controllers/mongoid/impressionist_controller.rb'
-    - 'lib/impressionist/counter_cache.rb'
-    - 'lib/impressionist/engine.rb'
-    - 'lib/impressionist/models/active_record/impressionist/impressionable.rb'
-    - 'lib/impressionist/models/mongo_mapper/impressionist/impressionable.rb'
-    - 'lib/impressionist/models/mongoid/impressionist/impressionable.rb'
-    - 'lib/impressionist/rails_toggle.rb'
-    - 'lib/impressionist/setup_association.rb'
-    - 'tests/test_app/lib/tasks/cucumber.rake'
+    - "app/models/impressionist/impressionable.rb"
+    - "lib/impressionist/controllers/mongoid/impressionist_controller.rb"
+    - "lib/impressionist/counter_cache.rb"
+    - "lib/impressionist/engine.rb"
+    - "lib/impressionist/models/active_record/impressionist/impressionable.rb"
+    - "lib/impressionist/models/mongo_mapper/impressionist/impressionable.rb"
+    - "lib/impressionist/models/mongoid/impressionist/impressionable.rb"
+    - "lib/impressionist/rails_toggle.rb"
+    - "lib/impressionist/setup_association.rb"
+    - "tests/test_app/lib/tasks/cucumber.rake"
 
 # Offense count: 4
 # Cop supports --auto-correct.
 # Configuration parameters: AllowDoxygenCommentStyle, AllowGemfileRubyComment.
 Layout/LeadingCommentSpace:
   Exclude:
-    - 'app/controllers/impressionist_controller.rb'
-    - 'lib/impressionist/bots.rb'
-    - 'tests/test_app/config/initializers/impression.rb'
+    - "app/controllers/impressionist_controller.rb"
+    - "lib/impressionist/bots.rb"
+    - "tests/test_app/config/initializers/impression.rb"
 
 # Offense count: 6
 # Cop supports --auto-correct.
@@ -248,22 +248,22 @@ Layout/LeadingCommentSpace:
 # SupportedStyles: aligned, indented, indented_relative_to_receiver
 Layout/MultilineMethodCallIndentation:
   Exclude:
-    - 'lib/impressionist/counter_cache.rb'
-    - 'lib/impressionist/models/active_record/impressionist/impressionable.rb'
-    - 'lib/impressionist/models/mongoid/impressionist/impressionable.rb'
-    - 'lib/impressionist/setup_association.rb'
-    - 'lib/impressionist/update_counters.rb'
+    - "lib/impressionist/counter_cache.rb"
+    - "lib/impressionist/models/active_record/impressionist/impressionable.rb"
+    - "lib/impressionist/models/mongoid/impressionist/impressionable.rb"
+    - "lib/impressionist/setup_association.rb"
+    - "lib/impressionist/update_counters.rb"
 
 # Offense count: 28
 # Cop supports --auto-correct.
 Layout/SpaceAfterComma:
   Exclude:
-    - 'app/controllers/impressionist_controller.rb'
-    - 'app/models/impressionist/bots.rb'
-    - 'lib/impressionist/bots.rb'
-    - 'tests/test_app/app/controllers/articles_controller.rb'
-    - 'tests/test_app/db/migrate/20130719024021_create_impressions_table.rb'
-    - 'upgrade_migrations/version_0_3_0.rb'
+    - "app/controllers/impressionist_controller.rb"
+    - "app/models/impressionist/bots.rb"
+    - "lib/impressionist/bots.rb"
+    - "tests/test_app/app/controllers/articles_controller.rb"
+    - "tests/test_app/db/migrate/20130719024021_create_impressions_table.rb"
+    - "upgrade_migrations/version_0_3_0.rb"
 
 # Offense count: 1
 # Cop supports --auto-correct.
@@ -271,7 +271,7 @@ Layout/SpaceAfterComma:
 # SupportedStylesInsidePipes: space, no_space
 Layout/SpaceAroundBlockParameters:
   Exclude:
-    - 'app/controllers/impressionist_controller.rb'
+    - "app/controllers/impressionist_controller.rb"
 
 # Offense count: 13
 # Cop supports --auto-correct.
@@ -279,13 +279,13 @@ Layout/SpaceAroundBlockParameters:
 # SupportedStyles: space, no_space
 Layout/SpaceAroundEqualsInParameterDefault:
   Exclude:
-    - 'app/controllers/impressionist_controller.rb'
-    - 'app/models/impressionist/impressionable.rb'
-    - 'lib/impressionist/controllers/mongoid/impressionist_controller.rb'
-    - 'lib/impressionist/counter_cache.rb'
-    - 'lib/impressionist/is_impressionable.rb'
-    - 'lib/impressionist/models/mongo_mapper/impressionist/impressionable.rb'
-    - 'lib/impressionist/models/mongoid/impressionist/impressionable.rb'
+    - "app/controllers/impressionist_controller.rb"
+    - "app/models/impressionist/impressionable.rb"
+    - "lib/impressionist/controllers/mongoid/impressionist_controller.rb"
+    - "lib/impressionist/counter_cache.rb"
+    - "lib/impressionist/is_impressionable.rb"
+    - "lib/impressionist/models/mongo_mapper/impressionist/impressionable.rb"
+    - "lib/impressionist/models/mongoid/impressionist/impressionable.rb"
 
 # Offense count: 8
 # Cop supports --auto-correct.
@@ -293,13 +293,13 @@ Layout/SpaceAroundEqualsInParameterDefault:
 # SupportedStylesForExponentOperator: space, no_space
 Layout/SpaceAroundOperators:
   Exclude:
-    - 'app/controllers/impressionist_controller.rb'
-    - 'lib/impressionist/controllers/mongoid/impressionist_controller.rb'
-    - 'lib/impressionist/counter_cache.rb'
-    - 'lib/impressionist/models/mongo_mapper/impression.rb'
-    - 'tests/test_app/app/controllers/widgets_controller.rb'
-    - 'tests/test_app/config/environments/pg_test.rb'
-    - 'tests/test_app/config/environments/test.rb'
+    - "app/controllers/impressionist_controller.rb"
+    - "lib/impressionist/controllers/mongoid/impressionist_controller.rb"
+    - "lib/impressionist/counter_cache.rb"
+    - "lib/impressionist/models/mongo_mapper/impression.rb"
+    - "tests/test_app/app/controllers/widgets_controller.rb"
+    - "tests/test_app/config/environments/pg_test.rb"
+    - "tests/test_app/config/environments/test.rb"
 
 # Offense count: 2
 # Cop supports --auto-correct.
@@ -308,7 +308,7 @@ Layout/SpaceAroundOperators:
 # SupportedStylesForEmptyBraces: space, no_space
 Layout/SpaceBeforeBlockBraces:
   Exclude:
-    - 'app/controllers/impressionist_controller.rb'
+    - "app/controllers/impressionist_controller.rb"
 
 # Offense count: 5
 # Cop supports --auto-correct.
@@ -317,8 +317,8 @@ Layout/SpaceBeforeBlockBraces:
 # SupportedStylesForEmptyBraces: space, no_space
 Layout/SpaceInsideBlockBraces:
   Exclude:
-    - 'app/controllers/impressionist_controller.rb'
-    - 'tests/test_app/lib/tasks/cucumber.rake'
+    - "app/controllers/impressionist_controller.rb"
+    - "tests/test_app/lib/tasks/cucumber.rake"
 
 # Offense count: 11
 # Cop supports --auto-correct.
@@ -327,10 +327,10 @@ Layout/SpaceInsideBlockBraces:
 # SupportedStylesForEmptyBraces: space, no_space
 Layout/SpaceInsideHashLiteralBraces:
   Exclude:
-    - 'app/controllers/impressionist_controller.rb'
-    - 'lib/impressionist/update_counters.rb'
-    - 'tests/test_app/db/migrate/20130719024021_create_impressions_table.rb'
-    - 'tests/test_app/lib/tasks/cucumber.rake'
+    - "app/controllers/impressionist_controller.rb"
+    - "lib/impressionist/update_counters.rb"
+    - "tests/test_app/db/migrate/20130719024021_create_impressions_table.rb"
+    - "tests/test_app/lib/tasks/cucumber.rake"
 
 # Offense count: 5
 # Cop supports --auto-correct.
@@ -338,55 +338,55 @@ Layout/SpaceInsideHashLiteralBraces:
 # SupportedStyles: final_newline, final_blank_line
 Layout/TrailingEmptyLines:
   Exclude:
-    - 'Gemfile'
-    - 'lib/impressionist/setup_association.rb'
-    - 'tests/test_app/config/initializers/impression.rb'
-    - 'tests/test_app/db/migrate/20111127184039_create_widgets.rb'
-    - 'upgrade_migrations/version_1_5_2.rb'
+    - "Gemfile"
+    - "lib/impressionist/setup_association.rb"
+    - "tests/test_app/config/initializers/impression.rb"
+    - "tests/test_app/db/migrate/20111127184039_create_widgets.rb"
+    - "upgrade_migrations/version_1_5_2.rb"
 
 # Offense count: 1
 # Cop supports --auto-correct.
 # Configuration parameters: AllowInHeredoc.
 Layout/TrailingWhitespace:
   Exclude:
-    - 'lib/impressionist/setup_association.rb'
+    - "lib/impressionist/setup_association.rb"
 
 # Offense count: 1
 # Cop supports --auto-correct.
 Lint/DeprecatedClassMethods:
   Exclude:
-    - 'tests/test_app/config/boot.rb'
+    - "tests/test_app/config/boot.rb"
 
 # Offense count: 1
 Lint/DuplicateMethods:
   Exclude:
-    - 'lib/impressionist/setup_association.rb'
+    - "lib/impressionist/setup_association.rb"
 
 # Offense count: 1
 # Cop supports --auto-correct.
 Lint/RedundantStringCoercion:
   Exclude:
-    - 'app/controllers/impressionist_controller.rb'
+    - "app/controllers/impressionist_controller.rb"
 
 # Offense count: 1
 # Cop supports --auto-correct.
 Lint/ScriptPermission:
   Exclude:
-    - 'tests/test_app/Rakefile'
+    - "tests/test_app/Rakefile"
 
 # Offense count: 2
 # Cop supports --auto-correct.
 Lint/SendWithMixinArgument:
   Exclude:
-    - 'lib/impressionist/models/active_record/impressionist/impressionable.rb'
-    - 'lib/impressionist/models/mongoid/impressionist/impressionable.rb'
+    - "lib/impressionist/models/active_record/impressionist/impressionable.rb"
+    - "lib/impressionist/models/mongoid/impressionist/impressionable.rb"
 
 # Offense count: 1
 # Cop supports --auto-correct.
 # Configuration parameters: IgnoreEmptyBlocks, AllowUnusedKeywordArguments.
 Lint/UnusedBlockArgument:
   Exclude:
-    - 'lib/impressionist/engine.rb'
+    - "lib/impressionist/engine.rb"
 
 # Offense count: 4
 # Configuration parameters: IgnoredMethods.
@@ -417,47 +417,47 @@ Metrics/ModuleLength:
 # MethodDefinitionMacros: define_method, define_singleton_method
 Naming/PredicateName:
   Exclude:
-    - 'spec/**/*'
-    - 'lib/impressionist/is_impressionable.rb'
-    - 'lib/impressionist/models/mongo_mapper/impressionist/impressionable.rb'
+    - "spec/**/*"
+    - "lib/impressionist/is_impressionable.rb"
+    - "lib/impressionist/models/mongo_mapper/impressionist/impressionable.rb"
 
 # Offense count: 6
 # Configuration parameters: Prefixes.
 # Prefixes: when, with, without
 RSpec/ContextWording:
   Exclude:
-    - 'tests/test_app/spec/controllers/impressionist_uniqueness_spec.rb'
-    - 'tests/test_app/spec/controllers/widgets_controller_spec.rb'
+    - "tests/test_app/spec/controllers/impressionist_uniqueness_spec.rb"
+    - "tests/test_app/spec/controllers/widgets_controller_spec.rb"
 
 # Offense count: 31
 # Configuration parameters: Max.
 RSpec/ExampleLength:
   Exclude:
-    - 'spec/setup_association_spec.rb'
-    - 'tests/test_app/spec/controllers/articles_controller_spec.rb'
-    - 'tests/test_app/spec/controllers/impressionist_uniqueness_spec.rb'
-    - 'tests/test_app/spec/controllers/posts_controller_spec.rb'
-    - 'tests/test_app/spec/controllers/widgets_controller_spec.rb'
-    - 'tests/test_app/spec/rails_generators/rails_generators_spec.rb'
+    - "spec/setup_association_spec.rb"
+    - "tests/test_app/spec/controllers/articles_controller_spec.rb"
+    - "tests/test_app/spec/controllers/impressionist_uniqueness_spec.rb"
+    - "tests/test_app/spec/controllers/posts_controller_spec.rb"
+    - "tests/test_app/spec/controllers/widgets_controller_spec.rb"
+    - "tests/test_app/spec/rails_generators/rails_generators_spec.rb"
 
 # Offense count: 5
 # Configuration parameters: CustomTransform, IgnoreMethods.
 RSpec/FilePath:
   Exclude:
-    - 'spec/models/bots_spec.rb'
-    - 'spec/rails_toggle_spec.rb'
-    - 'spec/setup_association_spec.rb'
-    - 'tests/test_app/spec/controllers/impressionist_uniqueness_spec.rb'
-    - 'tests/test_app/spec/models/bots_spec.rb'
+    - "spec/models/bots_spec.rb"
+    - "spec/rails_toggle_spec.rb"
+    - "spec/setup_association_spec.rb"
+    - "tests/test_app/spec/controllers/impressionist_uniqueness_spec.rb"
+    - "tests/test_app/spec/models/bots_spec.rb"
 
 # Offense count: 61
 # Configuration parameters: AssignmentOnly.
 RSpec/InstanceVariable:
   Exclude:
-    - 'tests/test_app/spec/controllers/articles_controller_spec.rb'
-    - 'tests/test_app/spec/controllers/impressionist_uniqueness_spec.rb'
-    - 'tests/test_app/spec/controllers/widgets_controller_spec.rb'
-    - 'tests/test_app/spec/models/model_spec.rb'
+    - "tests/test_app/spec/controllers/articles_controller_spec.rb"
+    - "tests/test_app/spec/controllers/impressionist_uniqueness_spec.rb"
+    - "tests/test_app/spec/controllers/widgets_controller_spec.rb"
+    - "tests/test_app/spec/models/model_spec.rb"
 
 # Offense count: 5
 # Configuration parameters: .
@@ -477,7 +477,7 @@ RSpec/NestedGroups:
 # Offense count: 2
 RSpec/RepeatedExample:
   Exclude:
-    - 'tests/test_app/spec/controllers/widgets_controller_spec.rb'
+    - "tests/test_app/spec/controllers/widgets_controller_spec.rb"
 
 # Offense count: 1
 # Cop supports --auto-correct.
@@ -486,44 +486,45 @@ RSpec/RepeatedExample:
 # Include: app/controllers/**/*.rb
 Rails/ActionFilter:
   Exclude:
-    - 'app/controllers/impressionist_controller.rb'
+    - "app/controllers/impressionist_controller.rb"
 
 # Offense count: 1
 # Cop supports --auto-correct.
 Rails/ApplicationRecord:
   Exclude:
-    - 'lib/impressionist/models/active_record/impression.rb'
+    - "lib/impressionist/models/active_record/impression.rb"
+    - "tests/test_app/app/models/*.rb"
 
 # Offense count: 2
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: slashes, arguments
 Rails/FilePath:
   Exclude:
-    - 'tests/test_app/lib/tasks/cucumber.rake'
-    - 'tests/test_app/spec/rails_generators/rails_generators_spec.rb'
+    - "tests/test_app/lib/tasks/cucumber.rake"
+    - "tests/test_app/spec/rails_generators/rails_generators_spec.rb"
 
 # Offense count: 1
 # Cop supports --auto-correct.
 # Configuration parameters: NotNilAndNotEmpty, NotBlank, UnlessBlank.
 Rails/Present:
   Exclude:
-    - 'app/controllers/impressionist_controller.rb'
+    - "app/controllers/impressionist_controller.rb"
 
 # Offense count: 2
 # Configuration parameters: Include.
 # Include: **/Rakefile, **/*.rake
 Rails/RakeEnvironment:
   Exclude:
-    - 'lib/capistrano/tasks/**/*.rake'
-    - 'Rakefile'
-    - 'tests/test_app/lib/tasks/cucumber.rake'
+    - "lib/capistrano/tasks/**/*.rake"
+    - "Rakefile"
+    - "tests/test_app/lib/tasks/cucumber.rake"
 
 # Offense count: 1
 # Configuration parameters: Blacklist, Whitelist.
 # Blacklist: decrement!, decrement_counter, increment!, increment_counter, toggle!, touch, update_all, update_attribute, update_column, update_columns, update_counters
 Rails/SkipsModelValidations:
   Exclude:
-    - 'lib/impressionist/update_counters.rb'
+    - "lib/impressionist/update_counters.rb"
 
 # Offense count: 2
 # Cop supports --auto-correct.
@@ -531,14 +532,14 @@ Rails/SkipsModelValidations:
 # SupportedStyles: strict, flexible
 Rails/TimeZone:
   Exclude:
-    - 'app/models/impressionist/impressionable.rb'
-    - 'lib/impressionist/models/mongoid/impressionist/impressionable.rb'
+    - "app/models/impressionist/impressionable.rb"
+    - "lib/impressionist/models/mongoid/impressionist/impressionable.rb"
 
 # Offense count: 1
 # Cop supports --auto-correct.
 Style/BlockComments:
   Exclude:
-    - 'spec/spec_helper.rb'
+    - "spec/spec_helper.rb"
 
 # Offense count: 1
 # Cop supports --auto-correct.
@@ -549,17 +550,17 @@ Style/BlockComments:
 # IgnoredMethods: lambda, proc, it
 Style/BlockDelimiters:
   Exclude:
-    - 'lib/impressionist/counter_cache.rb'
+    - "lib/impressionist/counter_cache.rb"
 
 # Offense count: 1
 Style/ClassVars:
   Exclude:
-    - 'lib/impressionist.rb'
+    - "lib/impressionist.rb"
 
 # Offense count: 1
 Style/CommentedKeyword:
   Exclude:
-    - 'app/models/impressionist/impressionable.rb'
+    - "app/models/impressionist/impressionable.rb"
 
 # Offense count: 1
 # Cop supports --auto-correct.
@@ -567,7 +568,7 @@ Style/CommentedKeyword:
 # SupportedStyles: assign_to_condition, assign_inside_condition
 Style/ConditionalAssignment:
   Exclude:
-    - 'app/controllers/impressionist_controller.rb'
+    - "app/controllers/impressionist_controller.rb"
 
 # Offense count: 42
 Style/Documentation:
@@ -577,7 +578,7 @@ Style/Documentation:
 # Cop supports --auto-correct.
 Style/EachWithObject:
   Exclude:
-    - 'app/controllers/impressionist_controller.rb'
+    - "app/controllers/impressionist_controller.rb"
 
 # Offense count: 8
 # Cop supports --auto-correct.
@@ -585,27 +586,27 @@ Style/EachWithObject:
 # SupportedStyles: compact, expanded
 Style/EmptyMethod:
   Exclude:
-    - 'tests/test_app/app/controllers/dummy_controller.rb'
-    - 'tests/test_app/app/controllers/posts_controller.rb'
-    - 'tests/test_app/app/controllers/profiles_controller.rb'
-    - 'tests/test_app/app/controllers/widgets_controller.rb'
+    - "tests/test_app/app/controllers/dummy_controller.rb"
+    - "tests/test_app/app/controllers/posts_controller.rb"
+    - "tests/test_app/app/controllers/profiles_controller.rb"
+    - "tests/test_app/app/controllers/widgets_controller.rb"
 
 # Offense count: 1
 # Cop supports --auto-correct.
 Style/Encoding:
   Exclude:
-    - 'tests/test_app/db/schema.rb'
+    - "tests/test_app/db/schema.rb"
 
 # Offense count: 7
 # Cop supports --auto-correct.
 Style/ExpandPathArguments:
   Exclude:
-    - 'lib/generators/impressionist_generator.rb'
-    - 'tests/test_app/Rakefile'
-    - 'tests/test_app/config/application.rb'
-    - 'tests/test_app/config/boot.rb'
-    - 'tests/test_app/config/environment.rb'
-    - 'tests/test_app/script/rails'
+    - "lib/generators/impressionist_generator.rb"
+    - "tests/test_app/Rakefile"
+    - "tests/test_app/config/application.rb"
+    - "tests/test_app/config/boot.rb"
+    - "tests/test_app/config/environment.rb"
+    - "tests/test_app/script/rails"
 
 # Offense count: 1
 # Cop supports --auto-correct.
@@ -613,14 +614,14 @@ Style/ExpandPathArguments:
 # SupportedStyles: format, sprintf, percent
 Style/FormatString:
   Exclude:
-    - 'lib/generators/active_record/impressionist_generator.rb'
+    - "lib/generators/active_record/impressionist_generator.rb"
 
 # Offense count: 1
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: annotated, template, unannotated
 Style/FormatStringToken:
   Exclude:
-    - 'lib/generators/active_record/impressionist_generator.rb'
+    - "lib/generators/active_record/impressionist_generator.rb"
 
 # Offense count: 84
 # Cop supports --auto-correct.
@@ -633,10 +634,10 @@ Style/FrozenStringLiteralComment:
 # Configuration parameters: MinBodyLength.
 Style/GuardClause:
   Exclude:
-    - 'app/controllers/impressionist_controller.rb'
-    - 'tests/test_app/app/controllers/articles_controller.rb'
-    - 'tests/test_app/app/controllers/posts_controller.rb'
-    - 'tests/test_app/app/controllers/profiles_controller.rb'
+    - "app/controllers/impressionist_controller.rb"
+    - "tests/test_app/app/controllers/articles_controller.rb"
+    - "tests/test_app/app/controllers/posts_controller.rb"
+    - "tests/test_app/app/controllers/profiles_controller.rb"
 
 # Offense count: 192
 # Cop supports --auto-correct.
@@ -649,14 +650,14 @@ Style/HashSyntax:
 # Cop supports --auto-correct.
 Style/IfUnlessModifier:
   Exclude:
-    - 'app/controllers/impressionist_controller.rb'
-    - 'app/models/impressionist/impressionable.rb'
-    - 'impressionist.gemspec'
+    - "app/controllers/impressionist_controller.rb"
+    - "app/models/impressionist/impressionable.rb"
+    - "impressionist.gemspec"
 
 # Offense count: 1
 Style/MultilineTernaryOperator:
   Exclude:
-    - 'lib/impressionist/models/mongoid/impressionist/impressionable.rb'
+    - "lib/impressionist/models/mongoid/impressionist/impressionable.rb"
 
 # Offense count: 5
 # Cop supports --auto-correct.
@@ -664,16 +665,16 @@ Style/MultilineTernaryOperator:
 # SupportedStyles: literals, strict
 Style/MutableConstant:
   Exclude:
-    - 'app/models/impressionist/bots.rb'
-    - 'app/models/impressionist/impressionable.rb'
-    - 'lib/impressionist/bots.rb'
-    - 'lib/impressionist/version.rb'
+    - "app/models/impressionist/bots.rb"
+    - "app/models/impressionist/impressionable.rb"
+    - "lib/impressionist/bots.rb"
+    - "lib/impressionist/version.rb"
 
 # Offense count: 1
 # Cop supports --auto-correct.
 Style/Not:
   Exclude:
-    - 'lib/impressionist/rails_toggle.rb'
+    - "lib/impressionist/rails_toggle.rb"
 
 # Offense count: 2
 # Cop supports --auto-correct.
@@ -686,39 +687,39 @@ Style/NumericLiterals:
 # Configuration parameters: PreferredDelimiters.
 Style/PercentLiteralDelimiters:
   Exclude:
-    - 'tests/test_app/config/application.rb'
+    - "tests/test_app/config/application.rb"
 
 # Offense count: 1
 # Cop supports --auto-correct.
 Style/RedundantBegin:
   Exclude:
-    - 'lib/impressionist/counter_cache.rb'
+    - "lib/impressionist/counter_cache.rb"
 
 # Offense count: 2
 # Cop supports --auto-correct.
 # Configuration parameters: AllowMultipleReturnValues.
 Style/RedundantReturn:
   Exclude:
-    - 'app/controllers/impressionist_controller.rb'
+    - "app/controllers/impressionist_controller.rb"
 
 # Offense count: 4
 # Cop supports --auto-correct.
 Style/RedundantSelf:
   Exclude:
-    - 'app/controllers/impressionist_controller.rb'
-    - 'lib/impressionist/counter_cache.rb'
+    - "app/controllers/impressionist_controller.rb"
+    - "lib/impressionist/counter_cache.rb"
 
 # Offense count: 2
 # Cop supports --auto-correct.
 Style/RescueModifier:
   Exclude:
-    - 'app/controllers/impressionist_controller.rb'
+    - "app/controllers/impressionist_controller.rb"
 
 # Offense count: 1
 # Cop supports --auto-correct.
 Style/StderrPuts:
   Exclude:
-    - 'tests/test_app/lib/tasks/cucumber.rake'
+    - "tests/test_app/lib/tasks/cucumber.rake"
 
 # Offense count: 1746
 # Cop supports --auto-correct.
@@ -740,7 +741,7 @@ Style/SymbolArray:
 # IgnoredMethods: respond_to, define_method
 Style/SymbolProc:
   Exclude:
-    - 'app/controllers/impressionist_controller.rb'
+    - "app/controllers/impressionist_controller.rb"
 
 # Offense count: 1
 # Cop supports --auto-correct.
@@ -748,7 +749,7 @@ Style/SymbolProc:
 # SupportedStyles: require_parentheses, require_no_parentheses, require_parentheses_when_complex
 Style/TernaryParentheses:
   Exclude:
-    - 'lib/impressionist/controllers/mongoid/impressionist_controller.rb'
+    - "lib/impressionist/controllers/mongoid/impressionist_controller.rb"
 
 # Offense count: 11
 # Cop supports --auto-correct.
@@ -756,9 +757,9 @@ Style/TernaryParentheses:
 # SupportedStyles: percent, brackets
 Style/WordArray:
   Exclude:
-    - 'app/models/impressionist/bots.rb'
-    - 'lib/impressionist/bots.rb'
-    - 'tests/test_app/db/schema.rb'
+    - "app/models/impressionist/bots.rb"
+    - "lib/impressionist/bots.rb"
+    - "tests/test_app/db/schema.rb"
 
 # Offense count: 456
 # Cop supports --auto-correct.
