@@ -28,6 +28,6 @@ matrix:
   fast_finish: true
 notifications:
   email:
-    - acnalesso@yahoo.co.uk
-    - john@couponshack.com
+    #- acnalesso@yahoo.co.uk
+    #- john@couponshack.com
     - mmcmahand@gmail.com
