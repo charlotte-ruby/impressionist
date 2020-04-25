@@ -1,7 +1,6 @@
 language: ruby
 env:
-  - BUNDLER_VERSION=2.1.4
-  - RUBYOPT='-W:no-deprecated'
+  - BUNDLER_VERSION=2.1.4 RUBYOPT='-W:no-deprecated -W:no-experimental'
 before_install:
   - gem install bundler --version $BUNDLER_VERSION
 before_script:
