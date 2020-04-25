@@ -3,17 +3,12 @@ env:
   - RUBYOPT='-W:no-deprecated -W:no-experimental'
 before_script:
   - bundle
-  - cd tests/test_app
-  - bundle --gemfile=./Gemfile
-  - bundle exec rails g impressionist -f
-  - bundle exec rake db:create db:migrate RAILS_ENV=test
+  - cd spec/dummy
+  - rails g impressionist -f
+  - rake db:create db:migrate RAILS_ENV=test
   - cd ../..
 script:
   - rubocop
-  - bundle exec rspec
-  - cd tests/test_app
-  - export BUNDLE_GEMFILE=./Gemfile
-  - bundle
   - bundle exec rspec
 rvm:
   - 2.7.0
