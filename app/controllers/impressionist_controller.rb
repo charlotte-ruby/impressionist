@@ -54,7 +54,7 @@ module ImpressionistController
     def associative_create_statement(query_params={})
         # support older versions of rails:
         # see https://github.com/rails/rails/pull/34039
-      if defined?(ActionDispatch::Http::ParameterFilter)
+      if Rails::VERSION::MAJOR < 6
         filter = ActionDispatch::Http::ParameterFilter.new(Rails.application.config.filter_parameters)
       else
         filter = ActiveSupport::ParameterFilter.new(Rails.application.config.filter_parameters)

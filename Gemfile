@@ -10,11 +10,8 @@ platforms :jruby do
 end
 
 group :test do
-  gem 'capybara', '>= 2.0.3'
   gem 'minitest'
-  gem 'minitest-rails'
-  gem 'rails', '>= 3.2.15'
-  gem 'rspec-rails'
+  gem 'rspec', "~> 3.0"
   gem 'simplecov'
   gem 'systemu'
 end
