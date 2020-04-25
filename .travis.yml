@@ -10,7 +10,7 @@ before_script:
   - bundle _${BUNDLER_VERSION}_ exec rake db:create db:migrate RAILS_ENV=test
   - cd ../..
 script:
-  - bundle _${BUNDLER_VERSION}_ rspec spec
+  - bundle _${BUNDLER_VERSION}_ exec rspec spec
   - cd tests/test_app
   - bundle _${BUNDLER_VERSION}_ exec rspec spec
 rvm:
