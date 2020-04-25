@@ -48,7 +48,6 @@ module Impressionist
       end
 
       def counter_caching?
-        require 'pry'; binding.pry
         if impressionable_class.is_a?(Module)
           false
         else

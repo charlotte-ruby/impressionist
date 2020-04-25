@@ -13,3 +13,5 @@ gemfiles/*.lock
 *.swo
 .vscode/
 spec/dummy/tmp
+spec/dummy/db/test.sqlite3*
+spec/dummy/log/*
