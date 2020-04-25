@@ -3,6 +3,8 @@ source 'https://rubygems.org'
 gem 'rake', '>= 0.9', '< 11.0'
 gem 'rdoc', '>= 2.4.2'
 
+gem 'bigdecimal', '1.4.2'
+
 platforms :jruby do
   gem 'activerecord-jdbcsqlite3-adapter'
   gem 'jdbc-sqlite3'
@@ -10,7 +12,7 @@ platforms :jruby do
 end
 
 platforms :ruby, :mswin, :mingw do
-  gem 'sqlite3'
+  gem "sqlite3", "~> 1.4.0"
 end
 
 group :test do
@@ -20,7 +22,6 @@ group :test do
   gem 'minitest-rails'
   gem 'rails', '~> 3.2.15'
   gem 'rspec-rails', '~> 2.14.0'
-  gem 'bigdecimal', '~> 1.4'
   gem 'simplecov'
   gem 'systemu'
   gem 'friendly_id', '~> 4.0.9'

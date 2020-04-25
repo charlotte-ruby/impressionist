@@ -12,7 +12,8 @@ platforms :jruby do
   gem 'jruby-openssl'
 end
 
-  gem "sqlite3", "~> 1.3.6"
+gem 'sqlite3', '< 1.4'
+gem 'bigdecimal', '1.4.2'
 
 platforms :ruby, :mswin, :mingw do
   gem 'pg'
@@ -34,6 +35,7 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
 end
+
 
 group :development, :test do
   gem 'autotest-notification'
