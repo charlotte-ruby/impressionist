@@ -11,6 +11,7 @@ end
 
 group :test do
   gem 'minitest'
+  gem 'pry'
   gem 'rspec', "~> 3.0"
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false

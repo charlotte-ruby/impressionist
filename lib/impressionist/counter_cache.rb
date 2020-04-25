@@ -48,8 +48,12 @@ module Impressionist
       end
 
       def counter_caching?
-        impressionable_class.
-          impressionist_counter_caching?
+        require 'pry'; binding.pry
+        if impressionable_class.is_a?(Module)
+          false
+        else
+          impressionable_class.impressionist_counter_caching?
+        end
       end
 
 
