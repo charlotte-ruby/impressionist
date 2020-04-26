@@ -48,10 +48,10 @@ module Impressionist
       end
 
       def counter_caching?
-        if impressionable_class.is_a?(Module)
-          false
-        else
+        if impressionable_class.respond_to?(:impressionist_counter_caching?)
           impressionable_class.impressionist_counter_caching?
+        else
+          false
         end
       end
 
