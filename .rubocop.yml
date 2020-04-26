@@ -1,6 +1,6 @@
 AllCops:
   Exclude:
-    - 'tests/test_app/db/**/*.rb'
+    - "spec/dummy/**/*"
 
 inherit_from: .rubocop_todo.yml
 
