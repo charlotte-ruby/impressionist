@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2015_02_07_140310) do
+ActiveRecord::Schema.define(version: 2020_07_20_143817) do
 
   create_table "articles", force: :cascade do |t|
     t.string "name"
@@ -39,10 +39,10 @@ ActiveRecord::Schema.define(version: 2015_02_07_140310) do
     t.string "ip_address"
     t.string "session_hash"
     t.text "message"
-    t.text "params"
     t.text "referrer"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.text "params"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["controller_name", "action_name", "ip_address"], name: "controlleraction_ip_index"
     t.index ["controller_name", "action_name", "request_hash"], name: "controlleraction_request_index"
     t.index ["controller_name", "action_name", "session_hash"], name: "controlleraction_session_index"
