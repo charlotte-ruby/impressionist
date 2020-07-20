@@ -3,27 +3,18 @@ env:
   - RUBYOPT='-W:no-deprecated -W:no-experimental'
 before_script:
   - bundle
-  - cd tests/test_app
-  - bundle --gemfile=./Gemfile
+  - cd spec/dummy
   - bundle exec rails g impressionist -f
   - bundle exec rake db:create db:migrate RAILS_ENV=test
   - cd ../..
 script:
-  - rubocop
   - bundle exec rspec
-  - cd tests/test_app
-  - export BUNDLE_GEMFILE=./Gemfile
-  - bundle
-  - bundle exec rspec
+  - bundle exec rubocop
 rvm:
-  - 2.7.0
-  - jruby-head
-  - rbx-4
+  - 2.7.1
   - ruby-head
 matrix:
   allow_failures:
-    - rvm: jruby-head
-    - rvm: rbx-4
     - rvm: ruby-head
   fast_finish: true
 notifications:
