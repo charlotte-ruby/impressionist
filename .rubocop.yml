@@ -22,3 +22,5 @@ Style/HashTransformKeys:
   Enabled: True
 Style/HashTransformValues:
   Enabled: True
+RSpec/FilePath:
+  Enabled: False
