@@ -9,16 +9,11 @@ platforms :jruby do
   gem 'jruby-openssl'
 end
 
-platforms :ruby, :mswin, :mingw do
-  gem 'sqlite3'
-end
-
 group :test do
-  gem 'capybara', '>= 2.0.3'
   gem 'minitest'
-  gem 'minitest-rails'
-  gem 'rails', '>= 3.2.15'
-  gem 'rspec-rails'
+  gem 'rspec', "~> 3.0"
+  gem 'rubocop-rails', require: false
+  gem 'rubocop-rspec', require: false
   gem 'simplecov'
   gem 'systemu'
 end

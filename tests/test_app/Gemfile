@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 3.2'
-gem 'rake', '< 11.0'
+gem 'rails', '~> 6'
+
 gem 'public_suffix', '< 1.5.0'
 
 gem 'impressionist', :path => '../../'
@@ -12,11 +12,12 @@ platforms :jruby do
   gem 'jruby-openssl'
 end
 
+gem 'bigdecimal', '1.4.2'
+
 platforms :ruby, :mswin, :mingw do
   gem 'pg'
-  gem 'sqlite3'
   gem 'mysql2'
-  gem 'mongoid', '~> 3.1'
+  gem 'mongoid', '~> 7.0'
   gem 'bson_ext'
 end
 
@@ -25,8 +26,8 @@ gem 'json'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.2'
-  gem 'coffee-rails', '~> 3.2'
+  gem 'sass-rails',   '~> 5.0'
+  gem 'coffee-rails', '~> 5.0'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer'
@@ -34,9 +35,11 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+
 group :development, :test do
   gem 'autotest-notification'
-  gem 'rspec-rails', '~> 2.14.0'
+  gem 'sqlite3', '~> 1.4'
+  gem 'rspec-rails', '~> 4.0'
   gem 'spork'
 
   # test/unit has been removed by default in Ruby 2.2.x+
@@ -47,7 +50,8 @@ group :test do
   gem 'capybara'
   gem 'simplecov'
   gem 'systemu'
+  gem 'pry'
 end
 
 gem 'jquery-rails'
-gem 'friendly_id', '~> 4.0.9'
+gem 'friendly_id', '~> 5'
