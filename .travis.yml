@@ -4,21 +4,17 @@ env:
 before_script:
   - bundle
   - cd spec/dummy
-  - rails g impressionist -f
-  - rake db:create db:migrate RAILS_ENV=test
+  - bundle exec rails g impressionist -f
+  - bundle exec rake db:create db:migrate RAILS_ENV=test
   - cd ../..
 script:
-  - rubocop
   - bundle exec rspec
+  - bundle exec rubocop
 rvm:
-  - 2.7.0
-  - jruby-head
-  - rbx-4
+  - 2.7.1
   - ruby-head
 matrix:
   allow_failures:
-    - rvm: jruby-head
-    - rvm: rbx-4
     - rvm: ruby-head
   fast_finish: true
 notifications:
