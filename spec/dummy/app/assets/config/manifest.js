@@ -1,1 +1,1 @@
-{}
+//= link application.css
