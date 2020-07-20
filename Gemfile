@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rake', '>= 0.9'
+gem 'rake', '>= 12.3.3'
 gem 'rdoc', '>= 2.4.2'
 
 platforms :jruby do
