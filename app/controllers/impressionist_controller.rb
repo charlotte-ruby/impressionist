@@ -1,5 +1,6 @@
 require 'digest/sha2'
 
+
 module ImpressionistController
   module ClassMethods
     def impressionist(opts={})
@@ -51,7 +52,14 @@ module ImpressionistController
 
     # creates a statment hash that contains default values for creating an impression via an AR relation.
     def associative_create_statement(query_params={})
-      filter = ActiveSupport::ParameterFilter.new(Rails.application.config.filter_parameters)
+        # support older versions of rails:
+        # see https://github.com/rails/rails/pull/34039
+      if Rails::VERSION::MAJOR < 6
+        filter = ActionDispatch::Http::ParameterFilter.new(Rails.application.config.filter_parameters)
+      else
+        filter = ActiveSupport::ParameterFilter.new(Rails.application.config.filter_parameters)
+      end
+
       query_params.reverse_merge!(
         :controller_name => controller_name,
         :action_name => action_name,
@@ -133,14 +141,25 @@ module ImpressionistController
     end
 
     def session_hash
+
       # # careful: request.session_options[:id] encoding in rspec test was ASCII-8BIT
       # # that broke the database query for uniqueness. not sure if this is a testing only issue.
       # str = request.session_options[:id]
       # logger.debug "Encoding: #{str.encoding.inspect}"
       # # request.session_options[:id].encode("ISO-8859-1")
-      id = request.session_options[:id]
+      if Rails::VERSION::MAJOR >= 4
+        session["init"] = true
+        id = session.id.to_s
+      else
+        id = request.session_options[:id]
+      end
+
+      unless id.is_a? String
+        id = id.cookie_value if Rack::Session::SessionId.const_defined?(:ID_VERSION) && Rack::Session::SessionId::ID_VERSION == 2
+      end
+
+      # id = cookies.session.id
       # rack 2.0.8 releases new version of session id, id.to_s will raise error!
-      id = id.cookie_value if Rack::Session::SessionId.const_defined?(:ID_VERSION) && Rack::Session::SessionId::ID_VERSION == 2
       id
     end
 

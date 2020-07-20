@@ -9,5 +9,9 @@
 /test_app/vendor
 Gemfile.lock
 gemfiles/*.lock
+.DS_Store
 *.swo
-*.swp
+.vscode/
+spec/dummy/tmp
+spec/dummy/db/test.sqlite3*
+spec/dummy/log/*

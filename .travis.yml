@@ -1,29 +1,24 @@
 language: ruby
-before_install:
-  - gem install bundler
+env:
+  - RUBYOPT='-W:no-deprecated -W:no-experimental'
 before_script:
-  - cd tests/test_app
-  - bundle exec rails g impressionist -f
-  - bundle exec rake db:create db:migrate RAILS_ENV=test
-  - cd ..
+  - bundle
+  - cd spec/dummy
+  - rails g impressionist -f
+  - rake db:create db:migrate RAILS_ENV=test
+  - cd ../..
 script:
-  - bundle exec rake
+  - rubocop
+  - bundle exec rspec
 rvm:
-  - 1.9.3
-  - 2.0.0
-  - 2.1.0
-  - 2.2.0
-  - 2.3.0
+  - 2.7.0
   - jruby-head
-  - rbx
+  - rbx-4
   - ruby-head
-gemfile:
-  - gemfiles/rails32.gemfile
-  - gemfiles/rails40.gemfile
 matrix:
   allow_failures:
     - rvm: jruby-head
-    - rvm: rbx
+    - rvm: rbx-4
     - rvm: ruby-head
   fast_finish: true
 notifications:
