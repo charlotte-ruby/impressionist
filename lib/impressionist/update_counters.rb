@@ -13,7 +13,7 @@ module Impressionist
 
     def update
       klass.
-      update_counters(id, column_name => result)
+      update_counters(id, column_name => result, touch: touch?)
     end
 
     private
@@ -61,6 +61,10 @@ module Impressionist
 
     def column_name
       cache_options[:column_name].to_s
+    end
+
+    def touch?
+      cache_options[:touch]
     end
 
     def cache_options
