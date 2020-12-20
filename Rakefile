@@ -11,7 +11,7 @@ task default: :spec
 Bundler::GemHelper.install_tasks
 
 namespace :impressionist do
-  require File.dirname(__FILE__) + "/lib/impressionist/bots"
+  require "#{File.dirname(__FILE__)}/lib/impressionist/bots"
 
   desc "output the list of bots from http://www.user-agents.org/"
   task :bots do

@@ -1,6 +1,7 @@
 AllCops:
   Exclude:
     - "spec/dummy/**/*"
+    - "impressionist.gemspec"
 
 inherit_from: .rubocop_todo.yml
 
