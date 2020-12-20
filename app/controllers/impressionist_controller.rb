@@ -149,7 +149,7 @@ module ImpressionistController
       # # request.session_options[:id].encode("ISO-8859-1")
       if Rails::VERSION::MAJOR >= 4
         session["init"] = true
-        id = session.id.to_s
+        id = session.id.public_id.to_s
       else
         id = request.session_options[:id]
       end
