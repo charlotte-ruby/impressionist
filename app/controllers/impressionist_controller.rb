@@ -154,7 +154,7 @@ module ImpressionistController
         id = request.session_options[:id]
       end
 
-      unless id.is_a? String
+      if id.respond_to?(:cookie_value)
         id = id.cookie_value if Rack::Session::SessionId.const_defined?(:ID_VERSION) && Rack::Session::SessionId::ID_VERSION == 2
       end
 
