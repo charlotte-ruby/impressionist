@@ -12,6 +12,9 @@
 Gemspec/RubyVersionGlobalsUsage:
   Exclude:
     - "impressionist.gemspec"
+Gemspec/RequiredRubyVersion:
+  Exclude:
+    - "impressionist.gemspec"
 
 # Offense count: 1
 # Cop supports --auto-correct.
