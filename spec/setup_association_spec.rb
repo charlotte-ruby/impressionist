@@ -9,15 +9,15 @@ describe Impressionist::SetupAssociation do
   let(:setup_association) { described_class.new(mock) }
 
   it 'will include when togglable' do
-    allow(mock).to receive(:attr_accessible).with(any_args).and_return(true)
+    allow(mock).to receive(:attr_accessible).and_return(true)
     allow(setup_association).to receive(:toggle).and_return(true)
 
-    allow(setup_association).to be_include_attr_acc
+    expect(setup_association).to be_include_attr_acc
   end
 
   it 'will not include if it is not togglable' do
     allow(setup_association).to receive(:toggle).and_return(false)
-    allow(setup_association).not_to be_include_attr_acc
+    expect(setup_association).not_to be_include_attr_acc
   end
 
   context 'when using rails >= 5' do
