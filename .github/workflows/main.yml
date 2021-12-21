@@ -1,7 +1,7 @@
-name: Main
+name: main
 on: [push]
 jobs:
-  Build-And-Run-Tests:
+  build-and-run-tests:
     runs-on: ubuntu-latest
     strategy:
       matrix:
