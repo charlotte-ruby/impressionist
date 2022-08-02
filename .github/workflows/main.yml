@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ruby: ['3.0.3', '2.7.5']
+        ruby: ['3.1.2', '2.7.5']
     env:
       RAILS_ENV: test
     steps:
@@ -23,3 +23,4 @@ jobs:
         run: bundle exec rubocop
       - name: Run Tests
         run: bundle exec rspec
+
