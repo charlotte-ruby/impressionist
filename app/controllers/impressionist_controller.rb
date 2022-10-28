@@ -43,12 +43,20 @@ module ImpressionistController
         actions = opts[:actions]
         actions.collect!{|a|a.to_s} unless actions.blank?
         if (actions.blank? || actions.include?(action_name)) && unique?(opts[:unique])
-          Impression.create(direct_create_statement)
+          Impression.create(mongoid_statement)
         end
       end
     end
 
     protected
+
+    def mongoid_statement
+      if BSON::ObjectId.legal?(params[:id])
+        direct_create_statement
+      else
+        direct_create_statement({}, controller_name.singularize.camelize.constantize.find(params[:id]))
+      end
+    end
 
     # creates a statment hash that contains default values for creating an impression via an AR relation.
     def associative_create_statement(query_params={})
