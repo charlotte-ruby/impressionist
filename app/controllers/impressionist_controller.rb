@@ -158,8 +158,8 @@ module ImpressionistController
 
     #use both @current_user and current_user helper
     def user_id
-      user_id = @current_user ? @current_user.id : nil rescue nil
-      user_id = current_user ? current_user.id : nil rescue nil if user_id.blank?
+      user_id = @current_user&.id rescue nil
+      user_id = current_user&.id rescue nil if user_id.blank?
       user_id
     end
   end
