@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rake', '>= 0.9'
+gem 'rake', '>= 12.3.3'
 gem 'rdoc', '>= 2.4.2'
 
 platforms :jruby do
@@ -9,16 +9,12 @@ platforms :jruby do
   gem 'jruby-openssl'
 end
 
-platforms :ruby, :mswin, :mingw do
-  gem 'sqlite3'
-end
-
 group :test do
-  gem 'capybara', '>= 2.0.3'
   gem 'minitest'
-  gem 'minitest-rails'
-  gem 'rails', '>= 3.2.15'
-  gem 'rspec-rails'
+  gem 'pry'
+  gem 'rspec', "~> 3.0"
+  gem 'rubocop-rails', require: false
+  gem 'rubocop-rspec', require: false
   gem 'simplecov'
   gem 'systemu'
 end

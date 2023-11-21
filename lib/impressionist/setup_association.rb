@@ -12,7 +12,11 @@ module Impressionist
     end
 
     def define_belongs_to
-      receiver.belongs_to(:impressionable, :polymorphic => true)
+      if ::Rails::VERSION::MAJOR.to_i >= 5
+        receiver.belongs_to(:impressionable, :polymorphic => true, :optional => true)	         
+      else
+        receiver.belongs_to(:impressionable, :polymorphic => true)
+      end
     end
 
     def set

@@ -1,7 +1,10 @@
 ![Impressionist Logo](https://github.com/charlotte-ruby/impressionist/raw/master/logo.png)
 
-[![Build Status](https://secure.travis-ci.org/charlotte-ruby/impressionist.png?branch=master)](http://travis-ci.org/charlotte-ruby/impressionist)
+[![Main](https://github.com/charlotte-ruby/impressionist/actions/workflows/main.yml/badge.svg)](https://github.com/charlotte-ruby/impressionist/actions/workflows/main.yml)
 [![Code Climate](https://codeclimate.com/github/charlotte-ruby/impressionist.png)](https://codeclimate.com/github/charlotte-ruby/impressionist)
+
+WE ARE LOOKING FOR MAINTAINERS.  CONTACT @johnmcaliley IF YOU ARE INTERESTED IN HELPING
+=======================================================================================
 
 impressionist
 =============
@@ -30,7 +33,11 @@ Installation
 ------------
 Add it to your Gemfile
 
+    #rails 6
     gem 'impressionist'
+    
+    #rails 5 or lower
+    gem 'impressionist', '~>1.6.1'
 
 Install with Bundler
 
@@ -246,8 +253,10 @@ Want to run the tests? Ok mummy
 
 Contributors
 ------------
+WE ARE CURRENTLY LOOKING FOR SOMEONE TO HELP MAINTAIN THIS REPOSITORY.  IF YOU ARE INTERESTED, MESSAGE @johnmcaliley.
+
 * [johnmcaliley - creator](https://github.com/johnmcaliley)
-* [jgrau - maintainer](https://github.com/jgrau)
+* [jgrau](https://github.com/jgrau)
 * [acnalesso](https://github.com/acnalesso)
 * [coryschires](https://github.com/coryschires)
 * [georgmittendorfer](https://github.com/georgmittendorfer)

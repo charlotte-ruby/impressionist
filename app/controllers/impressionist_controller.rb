@@ -1,5 +1,6 @@
 require 'digest/sha2'
 
+
 module ImpressionistController
   module ClassMethods
     def impressionist(opts={})
@@ -51,6 +52,14 @@ module ImpressionistController
 
     # creates a statment hash that contains default values for creating an impression via an AR relation.
     def associative_create_statement(query_params={})
+        # support older versions of rails:
+        # see https://github.com/rails/rails/pull/34039
+      if Rails::VERSION::MAJOR < 6
+        filter = ActionDispatch::Http::ParameterFilter.new(Rails.application.config.filter_parameters)
+      else
+        filter = ActiveSupport::ParameterFilter.new(Rails.application.config.filter_parameters)
+      end
+
       query_params.reverse_merge!(
         :controller_name => controller_name,
         :action_name => action_name,
@@ -131,12 +140,15 @@ module ImpressionistController
     end
 
     def session_hash
-      # # careful: request.session_options[:id] encoding in rspec test was ASCII-8BIT
-      # # that broke the database query for uniqueness. not sure if this is a testing only issue.
-      # str = request.session_options[:id]
-      # logger.debug "Encoding: #{str.encoding.inspect}"
-      # # request.session_options[:id].encode("ISO-8859-1")
-      request.session_options[:id]
+      id = session.id || request.session_options[:id]
+
+      if id.respond_to?(:cookie_value)
+        id.cookie_value
+      elsif id.is_a?(Rack::Session::SessionId)
+        id.public_id
+      else
+        id.to_s
+      end
     end
 
     def params_hash
@@ -145,8 +157,8 @@ module ImpressionistController
 
     #use both @current_user and current_user helper
     def user_id
-      user_id = @current_user ? @current_user.id : nil rescue nil
-      user_id = current_user ? current_user.id : nil rescue nil if user_id.blank?
+      user_id = @current_user&.id rescue nil
+      user_id = current_user&.id rescue nil if user_id.blank?
       user_id
     end
   end

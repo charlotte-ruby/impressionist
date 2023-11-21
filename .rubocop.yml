@@ -1,0 +1,27 @@
+AllCops:
+  Exclude:
+    - "spec/dummy/**/*"
+  SuggestExtensions: false
+
+inherit_from: .rubocop_todo.yml
+
+require:
+  - rubocop-rspec
+  - rubocop-rails
+
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+Lint/RaiseException:
+  Enabled: True
+Lint/StructNewOverride:
+  Enabled: True
+Style/ExponentialNotation:
+  Enabled: True
+Style/HashEachMethods:
+  Enabled: True
+Style/HashTransformKeys:
+  Enabled: True
+Style/HashTransformValues:
+  Enabled: True
+RSpec/FilePath:
+  Enabled: False

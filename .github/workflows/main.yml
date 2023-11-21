@@ -1,0 +1,26 @@
+name: Main
+on: [push]
+jobs:
+  Build-And-Run-Tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ruby: ['3.1.2', '2.7.5']
+    env:
+      RAILS_ENV: test
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+      - name: setup app
+        run: |
+          bundle
+          cd spec/dummy
+          bundle exec rails g impressionist -f
+          bundle exec rake db:create db:migrate RAILS_ENV=test
+      - name: Lint
+        run: bundle exec rubocop
+      - name: Run Tests
+        run: bundle exec rspec
+
