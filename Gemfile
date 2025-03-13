@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
-gem 'rake', '>= 12.3.3'
-gem 'rdoc', '>= 2.4.2'
+gem 'rake', '>= 13.1.0'
+gem 'rdoc', '>= 6.3.4'
 
 platforms :jruby do
   gem 'activerecord-jdbcsqlite3-adapter'
@@ -12,7 +12,6 @@ end
 group :test do
   gem 'minitest'
   gem 'pry'
-  gem 'rspec', "~> 3.0"
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
   gem 'simplecov'
