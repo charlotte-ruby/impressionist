@@ -20,13 +20,11 @@ Gem::Specification.new do |s|
 
   # Installed when someone installs gem
   s.add_dependency "friendly_id"
-  s.add_dependency 'nokogiri', RUBY_VERSION < '2.1.0' ? '~> 1.6.0' : '~> 1'
-  s.add_dependency 'rails', '>= 3.2.15'
+  s.add_dependency "rails", ">= 6"
 
   # NOT installed when someone installs gem
   # Installed only in development, when you run: bundle install
-  s.add_development_dependency 'bundler', '~> 2.0'
-  s.add_development_dependency 'capybara'
-  s.add_development_dependency 'rspec-rails'
-  s.add_development_dependency 'sqlite3', '~> 1.4'
+  s.add_development_dependency "sqlite3", "~> 2.6.0"
+  s.add_development_dependency "capybara", "~> 3.40.0"
+  s.add_development_dependency "rspec-rails", "~> 7.1.1"
 end

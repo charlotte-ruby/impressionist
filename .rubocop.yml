@@ -25,3 +25,5 @@ Style/HashTransformValues:
   Enabled: True
 RSpec/FilePath:
   Enabled: False
+Gemspec/OrderedDependencies:
+  Enabled: False
