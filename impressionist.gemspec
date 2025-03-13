@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
 
   # Installed when someone installs gem
   s.add_dependency "friendly_id"
-  s.add_dependency "rails", ">= 6"
+  s.add_dependency "rails", ">= 7"
 
   # NOT installed when someone installs gem
   # Installed only in development, when you run: bundle install
