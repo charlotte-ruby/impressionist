@@ -1,14 +1,15 @@
 AllCops:
-  Exclude:
-    - "spec/dummy/**/*"
-  SuggestExtensions: false
-
-inherit_from: .rubocop_todo.yml
+  NewCops: enable
+  SuggestExtensions: true
 
 plugins:
+  - rubocop-rake
   - rubocop-rails
   - rubocop-rspec
   - rubocop-capybara
+  - rubocop-rspec_rails
+
+inherit_from: .rubocop_todo.yml
 
 Layout/SpaceAroundMethodCallOperator:
   Enabled: true
@@ -26,9 +27,6 @@ Style/HashTransformKeys:
   Enabled: True
 Style/HashTransformValues:
   Enabled: True
-
-RSpec/FilePath:
-  Enabled: False
 
 Gemspec/OrderedDependencies:
   Enabled: False
