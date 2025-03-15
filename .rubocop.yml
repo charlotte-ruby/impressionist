@@ -5,16 +5,19 @@ AllCops:
 
 inherit_from: .rubocop_todo.yml
 
-require:
-  - rubocop-rspec
+plugins:
   - rubocop-rails
+  - rubocop-rspec
+  - rubocop-capybara
 
 Layout/SpaceAroundMethodCallOperator:
   Enabled: true
+
 Lint/RaiseException:
   Enabled: True
 Lint/StructNewOverride:
   Enabled: True
+
 Style/ExponentialNotation:
   Enabled: True
 Style/HashEachMethods:
@@ -23,7 +26,12 @@ Style/HashTransformKeys:
   Enabled: True
 Style/HashTransformValues:
   Enabled: True
+
 RSpec/FilePath:
   Enabled: False
+
 Gemspec/OrderedDependencies:
+  Enabled: False
+
+Bundler/OrderedGems:
   Enabled: False
