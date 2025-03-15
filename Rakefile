@@ -14,10 +14,23 @@ RSpec::Core::RakeTask.new(:spec)
 # Adding a set of tasks that help with gem development and management
 Bundler::GemHelper.install_tasks
 
-# Sets the default task to be the :spec task.
-# When you run `rake` from the command line
-# without specifying a task, it will automatically run the :spec task.
-task default: :spec
+# Load the RuboCop Rake task, which is used for running the RuboCop linter
+begin
+  require "rubocop/rake_task"
+  RuboCop::RakeTask.new
+rescue LoadError
+  desc "Run Rubocop"
+  task :rubocop do
+    puts "==================================="
+    warn " *** Rubocop task is disabled ! ***"
+    puts "==================================="
+  end
+end
+
+# Sets the default tasks.
+# When you run `rake` from the command line without specifying
+# a task, it will automatically run the :rubocop and :spec task.
+task default: [:rubocop, :spec]
 
 # Sets up a Rake tasks within the impressionist namespace
 namespace :impressionist do
