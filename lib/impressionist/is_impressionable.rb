@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 module Impressionist
   module IsImpressionable
     extend ActiveSupport::Concern
 
     module ClassMethods
-      def is_impressionable(options={})
+      def is_impressionable(options = {})
         define_association
         @impressionist_cache_options = options
 
@@ -13,11 +15,10 @@ module Impressionist
       private
 
       def define_association
-        has_many(:impressions,
-        :as => :impressionable,
-        :dependent => :delete_all)
+        has_many :impressions,
+                 as: :impressionable,
+                 dependent: :delete_all
       end
     end
-
   end
 end
