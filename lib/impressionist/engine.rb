@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "impressionist/impressionist_controller"
+
 module Impressionist
   class Engine < ::Rails::Engine
     attr_accessor :orm
@@ -10,15 +12,13 @@ module Impressionist
     end
 
     initializer 'impressionist.controller' do
-      require "impressionist/impressionist_controller"
-      
       if orm == :mongoid.to_s
         require "impressionist/controllers/mongoid/impressionist_controller"
       end
 
       ActiveSupport.on_load(:action_controller) do
-        include ImpressionistController::InstanceMethods
-        extend ImpressionistController::ClassMethods
+        include ::ImpressionistController::InstanceMethods
+        extend ::ImpressionistController::ClassMethods
       end
     end
 
