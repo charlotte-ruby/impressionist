@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "impressionist/impressionist_controller"
-
 module Impressionist
   class Engine < ::Rails::Engine
     attr_accessor :orm
