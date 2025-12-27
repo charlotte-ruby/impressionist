@@ -10,6 +10,9 @@ module Impressionist
     end
 
     initializer 'impressionist.controller' do
+      # Require the controller module from app/controllers
+      require "#{root}/app/controllers/impressionist_controller"
+
       if orm == :mongoid.to_s
         require "impressionist/controllers/mongoid/impressionist_controller"
       end
