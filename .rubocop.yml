@@ -1,6 +1,8 @@
+
 AllCops:
   Exclude:
     - "spec/dummy/**/*"
+  NewCops: enable
   SuggestExtensions: false
 
 inherit_from: .rubocop_todo.yml
