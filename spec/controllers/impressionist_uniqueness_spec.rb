@@ -359,9 +359,7 @@ describe DummyController do
   describe "impressionist filter and method uniqueness" do
     it "recognize uniqueness" do
       impressionable = Post.create
-      allow(controller).to receive(:controller_name).and_return("posts") # for correct impressionable type in filter
-      allow(controller).to receive(:params).and_return({ :id => impressionable.id.to_s }) # for correct impressionable id in filter
-      allow(controller).to receive(:session_hash).and_return("foo")
+      allow(controller).to receive_messages(controller_name: "posts", params: { :id => impressionable.id.to_s }, session_hash: "foo")
       allow(controller.request).to receive(:remote_ip).and_return("1.2.3.4")
       # order of the following methods is important for the test!
       controller.impressionist_subapp_filter(unique: [:ip_address, :request_hash, :session_hash])
@@ -374,9 +372,7 @@ describe DummyController do
     it 'unique' do
       impressionable = Profile.create({ username: 'test_profile', slug: 'test_profile' })
 
-      allow(controller).to receive(:controller_name).and_return('profile')
-      allow(controller).to receive(:action_name).and_return('show')
-      allow(controller).to receive(:params).and_return({ id: impressionable.slug })
+      allow(controller).to receive_messages(controller_name: 'profile', action_name: 'show', params: { id: impressionable.slug })
       allow(controller.request).to receive(:remote_ip).and_return('1.2.3.4')
 
       controller.impressionist(impressionable, nil, :unique => [:impressionable_type, :impressionable_id])

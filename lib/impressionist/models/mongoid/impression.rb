@@ -6,6 +6,7 @@ class Impression
   include Mongoid::Timestamps
 
   include Impressionist::CounterCache
+
   Impressionist::SetupAssociation.new(self).set
 
   field :impressionable_id, type: BSON::ObjectId
