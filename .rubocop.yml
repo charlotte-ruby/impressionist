@@ -5,7 +5,7 @@ AllCops:
 
 inherit_from: .rubocop_todo.yml
 
-require:
+plugins:
   - rubocop-rspec
   - rubocop-rails
 
@@ -23,5 +23,5 @@ Style/HashTransformKeys:
   Enabled: True
 Style/HashTransformValues:
   Enabled: True
-RSpec/FilePath:
+RSpec/SpecFilePathFormat:
   Enabled: False

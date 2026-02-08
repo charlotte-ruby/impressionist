@@ -362,7 +362,7 @@ Metrics/ModuleLength:
 # ForbiddenPrefixes: is_, has_, have_
 # AllowedMethods: is_a?
 # MethodDefinitionMacros: define_method, define_singleton_method
-Naming/PredicateName:
+Naming/PredicatePrefix:
   Exclude:
     - "spec/**/*"
     - "lib/impressionist/is_impressionable.rb"
@@ -389,7 +389,7 @@ RSpec/ExampleLength:
 
 # Offense count: 5
 # Configuration parameters: CustomTransform, IgnoreMethods.
-RSpec/FilePath:
+RSpec/SpecFilePathFormat:
   Exclude:
     - "spec/bots_spec.rb"
     - "spec/controllers/impressionist_uniqueness_spec.rb"
