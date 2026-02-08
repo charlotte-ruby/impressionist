@@ -2,6 +2,7 @@
 AllCops:
   Exclude:
     - "spec/dummy/**/*"
+    - "vendor/bundle/**/*"
   NewCops: enable
   SuggestExtensions: false
   TargetRubyVersion: 4.0
