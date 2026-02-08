@@ -8,7 +8,8 @@ module Impressionist
 
     WILD_CARDS = ["bot","yahoo","slurp","google","msn","crawler"]
 
-    LIST = ["<a href='http://www.unchaos.com/'> UnChaos </a> From Chaos To Order Hybrid Web Search Engine.(vadim_gonchar@unchaos.com)",
+    LIST = [
+      "<a href='http://www.unchaos.com/'> UnChaos </a> From Chaos To Order Hybrid Web Search Engine.(vadim_gonchar@unchaos.com)",
       "<a href='http://www.unchaos.com/'> UnChaos Bot Hybrid Web Search Engine. </a> (vadim_gonchar@unchaos.com)",
       "<b> UnChaosBot From Chaos To Order UnChaos Hybrid Web Search Engine at www.unchaos.com </b> (info@unchaos.com)",
       "<http://www.sygol.com/> http://www.sygol.com",
@@ -1463,6 +1464,7 @@ module Impressionist
       "Zippy v2.0 - Zippyfinder.com",
       "ZoomSpider - wrensoft.com",
       "zspider/0.9-dev http://feedback.redkolibri.com/",
-      "ZyBorg/1.0 (ZyBorg@WISEnut.com; http://www.WISEnut.com)"]
+      "ZyBorg/1.0 (ZyBorg@WISEnut.com; http://www.WISEnut.com)"
+    ]
   end
 end

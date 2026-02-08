@@ -2,6 +2,7 @@ module ActiveRecord
   module Generators
     class ImpressionistGenerator < Rails::Generators::Base
       include Rails::Generators::Migration
+
       source_root File.join(File.dirname(__FILE__), 'templates')
 
       def self.next_migration_number(dirname)
