@@ -1,0 +1,28 @@
+name: Publish Gem to GitHub Packages
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - "lib/*/version.rb"
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+
+    steps:
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Build and publish to GitHub Packages
+        uses: actionshub/publish-gem-to-github@v1.0.13
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          owner: ${{ github.repository_owner }}
