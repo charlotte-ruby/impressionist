@@ -1,7 +1,6 @@
 ![Impressionist Logo](https://github.com/charlotte-ruby/impressionist/raw/master/logo.png)
 
 [![Main](https://github.com/charlotte-ruby/impressionist/actions/workflows/main.yml/badge.svg)](https://github.com/charlotte-ruby/impressionist/actions/workflows/main.yml)
-[![Code Climate](https://codeclimate.com/github/charlotte-ruby/impressionist.png)](https://codeclimate.com/github/charlotte-ruby/impressionist)
 
 WE ARE LOOKING FOR MAINTAINERS.  CONTACT @johnmcaliley IF YOU ARE INTERESTED IN HELPING
 =======================================================================================
