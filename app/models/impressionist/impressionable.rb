@@ -21,11 +21,6 @@ module Impressionist
         impressionist_counter_cache_options[:counter_cache]
       end
 
-      def counter_caching?
-          ActiveSupport::Deprecation.new('2.1', 'Impressionist').warn("#counter_caching? is deprecated; please use #impressionist_counter_caching? instead")
-          impressionist_counter_caching?
-      end
-
     end # end of ClassMethods
 
     def impressionist_count(options={})
