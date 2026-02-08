@@ -14,6 +14,7 @@ group :test do
   gem 'pry'
   gem 'rspec', "~> 3.0"
   gem 'rubocop-rails', require: false
+  gem 'rubocop-rake', require: false
   gem 'rubocop-rspec', require: false
   gem 'simplecov'
   gem 'systemu'
