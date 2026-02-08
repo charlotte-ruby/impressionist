@@ -35,7 +35,4 @@ RSpec.configure do |config|
   # self explanatory
   # runs everything
   config.run_all_when_everything_filtered = true
-
-  # make the rails logger usable in the tests as logger.xxx "..."
-  delegate :logger, to: :Rails
 end

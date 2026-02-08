@@ -33,7 +33,14 @@ module Impressionist
       options.reverse_merge!(:filter => :request_hash, :start_date => nil, :end_date => Time.now)
 
       # If a start_date is provided, finds impressions between then and the end_date. Otherwise returns all impressions
-      imps = options[:start_date].blank? ? impressions : impressions.where(created_at: (options[:start_date])..(options[:end_date]))
+      imps = if options[:start_date].blank?
+               impressions
+             else
+               # Parse date strings to ensure proper timezone handling
+               start_date = options[:start_date].is_a?(String) ? Date.parse(options[:start_date]) : options[:start_date]
+               end_date = options[:end_date].is_a?(String) ? Date.parse(options[:end_date]) : options[:end_date]
+               impressions.where(created_at: start_date..end_date)
+             end
 
       if options[:message]
         imps = imps.where(impressions: { message: options[:message] })
