@@ -35,7 +35,7 @@ Add it to your Gemfile
 
     #rails 6
     gem 'impressionist'
-    
+
     #rails 5 or lower
     gem 'impressionist', '~>1.6.1'
 
