@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ruby: ['3.1.2', '2.7.5']
+        ruby: ["3.3.10", "4.0.1"]
     env:
       RAILS_ENV: test
     steps:
@@ -15,7 +15,8 @@ jobs:
           ruby-version: ${{ matrix.ruby }}
       - name: setup app
         run: |
-          bundle
+          bundle install
+
           cd spec/dummy
           bundle exec rails g impressionist -f
           bundle exec rake db:create db:migrate RAILS_ENV=test
@@ -23,4 +24,3 @@ jobs:
         run: bundle exec rubocop
       - name: Run Tests
         run: bundle exec rspec
-
