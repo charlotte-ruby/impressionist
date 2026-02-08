@@ -4,13 +4,12 @@ module ActiveRecord
       include Rails::Generators::Migration
       source_root File.join(File.dirname(__FILE__), 'templates')
 
-      # FIX, why is this implementing rails behaviour?
       def self.next_migration_number(dirname)
-        sleep 1
-        if ActiveRecord::Base.timestamped_migrations
-          Time.now.utc.strftime("%Y%m%d%H%M%S")
+        next_number = current_migration_number(dirname) + 1
+        if ActiveRecord.timestamped_migrations
+          [Time.now.utc.strftime("%Y%m%d%H%M%S"), "%.14d" % next_number].max
         else
-          "%.3d" % (current_migration_number(dirname) + 1)
+          "%.3d" % next_number
         end
       end
 
