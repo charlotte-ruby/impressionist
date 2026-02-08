@@ -14,10 +14,9 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
       - name: setup app
         run: |
-          bundle install
-
           cd spec/dummy
           bundle exec rails g impressionist -f
           bundle exec rake db:create db:migrate RAILS_ENV=test
