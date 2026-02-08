@@ -22,8 +22,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'nokogiri', RUBY_VERSION < '2.1.0' ? '~> 1.6.0' : '~> 1'
   s.add_dependency 'rails', '>= 3.2.15'
 
-  s.add_development_dependency 'bundler', '~> 2.0'
+  s.add_development_dependency 'bundler', '~> 4.0'
   s.add_development_dependency 'capybara'
   s.add_development_dependency 'rspec-rails'
-  s.add_development_dependency 'sqlite3', '~> 1.4'
+  s.add_development_dependency 'sqlite3'
 end
