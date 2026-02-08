@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "friendly_id", '~> 5.6'
   s.add_dependency 'nokogiri', '~> 1.19'
-  s.add_dependency 'rails', '>= 3.2.15'
+  s.add_dependency 'rails', '>= 7.2'
 
   s.metadata['rubygems_mfa_required'] = 'true'
 end
