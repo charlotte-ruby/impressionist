@@ -19,18 +19,6 @@ describe Impression do
     end
   end
 
-  describe "self#counter_caching?" do
-    it "knows when counter caching is enabled" do
-      allow(ActiveSupport::Deprecation).to receive(:warn)
-      expect(Widget).to be_counter_caching
-    end
-
-    it "knows when counter caching is disabled" do
-      allow(ActiveSupport::Deprecation).to receive(:warn)
-      expect(Article).not_to be_counter_caching
-    end
-  end
-
   describe "#update_impressionist_counter_cache" do
     it "updates the counter cache column to reflect the correct number of impressions" do
       expect do

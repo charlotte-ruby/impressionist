@@ -1,13 +1,18 @@
+
 AllCops:
   Exclude:
     - "spec/dummy/**/*"
+    - "vendor/bundle/**/*"
+  NewCops: enable
   SuggestExtensions: false
+  TargetRubyVersion: 4.0
 
 inherit_from: .rubocop_todo.yml
 
-require:
-  - rubocop-rspec
+plugins:
   - rubocop-rails
+  - rubocop-rake
+  - rubocop-rspec
 
 Layout/SpaceAroundMethodCallOperator:
   Enabled: true
@@ -23,5 +28,5 @@ Style/HashTransformKeys:
   Enabled: True
 Style/HashTransformValues:
   Enabled: True
-RSpec/FilePath:
+RSpec/SpecFilePathFormat:
   Enabled: False

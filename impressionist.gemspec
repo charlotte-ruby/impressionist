@@ -15,15 +15,11 @@ Gem::Specification.new do |s|
   s.authors       = ['johnmcaliley']
 
   s.files         = `git ls-files`.split("\n")
-  s.test_files    = `git ls-files -- tests/**/*`.split("\n")
   s.require_path  = 'lib'
 
-  s.add_dependency "friendly_id"
-  s.add_dependency 'nokogiri', RUBY_VERSION < '2.1.0' ? '~> 1.6.0' : '~> 1'
-  s.add_dependency 'rails', '>= 3.2.15'
+  s.add_dependency "friendly_id", '~> 5.6'
+  s.add_dependency 'nokogiri', '~> 1.19'
+  s.add_dependency 'rails', '>= 7.2'
 
-  s.add_development_dependency 'bundler', '~> 2.0'
-  s.add_development_dependency 'capybara'
-  s.add_development_dependency 'rspec-rails'
-  s.add_development_dependency 'sqlite3', '~> 2.0'
+  s.metadata['rubygems_mfa_required'] = 'true'
 end
