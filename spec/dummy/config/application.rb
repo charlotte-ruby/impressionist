@@ -3,8 +3,6 @@ require_relative 'boot'
 require 'rails/all'
 
 Bundler.require(*Rails.groups)
-# FIXME
-require "impressionist"
 
 module Dummy
   class Application < Rails::Application
