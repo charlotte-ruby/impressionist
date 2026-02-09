@@ -1,10 +1,13 @@
 require 'rubygems'
 require 'bundler/setup'
 
-# Coverage
-require 'simplecov'
-SimpleCov.start do
-  add_filter '/spec/'
+if ENV['COVERAGE']
+  require 'simplecov'
+  require 'simplecov_json_formatter'
+  SimpleCov.start do
+    formatter SimpleCov::Formatter::JSONFormatter
+    add_filter '/spec/'
+  end
 end
 
 ENV['RAILS_ENV'] ||= 'test'

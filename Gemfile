@@ -19,6 +19,7 @@ group :test do
   gem 'rubocop-rake', require: false
   gem 'rubocop-rspec', require: false
   gem 'simplecov'
+  gem 'simplecov_json_formatter'
   gem 'sqlite3', '~> 2.9'
   gem 'systemu'
 end

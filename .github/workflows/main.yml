@@ -24,3 +24,11 @@ jobs:
         run: bundle exec rubocop
       - name: Run Tests
         run: bundle exec rspec
+      - name: Upload Coverage
+        uses: qltysh/qlty-action/coverage@v2
+        env:
+          COVERAGE: true
+        with:
+          token: ${{ secrets.QLTY_COVERAGE_TOKEN }}
+          files: coverage/coverage.json
+        if: matrix.ruby == '4.0.1'
