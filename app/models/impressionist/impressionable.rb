@@ -5,7 +5,7 @@ module Impressionist
     module ClassMethods
       attr_accessor :impressionist_cache_options
 
-      DEFAULT_CACHE ||= {
+      DEFAULT_CACHE = {
         :counter_cache => false,
         :column_name => :impressions_count,
         :unique => :all
@@ -21,11 +21,6 @@ module Impressionist
         impressionist_counter_cache_options[:counter_cache]
       end
 
-      def counter_caching?
-          ::ActiveSupport::Deprecation.warn("#counter_caching? is deprecated; please use #impressionist_counter_caching? instead")
-          impressionist_counter_caching?
-      end
-
     end # end of ClassMethods
 
     def impressionist_count(options={})
@@ -33,10 +28,17 @@ module Impressionist
       options.reverse_merge!(:filter => :request_hash, :start_date => nil, :end_date => Time.now)
 
       # If a start_date is provided, finds impressions between then and the end_date. Otherwise returns all impressions
-      imps = options[:start_date].blank? ? impressions : impressions.where("created_at >= ? and created_at <= ?", options[:start_date], options[:end_date])
+      imps = if options[:start_date].blank?
+               impressions
+             else
+               # Parse date strings to ensure proper timezone handling
+               start_date = options[:start_date].is_a?(String) ? Date.parse(options[:start_date]) : options[:start_date]
+               end_date = options[:end_date].is_a?(String) ? Date.parse(options[:end_date]) : options[:end_date]
+               impressions.where(created_at: start_date..end_date)
+             end
 
       if options[:message]
-        imps = imps.where("impressions.message = ?", options[:message])
+        imps = imps.where(impressions: { message: options[:message] })
       end
 
       # Count all distinct impressions unless the :all filter is provided.

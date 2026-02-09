@@ -31,7 +31,7 @@ describe ArticlesController, type: :controller do
 
     expect(Impression.all.size).to eq 12
 
-    expect(latest_impression.message).to eq nil
+    expect(latest_impression.message).to be_nil
     expect(latest_impression.controller_name).to eq 'articles'
     expect(latest_impression.action_name).to eq 'show'
   end
@@ -46,7 +46,7 @@ describe ArticlesController, type: :controller do
   it 'does not log the user_id if user is authenticated' do
     get :show, params: { id: 1 }
 
-    expect(Article.first.impressions.last.user_id).to eq nil
+    expect(Article.first.impressions.last.user_id).to be_nil
   end
 
   it 'logs the request_hash, ip_address, referrer and session_hash' do
@@ -57,7 +57,7 @@ describe ArticlesController, type: :controller do
     expect(impression.request_hash.size).to eq 64
     expect(impression.ip_address).to eq '0.0.0.0'
     expect(impression.session_hash.size).to eq 32
-    expect(impression.referrer).to eq nil
+    expect(impression.referrer).to be_nil
   end
 
   # Capybara has change the way it works
@@ -80,7 +80,7 @@ describe ArticlesController, type: :controller do
     expect(impression.request_hash.size).to eq 64
     expect(impression.ip_address).to eq '0.0.0.0'
     expect(impression.session_hash.size).to eq 32
-    expect(impression.referrer).to eq nil
+    expect(impression.referrer).to be_nil
   end
 
   it 'logs request with params: {}' do
@@ -92,7 +92,7 @@ describe ArticlesController, type: :controller do
     expect(impression.request_hash.size).to eq 64
     expect(impression.ip_address).to eq '0.0.0.0'
     expect(impression.session_hash.size).to eq 32
-    expect(impression.referrer).to eq nil
+    expect(impression.referrer).to be_nil
   end
 
   describe 'when filtering params' do

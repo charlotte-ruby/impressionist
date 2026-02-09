@@ -1,10 +1,13 @@
 require 'rubygems'
 require 'bundler/setup'
 
-# Coverage
-require 'simplecov'
-SimpleCov.start do
-  add_filter '/spec/'
+if ENV['COVERAGE']
+  require 'simplecov'
+  require 'simplecov_json_formatter'
+  SimpleCov.start do
+    formatter SimpleCov::Formatter::JSONFormatter
+    add_filter '/spec/'
+  end
 end
 
 ENV['RAILS_ENV'] ||= 'test'
@@ -23,7 +26,7 @@ require "rails/test_help"
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
-  config.fixture_path = "spec/fixtures"
+  config.fixture_paths = ["spec/fixtures"]
   config.infer_spec_type_from_file_location!
 
   config.mock_with :rspec
@@ -35,9 +38,4 @@ RSpec.configure do |config|
   # self explanatory
   # runs everything
   config.run_all_when_everything_filtered = true
-
-  # make the rails logger usable in the tests as logger.xxx "..."
-  def logger
-    Rails.logger
-  end
 end
