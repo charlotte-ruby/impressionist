@@ -1,8 +1,11 @@
-# Use this hook to configure impressionist parameters
-#Impressionist.setup do |config|
-  # Define ORM. Could be :active_record (default), :mongo_mapper or :mongoid
-  # config.orm = :active_record
-#end
+Impressionist.setup do |config|
+  # Rate limiting (optional)
+  # config.rate_limit = 10_000 # requests per hour
 
+  # Bot detection (optional)
+  # config.ignore_bots = false
 
-
+  # User tracking (optional)
+  # config.user_method = :current_user
+  # config.user_identifier = :id
+end
