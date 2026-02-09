@@ -6,13 +6,9 @@ module Impressionist
       source_root File.expand_path('../templates', __FILE__)
 
       def self.next_migration_number(*)
-        format = if Rails.application.config.generators.respond_to?(:migration_number_format)
-                   Rails.application.config.generators.migration_number_format
-                 else
-                   "%Y%m%d%H%M%S"
-                 end
-
-        Time.now.utc.strftime(format)
+        Time.now.utc.strftime(
+          Rails.application.config.generators[:migration_number_format] || "%Y%m%d%H%M%S"
+        )
       end
 
       def copy_config_file
