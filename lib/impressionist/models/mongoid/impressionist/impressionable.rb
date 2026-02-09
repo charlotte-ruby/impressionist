@@ -1,8 +1,6 @@
 module Impressionist
   module Impressionable
-
-  # extends AS::Concern
-  include Impressionist::IsImpressionable
+    extend ActiveSupport::Concern
 
     # Overides impressionist_count in order to provide mongoid compability
     def impressionist_count(options={})
@@ -19,8 +17,19 @@ module Impressionist
       # Count all distinct impressions unless the :all filter is provided
       distinct = options[:filter] != :all
       distinct ? imps.where(options[:filter].ne => nil).distinct(options[:filter]).count : imps.count
-    end
+    end    
 
+    module ClassMethods
+      def is_impressionable(options={})
+        has_many :impressions, 
+                 as: :impressionable, 
+                 dependent: :delete
+
+        @impressionist_cache_options = options
+
+        true
+      end
+    end
   end
 end
 
