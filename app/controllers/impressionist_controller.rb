@@ -1,75 +1,61 @@
-require 'digest/sha2'
+# frozen_string_literal: true
 
+require 'digest/sha2'
 
 module ImpressionistController
   module ClassMethods
-    def impressionist(opts={})
-      if Rails::VERSION::MAJOR >= 5
-        before_action { |c| c.impressionist_subapp_filter(opts) }
-      else
-        before_filter { |c| c.impressionist_subapp_filter(opts) }
-      end
+    def impressionist(opts = {})
+      before_action { |c| c.impressionist_subapp_filter(opts) }
     end
   end
 
   module InstanceMethods
     def self.included(base)
-      if Rails::VERSION::MAJOR >= 5
-        base.before_action :impressionist_app_filter
-      else
-        base.before_filter :impressionist_app_filter
-      end
+      base.before_action :impressionist_app_filter
     end
 
-    def impressionist(obj,message=nil,opts={})
-      if should_count_impression?(opts)
-        if obj.respond_to?("impressionable?")
-          if unique_instance?(obj, opts[:unique])
-            obj.impressions.create(associative_create_statement({:message => message}))
-          end
-        else
-          # we could create an impression anyway. for classes, too. why not?
-          raise "#{obj.class.to_s} is not impressionable!"
+    def impressionist(obj, message = nil, opts = {})
+      return unless should_count_impression?(opts)
+
+      if obj.respond_to?("impressionable?")
+        if unique_instance?(obj, opts[:unique])
+          obj.impressions.create(associative_create_statement({ message: message }))
         end
+      else
+        raise "#{obj.class} is not impressionable!"
       end
     end
 
     def impressionist_app_filter
-      @impressionist_hash = Digest::SHA2.hexdigest(Time.now.to_f.to_s+rand(10000).to_s)
+      @impressionist_hash = Digest::SHA2.hexdigest("#{Time.now.to_f}#{SecureRandom.hex(16)}")
     end
 
     def impressionist_subapp_filter(opts = {})
-      if should_count_impression?(opts)
-        actions = opts[:actions]
-        actions.collect!{|a|a.to_s} unless actions.blank?
-        if (actions.blank? || actions.include?(action_name)) && unique?(opts[:unique])
-          Impression.create(direct_create_statement)
-        end
+      return unless should_count_impression?(opts)
+
+      actions = opts[:actions]
+      actions&.collect!(&:to_s)
+
+      if (actions.blank? || actions.include?(action_name)) && unique?(opts[:unique])
+        Impression.create(direct_create_statement)
       end
     end
 
     protected
 
-    # creates a statment hash that contains default values for creating an impression via an AR relation.
-    def associative_create_statement(query_params={})
-        # support older versions of rails:
-        # see https://github.com/rails/rails/pull/34039
-      if Rails::VERSION::MAJOR < 6
-        filter = ActionDispatch::Http::ParameterFilter.new(Rails.application.config.filter_parameters)
-      else
-        filter = ActiveSupport::ParameterFilter.new(Rails.application.config.filter_parameters)
-      end
+    def associative_create_statement(query_params = {})
+      filter = ActiveSupport::ParameterFilter.new(Rails.application.config.filter_parameters)
 
       query_params.reverse_merge!(
-        :controller_name => controller_name,
-        :action_name => action_name,
-        :user_id => user_id,
-        :request_hash => @impressionist_hash,
-        :session_hash => session_hash,
-        :ip_address => request.remote_ip,
-        :referrer => request.referer,
-        :params => filter.filter(params_hash)
-        )
+        controller_name: controller_name,
+        action_name: action_name,
+        user_id: user_id,
+        request_hash: @impressionist_hash,
+        session_hash: session_hash,
+        ip_address: sanitized_ip_address,
+        referrer: sanitized_referrer,
+        params: sanitized_params(filter)
+      )
     end
 
     private
@@ -91,15 +77,15 @@ module ImpressionistController
     end
 
     def conditional?(condition)
-      condition.is_a?(Symbol) ? self.send(condition) : condition.call
+      condition.is_a?(Symbol) ? send(condition) : condition.call
     end
 
     def unique_instance?(impressionable, unique_opts)
-      return unique_opts.blank? || !impressionable.impressions.where(unique_query(unique_opts, impressionable)).exists?
+      unique_opts.blank? || !impressionable.impressions.where(unique_query(unique_opts, impressionable)).exists?
     end
 
     def unique?(unique_opts)
-      return unique_opts.blank? || check_impression?(unique_opts)
+      unique_opts.blank? || check_impression?(unique_opts)
     end
 
     def check_impression?(unique_opts)
@@ -118,37 +104,90 @@ module ImpressionistController
 
     def check_unique_with_params?(impressions)
       request_param = params_hash
-      impressions.detect{|impression| impression.params == request_param }.nil?
+      impressions.detect { |impression| impression.params == request_param }.nil?
     end
 
-    # creates the query to check for uniqueness
-    def unique_query(unique_opts,impressionable=nil)
-      full_statement = direct_create_statement({},impressionable)
-      # reduce the full statement to the params we need for the specified unique options
+    def unique_query(unique_opts, impressionable = nil)
+      full_statement = direct_create_statement({}, impressionable)
       unique_opts.reduce({}) do |query, param|
         query[param] = full_statement[param]
         query
       end
     end
 
-    # creates a statment hash that contains default values for creating an impression.
-    def direct_create_statement(query_params={},impressionable=nil)
+    def direct_create_statement(query_params = {}, impressionable = nil)
       query_params.reverse_merge!(
-        :impressionable_type => controller_name.singularize.camelize,
-        :impressionable_id => impressionable.present? ? impressionable.id : params[:id]
-        )
+        impressionable_type: sanitized_impressionable_type,
+        impressionable_id: impressionable.present? ? impressionable.id : sanitized_impressionable_id
+      )
       associative_create_statement(query_params)
     end
 
+    def sanitized_ip_address
+      return nil unless Impressionist.log_ip_address
+
+      ip = request.remote_ip.to_s
+      return nil if ip.blank?
+
+      if ip.match?(/\A(?:\d{1,3}\.){3}\d{1,3}\z/) || ip.match?(/\A[a-fA-F0-9:]+\z/)
+        ip.slice(0, 45)
+      end
+    end
+
+    def sanitized_referrer
+      return nil unless Impressionist.log_referrer
+
+      referrer = request.referer.to_s
+      return nil if referrer.blank?
+
+      begin
+        uri = URI.parse(referrer.slice(0, 2048))
+        uri.to_s if uri.scheme&.match?(/\Ahttps?\z/)
+      rescue URI::InvalidURIError
+        nil
+      end
+    end
+
+    def sanitized_params(filter)
+      return {} unless Impressionist.log_params
+
+      filtered = filter.filter(params_hash)
+      json = filtered.to_json
+      return {} if json.bytesize > Impressionist.max_params_size
+
+      filtered
+    end
+
+    def sanitized_impressionable_type
+      type = controller_name.singularize.camelize
+      return nil unless type.match?(/\A[A-Za-z][A-Za-z0-9_:]*\z/)
+
+      type
+    end
+
+    def sanitized_impressionable_id
+      id = params[:id]
+      return nil if id.blank?
+
+      if id.to_s.match?(/\A\d+\z/)
+        id.to_i
+      elsif id.to_s.match?(/\A[a-f0-9\-]{36}\z/i)
+        id.to_s
+      end
+    end
+
     def session_hash
+      return nil unless Impressionist.log_session_hash
+
       id = session.id || request.session_options[:id]
+      return nil if id.nil?
 
       if id.respond_to?(:cookie_value)
-        id.cookie_value
+        id.cookie_value.to_s.slice(0, 255)
       elsif id.is_a?(Rack::Session::SessionId)
-        id.public_id
+        id.public_id.to_s.slice(0, 255)
       else
-        id.to_s
+        id.to_s.slice(0, 255)
       end
     end
 
@@ -156,7 +195,6 @@ module ImpressionistController
       request.params.except(:controller, :action, :id)
     end
 
-    #use both @current_user and current_user helper
     def user_id
       user_id = @current_user&.id rescue nil
       user_id = current_user&.id rescue nil if user_id.blank?
