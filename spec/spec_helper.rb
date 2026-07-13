@@ -23,7 +23,7 @@ require "rails/test_help"
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
-  config.fixture_path = "spec/fixtures"
+  config.fixture_paths = ["spec/fixtures"]
   config.infer_spec_type_from_file_location!
 
   config.mock_with :rspec

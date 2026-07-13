@@ -22,7 +22,7 @@ module Impressionist
       end
 
       def counter_caching?
-          ::ActiveSupport::Deprecation.warn("#counter_caching? is deprecated; please use #impressionist_counter_caching? instead")
+          ::ActiveSupport::Deprecation.new.warn("#counter_caching? is deprecated; please use #impressionist_counter_caching? instead")
           impressionist_counter_caching?
       end
 
