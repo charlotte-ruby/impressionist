@@ -15,7 +15,7 @@ group :test do
   gem 'rspec', "~> 3.0"
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
-  gem 'simplecov'
+  gem 'simplecov', '>= 1'
   gem 'systemu'
 end
 

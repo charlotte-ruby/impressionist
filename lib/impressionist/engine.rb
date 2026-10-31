@@ -2,6 +2,10 @@ module Impressionist
   class Engine < ::Rails::Engine
     attr_accessor :orm
 
+  initializer 'impressionist.deprecator' do |app|
+    app.deprecators[:impressionist] = Impressionist.deprecator if app.respond_to?(:deprecators)
+  end
+
   initializer 'impressionist.model' do |app|
     @orm = Impressionist.orm
     include_orm
