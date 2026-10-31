@@ -11,6 +11,6 @@ module Impressionist
   end
 
   def self.deprecator
-    @deprecator ||= ActiveSupport::Deprecation.new("3.0", "Impressionist")
+    @deprecator ||= ActiveSupport::Deprecation.new('3.0', 'Impressionist')
   end
 end
